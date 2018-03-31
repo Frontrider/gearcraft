@@ -15,10 +15,10 @@ import java.util.Random;
 
 public class GearBox extends Block implements PoweredBlock {
 
-    private PropertyInteger power = PropertyInteger.create("power", 0, 15);
+    private static PropertyInteger power = PropertyInteger.create("power", 0, 15);
 
     public GearBox(Material blockMaterialIn, MapColor blockMapColorIn) {
-        super(blockMaterialIn,blockMapColorIn);
+        super(blockMaterialIn, blockMapColorIn);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class GearBox extends Block implements PoweredBlock {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this,PropertyInteger.create("power",0,15));
+        return new BlockStateContainer(this, power);
     }
 
     @Override
@@ -58,6 +58,10 @@ public class GearBox extends Block implements PoweredBlock {
 
     @Override
     public IBlockState setLevel(IBlockState blockstate, BlockPos pos, World world, int level) {
-        return this.getDefaultState().withProperty(power, level);
+        if(level <15) {
+            return this.getDefaultState().withProperty(power, level);
+        }else {
+            return this.getDefaultState().withProperty(power, 15);
+        }
     }
 }
