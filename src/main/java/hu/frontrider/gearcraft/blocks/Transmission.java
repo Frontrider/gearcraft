@@ -36,7 +36,6 @@ public class Transmission extends Block {
 
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState blockState, Random random) {
-        System.out.println("ticking");
         EnumFacing facing = blockState.getValue(FACING);
         switch (facing) {
             case UP: {
