@@ -1,6 +1,7 @@
 package hu.frontrider.gearcraft.gearcraft;
 
 
+import hu.frontrider.gearcraft.blocks.CreativeGearbox;
 import hu.frontrider.gearcraft.blocks.GearBox;
 import hu.frontrider.gearcraft.blocks.Transmission;
 import net.minecraft.block.material.MapColor;
@@ -20,44 +21,95 @@ class TransmissionTest {
 
     private WorldServer world;
     private BlockPos current;
+    private BlockPos spyedPos;
     private GearBox sourceBlock;
     private GearBox targetBlock;
+    private CreativeGearbox creativeGearbox;
     private Transmission transmission;
+    private Random random;
 
     @BeforeAll
-    static void bootstrap(){
+    static void bootstrap() {
         Bootstrap.register();
     }
 
     @BeforeEach
-    void setup(){
-        sourceBlock = new GearBox(Material.WOOD,MapColor.WOOD);
-        targetBlock = new GearBox(Material.WOOD,MapColor.WOOD);
-        transmission = new Transmission(Material.WOOD,MapColor.WOOD);
-        current = new BlockPos(0,0,0);
+    void setup() {
+        random = new Random(123L);
+        sourceBlock = new GearBox(Material.WOOD, MapColor.WOOD);
+        targetBlock = new GearBox(Material.WOOD, MapColor.WOOD);
+        transmission = new Transmission(Material.WOOD, MapColor.WOOD);
+        current = new BlockPos(0, 0, 0);
         world = mock(WorldServer.class);
         when(world.getBlockState(current.up())).thenReturn(targetBlock.getStateFromMeta(0));
         when(world.getBlockState(current)).thenReturn(transmission.getStateFromMeta(1));
         when(world.getSeed()).thenReturn(123L);
+        creativeGearbox = new CreativeGearbox(Material.BARRIER,MapColor.AIR);
+
+        spyedPos = spy(current);
     }
 
     @Nested
-    class Up{
-        @Test
-        @DisplayName("with gearbox bellow")
-        void withGearbox() {
-            Random random = new Random(123L);
-            when(world.getBlockState(current.down())).thenReturn(sourceBlock.getStateFromMeta(15));
-            transmission.updateTick(world,current,transmission.getStateFromMeta(1),random);
-            verify(world,times(1)).setBlockState(current.up(),targetBlock.getStateFromMeta(15));
+    class Up {
+        @Nested
+        @DisplayName("with gearbox")
+        class gearbox {
+            @BeforeEach
+            void setup() {
+                when(world.getBlockState(current.down())).thenReturn(creativeGearbox.getDefaultState());
+                transmission.updateTick(world, spyedPos, transmission.getStateFromMeta(1), random);
+            }
+
+            @Test
+            @DisplayName("world.setBlockState() is called")
+            void setBlockState() {
+                verify(world, times(1)).setBlockState(current.up(), targetBlock.getStateFromMeta(15),2);
+            }
+
+            @Test
+            @DisplayName("The block bellow is accessed")
+            void blockBellowAccessed(){
+                verify(spyedPos,times(1)).down();
+                verify(world,times(1)).getBlockState(current.down());
+            }
+
+            @Test
+            @DisplayName("The block above is accessed")
+            void blockAboveAccessed(){
+                verify(spyedPos,times(1)).up();
+                verify(world,times(1)).getBlockState(current.up());
+            }
+
         }
-        @Test
-        @DisplayName("without gearbox bellow")
-        void NoGearbox() {
-            Random random = new Random(123L);
-            when(world.getBlockState(current.down())).thenReturn(Blocks.AIR.getDefaultState());
-            transmission.updateTick(world,current,transmission.getStateFromMeta(1),random);
-            verify(world,times(0)).setBlockState(current.up(),targetBlock.getStateFromMeta(15));
+
+        @Nested
+        @DisplayName("without gearbox")
+        class nogearbox {
+            @BeforeEach
+            void setup() {
+                when(world.getBlockState(current.down())).thenReturn(Blocks.AIR.getDefaultState());
+                transmission.updateTick(world, spyedPos, transmission.getStateFromMeta(1), random);
+            }
+
+            @Test
+            @DisplayName("world.setBlockState() is not called")
+            void setBlockState() {
+                verify(world, times(0)).setBlockState(current.up(), targetBlock.getStateFromMeta(15),2);
+            }
+
+            @Test
+            @DisplayName("The block bellow is accessed")
+            void blockBellowAccessed(){
+                verify(spyedPos,times(1)).down();
+                verify(world,times(1)).getBlockState(current.down());
+            }
+            @Test
+            @DisplayName("The block above is not accessed")
+            void blockAboveAccessed(){
+                verify(spyedPos,times(1)).up();
+                verify(world,times(0)).getBlockState(current.up());
+            }
+
         }
 
     }

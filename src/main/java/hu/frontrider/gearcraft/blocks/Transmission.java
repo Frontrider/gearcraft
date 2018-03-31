@@ -66,7 +66,7 @@ public class Transmission extends Block {
                             if (block instanceof PoweredBlock) {
                                 IBlockState shaftstate = world.getBlockState(up);
                                 IBlockState state = ((PoweredBlock) block).pushPower(shaftstate, up, world, power);
-                                world.setBlockState(up, state);
+                                world.setBlockState(up, state,2);
                             } else {
                                 break;
                             }
@@ -76,7 +76,7 @@ public class Transmission extends Block {
                 }else{
                     if (block instanceof PoweredBlock) {
                         IBlockState state = ((PoweredBlock) block).pushPower(target, up, world, power);
-                        world.setBlockState(up, state);
+                        world.setBlockState(up, state,2);
                     }
                 }
                 break;
