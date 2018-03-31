@@ -36,6 +36,8 @@ public class Transmission extends Block {
 
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState blockState, Random random) {
+        //world.scheduleUpdate(pos,this,this.tickRate(world));
+        System.out.println("transmission updating");
         EnumFacing facing = blockState.getValue(FACING);
         switch (facing) {
             case UP: {
