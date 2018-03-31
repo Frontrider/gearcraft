@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=down":  {"model": "minecraft:piston_normal", "x": 90},
+    "facing=up":    {"model": "minecraft:piston_normal", "x": 270},
+    "facing=north": {"model": "minecraft:piston_normal"},
+    "facing=south": {"model": "minecraft:piston_normal", "y": 180},
+    "facing=west":  {"model": "minecraft:piston_normal", "y": 270},
+    "facing=east":  {"model": "minecraft:piston_normal", "y": 90}
+  }
+}
