@@ -9,7 +9,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -44,14 +43,12 @@ public class Transmission extends Block {
                 BlockPos up = pos.up();
                 IBlockState target = world.getBlockState(up);
                 Block block = target.getBlock();
-                if (block == Blocks.AIR)
-                    break;
                 int power;
                 BlockPos gearboxPos = pos.down();
                 IBlockState gearboxState = world.getBlockState(gearboxPos);
                 Block gearbox = gearboxState.getBlock();
                 if (gearbox instanceof PoweredBlock) {
-                    power = ((PoweredBlock) gearbox).getLevel(gearboxState, gearboxPos, world);
+                    power = ((PoweredBlock) gearbox).getPower(gearboxState, gearboxPos, world);
                 } else {
                     break;
                 }
@@ -69,7 +66,7 @@ public class Transmission extends Block {
                         } else {
                             if (block instanceof PoweredBlock) {
                                 IBlockState shaftstate = world.getBlockState(up);
-                                IBlockState state = ((PoweredBlock) block).setLevel(shaftstate, up, world, power);
+                                IBlockState state = ((PoweredBlock) block).pushPower(shaftstate, up, world, power);
                                 world.setBlockState(up, state);
                             } else {
                                 break;
@@ -79,7 +76,7 @@ public class Transmission extends Block {
                     }
                 }else{
                     if (block instanceof PoweredBlock) {
-                        IBlockState state = ((PoweredBlock) block).setLevel(target, up, world, power);
+                        IBlockState state = ((PoweredBlock) block).pushPower(target, up, world, power);
                         world.setBlockState(up, state);
                     }
                 }

@@ -49,12 +49,12 @@ public class CreativeGearbox extends Block implements PoweredBlock {
     }
 
     @Override
-    public int getLevel(IBlockState blockState, BlockPos pos, World world) {
+    public int getPower(IBlockState blockState, BlockPos pos, World world) {
         return 15;
     }
 
     @Override
-    public IBlockState setLevel(IBlockState blockstate, BlockPos pos, World world, int level) {
+    public IBlockState pushPower(IBlockState blockstate, BlockPos pos, World world, int level) {
         return blockstate;
     }
 }

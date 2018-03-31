@@ -52,16 +52,12 @@ public class GearBox extends Block implements PoweredBlock {
     }
 
     @Override
-    public int getLevel(IBlockState blockState, BlockPos pos, World world) {
+    public int getPower(IBlockState blockState, BlockPos pos, World world) {
         return blockState.getValue(power);
     }
 
     @Override
-    public IBlockState setLevel(IBlockState blockstate, BlockPos pos, World world, int level) {
-        if(level <15) {
-            return this.getDefaultState().withProperty(power, level);
-        }else {
-            return this.getDefaultState().withProperty(power, 15);
-        }
+    public IBlockState pushPower(IBlockState blockstate, BlockPos pos, World world, int level) {
+        return this.getDefaultState().withProperty(power, level & 15);
     }
 }
