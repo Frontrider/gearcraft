@@ -16,7 +16,7 @@ import java.util.Random;
 import static org.mockito.Mockito.*;
 import static org.powermock.api.mockito.PowerMockito.mock;
 
-class TranmissionTest {
+class TransmissionTest {
 
     private WorldServer world;
     private BlockPos current;
@@ -59,7 +59,6 @@ class TranmissionTest {
             transmission.updateTick(world,current,transmission.getStateFromMeta(1),random);
             verify(world,times(0)).setBlockState(current.up(),targetBlock.getStateFromMeta(15));
         }
-
 
     }
 
