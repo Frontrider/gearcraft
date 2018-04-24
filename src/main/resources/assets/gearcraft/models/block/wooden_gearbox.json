@@ -1,0 +1,7 @@
+{
+  "parent": "block/orientable_vertical",
+  "textures": {
+    "front": "gearcraft:blocks/wooden_gearbox_input",
+    "side": "gearcraft:blocks/wooden_gearbox_output"
+  }
+}

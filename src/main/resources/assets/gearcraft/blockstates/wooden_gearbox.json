@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "facing=down,inverted=false":   { "model": "gearcraft:wooden_gearbox","x":180 },
+    "facing=up,inverted=false":     { "model": "gearcraft:wooden_gearbox"},
+    "facing=north,inverted=false":  { "model": "gearcraft:wooden_gearbox","x":90 },
+    "facing=south,inverted=false":  { "model": "gearcraft:wooden_gearbox","x":270},
+    "facing=west,inverted=false":   { "model": "gearcraft:wooden_gearbox","x":90,"y":270},
+    "facing=east,inverted=false":   { "model": "gearcraft:wooden_gearbox","x":90,"y":90},
+
+
+    "facing=down,inverted=true":   { "model": "gearcraft:wooden_gearbox_inverted","x":180 },
+    "facing=up,inverted=true":     { "model": "gearcraft:wooden_gearbox_inverted"},
+    "facing=north,inverted=true":  { "model": "gearcraft:wooden_gearbox_inverted","x":90 },
+    "facing=south,inverted=true":  { "model": "gearcraft:wooden_gearbox_inverted","x":270},
+    "facing=west,inverted=true":   { "model": "gearcraft:wooden_gearbox_inverted","x":90,"y":270},
+    "facing=east,inverted=true":   { "model": "gearcraft:wooden_gearbox_inverted","x":90,"y":90}
+  }
+}

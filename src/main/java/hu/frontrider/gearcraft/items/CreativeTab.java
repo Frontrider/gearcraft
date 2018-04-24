@@ -1,7 +1,7 @@
 package hu.frontrider.gearcraft.items;
 
+import hu.frontrider.gearcraft.registry.ItemRegistry;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class CreativeTab extends CreativeTabs {
@@ -10,16 +10,12 @@ public class CreativeTab extends CreativeTabs {
         super(par1, par2Str);
 
     }
-
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(Items.APPLE, 1, 0);
+        return new ItemStack(ItemRegistry.woodenShaft, 1, 0);
     }
-
     @Override
     public String getTabLabel() {
         return "gearcraft_creative_tab";
     }
-
-
 }
