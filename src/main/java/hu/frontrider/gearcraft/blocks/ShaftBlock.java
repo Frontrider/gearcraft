@@ -1,8 +1,8 @@
 package hu.frontrider.gearcraft.blocks;
 
 import hu.frontrider.gearcraft.GearCraft;
-import hu.frontrider.gearcraft.api.PoweredBlock;
-import hu.frontrider.gearcraft.core.Tier;
+import hu.frontrider.gearcraft.api.IPoweredBlock;
+import hu.frontrider.gearcraft.registry.TierRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -12,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.Rotation;
@@ -24,28 +25,38 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class ShaftBlock extends Block implements PoweredBlock {
+public class ShaftBlock extends Block implements IPoweredBlock {
 
     public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
     public static final PropertyInteger POWER = PropertyInteger.create("power", 0, 3);
 
-    /*
-    static final AxisAlignedBB alignedX = new AxisAlignedBB();
-    static final AxisAlignedBB alignedY = new AxisAlignedBB();
-    static final AxisAlignedBB alignedZ = new AxisAlignedBB();*/
+    public static final AxisAlignedBB alignedY = new AxisAlignedBB(0.3125, 0.0D, 0.3125, 0.6875, 1D, 0.6875);
+    public static final AxisAlignedBB alignedX = new AxisAlignedBB(0, 0.3125, 0.3125, 1, 0.6875, 0.6875);
+    public static final AxisAlignedBB alignedZ = new AxisAlignedBB(0.3125,0.3125, 0.0, 0.6875, 0.6875, 1D);
 
-    private final Tier tier;
+    private final TierRegistry.Tier tier;
 
-    public ShaftBlock(Tier tier) {
+    public ShaftBlock(TierRegistry.Tier tier) {
+        this(tier,null);
+    }
+
+    public ShaftBlock(TierRegistry.Tier tier,String tag) {
         super(tier.material, tier.mapColor);
-        Tier.setBlock(this, tier);
-        setRegistryName(GearCraft.MODID, tier.name + "_shaft");
+        TierRegistry.Tier.setBlock(this, tier);
+        String suffix = "_shaft";
+        if(tag != null)
+            suffix += "_"+tag;
+        setRegistryName(GearCraft.MODID, tier.name + suffix);
         setUnlocalizedName(tier.name + "_shaft");
         this.tier = tier;
     }
 
-    @Override
-    public boolean isFullBlock(IBlockState p_isFullBlock_1_) {
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    public boolean isFullCube(IBlockState blockState) {
         return false;
     }
 
@@ -56,7 +67,14 @@ public class ShaftBlock extends Block implements PoweredBlock {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState blockState, IBlockAccess p_getBoundingBox_2_, BlockPos p_getBoundingBox_3_) {
-        return super.getBoundingBox(blockState, p_getBoundingBox_2_, p_getBoundingBox_3_);
+        switch (blockState.getValue(AXIS)) {
+            case X:
+                return alignedX;
+            case Z:
+                return alignedZ;
+            default:
+                return alignedY;
+        }
     }
 
     @Override
@@ -197,62 +215,38 @@ public class ShaftBlock extends Block implements PoweredBlock {
         int leftPower = 0;
         int leftStrength = 0;
         int rightStrength = 0;
-        boolean isLeftValid = false;
-        boolean isRightValid = false;
-        if (poweredLeft instanceof PoweredBlock) {
-            isLeftValid = ((PoweredBlock) poweredLeft).isValidSide(world, left, leftSide);
-            if (isLeftValid)
-                leftPower = ((PoweredBlock) poweredLeft).getPower(world, left, leftBlock);
-            leftStrength = ((PoweredBlock) poweredLeft).getStrength(world, left);
+
+        if (poweredLeft instanceof IPoweredBlock) {
+            if (((IPoweredBlock) poweredLeft).isValidSide(world, left, leftSide))
+                leftPower = ((IPoweredBlock) poweredLeft).getPower(world, left, leftBlock);
+            leftStrength = ((IPoweredBlock) poweredLeft).getStrength(world, left);
         }
-        if (poweredRight instanceof PoweredBlock) {
-            isRightValid = ((PoweredBlock) poweredRight).isValidSide(world, right, rightSide);
-            if (isRightValid)
-                rightPower = ((PoweredBlock) poweredRight).getPower(world, right, rightBlock);
-            rightStrength = ((PoweredBlock) poweredRight).getStrength(world, right);
+        if (poweredRight instanceof IPoweredBlock) {
+            if (((IPoweredBlock) poweredRight).isValidSide(world, right, rightSide))
+                rightPower = ((IPoweredBlock) poweredRight).getPower(world, right, rightBlock);
+            rightStrength = ((IPoweredBlock) poweredRight).getStrength(world, right);
         }
 
-        int difference = Math.abs(leftPower - rightPower);
-        if ((difference == 1 || difference == 0) && (leftPower != 0 & rightPower != 0)) {
-            breakAndNotify(world, thizPos);
-        } else if (leftPower > rightPower
-                && leftStrength >= tier.power
-                && rightStrength <= tier.power) {
-            updateAndNotify(world, thizState.withProperty(POWER, leftPower - 1), thizPos);
-        } else if (leftPower < rightPower
-                && rightStrength >= tier.power
-                && leftStrength <= tier.power) {
-            updateAndNotify(world, thizState.withProperty(POWER, rightPower - 1), thizPos);
-        }
-        if (rightPower == 0
-                && leftPower > 1
-                && leftStrength >= tier.power) {
-            updateAndNotify(world, thizState.withProperty(POWER, leftPower - 1), thizPos);
-        }
-        if (leftPower == 0
-                && rightPower > 1
-                && rightStrength >= tier.power) {
-            updateAndNotify(world, thizState.withProperty(POWER, rightPower - 1), thizPos);
-        }
-        if (leftPower == 1 & !isRightValid || rightPower == 1 & !isLeftValid) {
-            breakAndNotify(world, thizPos);
-        }
-        if (leftPower == 0 && rightPower == 0) {
-            updateAndNotify(world, thizState.withProperty(POWER, 0), thizPos);
+        if (leftPower == rightPower) {
+            world.setBlockState(thizPos, thizState.withProperty(POWER, 0));
+        } else {
+            if (leftPower > rightPower
+                    && leftStrength >= tier.power
+                    && rightStrength <= tier.power) {
+                world.setBlockState(thizPos, thizState.withProperty(POWER, leftPower - 1));
+            } else if (leftPower < rightPower
+                    && rightStrength >= tier.power
+                    && leftStrength <= tier.power) {
+                world.setBlockState(thizPos, thizState.withProperty(POWER, rightPower - 1));
+            }
         }
     }
+
 
     private int getPowerLevel(IBlockState blockState, IBlockAccess world, BlockPos pos) {
-        return ((PoweredBlock) blockState.getBlock()).getStrength(world, pos);
+        return ((IPoweredBlock) blockState.getBlock()).getStrength(world, pos);
     }
 
-    private void updateAndNotify(World world, IBlockState thiz, BlockPos pos) {
-        world.setBlockState(pos, thiz);
-    }
-
-    private void breakAndNotify(World world, BlockPos pos) {
-        world.destroyBlock(pos, true);
-    }
 
     @Override
     public void neighborChanged(IBlockState blockState, World world, BlockPos pos, Block p_neighborChanged_4_, BlockPos p_neighborChanged_5_) {
@@ -266,6 +260,11 @@ public class ShaftBlock extends Block implements PoweredBlock {
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos blockPos, IBlockState blockState, EntityLivingBase p_onBlockPlacedBy_4_, ItemStack p_onBlockPlacedBy_5_) {
+        update(blockState, world, blockPos);
+    }
+
+    @Override
+    public void updateTick(World world, BlockPos blockPos, IBlockState blockState, Random p_updateTick_4_) {
         update(blockState, world, blockPos);
     }
 

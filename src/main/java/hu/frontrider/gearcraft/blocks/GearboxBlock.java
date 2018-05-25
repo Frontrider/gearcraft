@@ -1,40 +1,60 @@
 package hu.frontrider.gearcraft.blocks;
 
 import hu.frontrider.gearcraft.GearCraft;
-import hu.frontrider.gearcraft.api.PoweredBlock;
-import hu.frontrider.gearcraft.core.Tier;
+import hu.frontrider.gearcraft.api.IPoweredBlock;
+import hu.frontrider.gearcraft.registry.TierRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Objects;
+import java.util.Random;
 
-public class GearboxBlock extends Block implements PoweredBlock {
+public class GearboxBlock extends Block implements IPoweredBlock {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool INVERTED = PropertyBool.create("inverted");
 
-    private final Tier tier;
+    private final TierRegistry.Tier tier;
 
-    public GearboxBlock(Tier tier) {
+    public GearboxBlock(TierRegistry.Tier tier, String tag) {
         super(tier.material, tier.mapColor);
-        this.tier = tier;
-        Tier.setBlock(this, tier);
-        setRegistryName(GearCraft.MODID, tier.name + "_gearbox");
+        TierRegistry.Tier.setBlock(this, tier);
+        String suffix = "_gearbox";
+        if (tag != null)
+            suffix += "_" + tag;
+        setRegistryName(GearCraft.MODID, tier.name + suffix);
         setUnlocalizedName(tier.name + "_gearbox");
+        this.tier = tier;
+    }
+
+    public GearboxBlock(TierRegistry.Tier tier) {
+        this(tier, null);
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING, INVERTED);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    public boolean isFullCube(IBlockState blockState) {
+        return false;
     }
 
     @Override
@@ -43,6 +63,11 @@ public class GearboxBlock extends Block implements PoweredBlock {
                 .withProperty(FACING, Objects.requireNonNull(getFacing(meta)))
                 .withProperty(INVERTED, (meta & 8) > 0);
 
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState blockState) {
+        return false;
     }
 
     @Override
@@ -97,6 +122,7 @@ public class GearboxBlock extends Block implements PoweredBlock {
     }
 
     private int getOnSide(IBlockAccess iBlockAccess, BlockPos blockPos, EnumFacing facing) {
+
         switch (facing) {
             case SOUTH:
 
@@ -118,15 +144,19 @@ public class GearboxBlock extends Block implements PoweredBlock {
     private int getTargetStrength(IBlockAccess iBlockAccess, BlockPos pos, EnumFacing side) {
         IBlockState targetState = iBlockAccess.getBlockState(pos);
         Block targetBlock = targetState.getBlock();
-        if (targetBlock instanceof PoweredBlock) {
-            if (((PoweredBlock) targetBlock).getPower(iBlockAccess, pos, targetState) > 0
-                    && ((PoweredBlock) targetBlock).isValidSide(iBlockAccess, pos, side)) {
-                int targetPower = ((PoweredBlock) targetBlock).getStrength(iBlockAccess, pos);
+        if (targetBlock instanceof IPoweredBlock) {
+            if (((IPoweredBlock) targetBlock).getPower(iBlockAccess, pos, targetState) > 0
+                    && ((IPoweredBlock) targetBlock).isValidSide(iBlockAccess, pos, side)) {
+                int targetPower = ((IPoweredBlock) targetBlock).getStrength(iBlockAccess, pos);
                 if (targetPower >= tier.power) {
                     return tier.power;
                 }
             }
         }
+        return 0;
+    }
+
+    private int getInvertedTargetStrenght() {
         return 0;
     }
 
@@ -185,7 +215,6 @@ public class GearboxBlock extends Block implements PoweredBlock {
                 return total >= required ? required : 0;
 
         }
-
         return 0;
     }
 
@@ -201,4 +230,13 @@ public class GearboxBlock extends Block implements PoweredBlock {
         }
     }
 
+    @Override
+    public void observedNeighborChange(IBlockState blockState, World world, BlockPos blockPos, Block block, BlockPos blockPos1) {
+        world.scheduleUpdate(blockPos, this, 10);
+    }
+
+    @Override
+    public void updateTick(World world, BlockPos blockPos, IBlockState blockState, Random random) {
+        world.notifyNeighborsOfStateChange(blockPos, this, true);
+    }
 }

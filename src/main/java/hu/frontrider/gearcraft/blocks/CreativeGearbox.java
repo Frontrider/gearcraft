@@ -1,7 +1,7 @@
 package hu.frontrider.gearcraft.blocks;
 
 import hu.frontrider.gearcraft.GearCraft;
-import hu.frontrider.gearcraft.api.PoweredBlock;
+import hu.frontrider.gearcraft.api.IPoweredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -10,7 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class CreativeGearbox  extends Block implements PoweredBlock {
+public class CreativeGearbox  extends Block implements IPoweredBlock {
     private static final String blockName = "creative_gearbox";
 
     public CreativeGearbox() {

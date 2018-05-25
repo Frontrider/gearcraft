@@ -4,26 +4,34 @@ import hu.frontrider.gearcraft.GearCraft;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import static hu.frontrider.gearcraft.registry.BlockRegistry.creativeGearbox;
-import static hu.frontrider.gearcraft.registry.BlockRegistry.wooden_gearbox;
+import java.util.ArrayList;
+
+import static hu.frontrider.gearcraft.GearCraft.MODID;
+import static hu.frontrider.gearcraft.GearCraft.creativeTab;
+import static hu.frontrider.gearcraft.registry.BlockRegistry.BLOCKS;
 
 @Mod.EventBusSubscriber
 public class ItemRegistry {
 
-    public static final Item woodenShaft = itemToBlock(BlockRegistry.woodenShaft);
+    public static ArrayList<Item> items = new ArrayList<>();
+
+    public static Item wooden_gear = new Item()
+            .setRegistryName(new ResourceLocation(MODID, "wooden_gear"))
+            .setUnlocalizedName("wooden_gear");
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-                registry.register(woodenShaft);
-                registry.registerAll(
+        registry.registerAll(
                 registerAll(
-                        wooden_gearbox,creativeGearbox));
+                        BLOCKS));
+        registry.register(wooden_gear);
     }
 
     private static Item[] registerAll(Block... blocks) {
@@ -31,6 +39,8 @@ public class ItemRegistry {
         int i = 0;
         for (Block block : blocks) {
             items[i] = itemToBlock(block);
+            items[i].setCreativeTab(creativeTab);
+            ItemRegistry.items.add(items[i]);
             i++;
         }
         return items;

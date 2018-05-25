@@ -12,7 +12,7 @@ public class CreativeTab extends CreativeTabs {
     }
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(ItemRegistry.woodenShaft, 1, 0);
+        return new ItemStack(ItemRegistry.wooden_gear, 1, 0);
     }
     @Override
     public String getTabLabel() {
