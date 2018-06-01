@@ -1,6 +1,8 @@
 package hu.frontrider.gearcraft.registry;
 
 import hu.frontrider.gearcraft.GearCraft;
+import hu.frontrider.gearcraft.blocks.TooltippedBlock;
+import hu.frontrider.gearcraft.items.TooltippedItemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -47,6 +49,13 @@ public class ItemRegistry {
     }
 
     private static Item itemToBlock(Block block) {
+        if (block instanceof TooltippedBlock)
+            return new TooltippedItemBlock(block)
+                    .setRegistryName(block.getRegistryName()
+                            .getResourcePath())
+                    .setUnlocalizedName(block.getUnlocalizedName())
+                    .setCreativeTab(GearCraft.creativeTab);
+
         return new ItemBlock(block)
                 .setRegistryName(block.getRegistryName()
                         .getResourcePath())

@@ -1,5 +1,4 @@
 {
-    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "parent":"block/block",
     "elements": [
         {
@@ -310,7 +309,7 @@
                 "east": { "texture": "#gear"},
                 "south": { "texture": "#gear"},
                 "west": { "texture": "#gear"},
-                "up": { "texture": "#gear"},
+                "up": { "texture": "#gear_input"},
                 "down": { "texture": "#gear"}
             }
         }

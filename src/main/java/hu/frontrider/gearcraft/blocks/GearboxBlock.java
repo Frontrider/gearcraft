@@ -1,6 +1,5 @@
 package hu.frontrider.gearcraft.blocks;
 
-import hu.frontrider.gearcraft.GearCraft;
 import hu.frontrider.gearcraft.api.IPoweredBlock;
 import hu.frontrider.gearcraft.registry.TierRegistry;
 import net.minecraft.block.Block;
@@ -19,24 +18,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class GearboxBlock extends Block implements IPoweredBlock {
+public class GearboxBlock extends BlockBase implements IPoweredBlock,TooltippedBlock {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool INVERTED = PropertyBool.create("inverted");
 
-    private final TierRegistry.Tier tier;
-
     public GearboxBlock(TierRegistry.Tier tier, String tag) {
-        super(tier.material, tier.mapColor);
-        TierRegistry.Tier.setBlock(this, tier);
-        String suffix = "_gearbox";
-        if (tag != null)
-            suffix += "_" + tag;
-        setRegistryName(GearCraft.MODID, tier.name + suffix);
-        setUnlocalizedName(tier.name + "_gearbox");
-        this.tier = tier;
+        super(tier,"gearbox",tag);
     }
 
     public GearboxBlock(TierRegistry.Tier tier) {
@@ -62,7 +53,6 @@ public class GearboxBlock extends Block implements IPoweredBlock {
         return this.getDefaultState()
                 .withProperty(FACING, Objects.requireNonNull(getFacing(meta)))
                 .withProperty(INVERTED, (meta & 8) > 0);
-
     }
 
     @Override
@@ -101,31 +91,34 @@ public class GearboxBlock extends Block implements IPoweredBlock {
 
     @Override
     public int getStrength(IBlockAccess iBlockAccess, BlockPos blockPos) {
+
         IBlockState state = iBlockAccess.getBlockState(blockPos);
         boolean inverted = state.getValue(INVERTED);
         EnumFacing facing = state.getValue(FACING);
 
         if (inverted) {
-            return getInvertedTargetPower(iBlockAccess, blockPos, facing);
+            int required = getOnSide(iBlockAccess, blockPos, facing);
+            int total = getInvertedTargetPower(iBlockAccess, blockPos, facing);
+            //System.out.println("total = " + total);
+            //System.out.println("required = " + required);
+            return total >= required ? total : 0;
         } else {
-            return getOnSide(iBlockAccess, blockPos, facing);
+            int total = getOnSide(iBlockAccess, blockPos, facing);
+            int required = getInvertedTargetPower(iBlockAccess, blockPos, facing,true);
+            //System.out.println("total = " + total);
+            //System.out.println("required = " + required);
+            return total >= required ? total : 0;
         }
     }
 
     @Override
-    public int getPower(IBlockAccess iBlockAccess, BlockPos blockPos, IBlockState leftBlock) {
-        if (getStrength(iBlockAccess, blockPos) >= tier.power) {
-            return 4;
-        } else {
-            return 0;
-        }
+    public int getPower(IBlockAccess iBlockAccess, BlockPos blockPos) {
+        return getStrength(iBlockAccess, blockPos) > 0 ? 4 : 0;
     }
 
     private int getOnSide(IBlockAccess iBlockAccess, BlockPos blockPos, EnumFacing facing) {
-
         switch (facing) {
             case SOUTH:
-
                 return getTargetStrength(iBlockAccess, blockPos.south(), EnumFacing.NORTH);
             case NORTH:
                 return getTargetStrength(iBlockAccess, blockPos.north(), EnumFacing.SOUTH);
@@ -142,80 +135,51 @@ public class GearboxBlock extends Block implements IPoweredBlock {
     }
 
     private int getTargetStrength(IBlockAccess iBlockAccess, BlockPos pos, EnumFacing side) {
+        return getTargetStrength(iBlockAccess, pos, side, false);
+    }
+
+    private int getTargetStrength(IBlockAccess iBlockAccess, BlockPos pos, EnumFacing side, boolean ignoreStrength) {
         IBlockState targetState = iBlockAccess.getBlockState(pos);
         Block targetBlock = targetState.getBlock();
-        if (targetBlock instanceof IPoweredBlock) {
-            if (((IPoweredBlock) targetBlock).getPower(iBlockAccess, pos, targetState) > 0
-                    && ((IPoweredBlock) targetBlock).isValidSide(iBlockAccess, pos, side)) {
+
+        if (targetBlock instanceof IPoweredBlock && !(targetBlock instanceof GearboxBlock)) {
+            if ((((IPoweredBlock) targetBlock).getPower(iBlockAccess, pos) > 0
+                    && ((IPoweredBlock) targetBlock).isValidSide(iBlockAccess, pos, side))
+                    || ignoreStrength) {
                 int targetPower = ((IPoweredBlock) targetBlock).getStrength(iBlockAccess, pos);
                 if (targetPower >= tier.power) {
                     return tier.power;
-                }
+                } else
+                    return targetPower;
             }
         }
         return 0;
     }
-
-    private int getInvertedTargetStrenght() {
-        return 0;
+    private int getInvertedTargetPower(IBlockAccess iBlockAccess, BlockPos blockPos, EnumFacing facing) {
+       return getInvertedTargetPower(iBlockAccess, blockPos, facing,false);
     }
 
-    private int getInvertedTargetPower(IBlockAccess iBlockAccess, BlockPos blockPos, EnumFacing facing) {
-        int required;
-        int total;
-        switch (facing) {
-            case SOUTH:
-                required = getOnSide(iBlockAccess, blockPos, facing);
-                total = getTargetStrength(iBlockAccess, blockPos.south(), EnumFacing.NORTH)
-                        + getTargetStrength(iBlockAccess, blockPos.west(), EnumFacing.EAST)
-                        + getTargetStrength(iBlockAccess, blockPos.east(), EnumFacing.WEST)
-                        + getTargetStrength(iBlockAccess, blockPos.down(), EnumFacing.UP)
-                        + getTargetStrength(iBlockAccess, blockPos.up(), EnumFacing.DOWN);
-                return total >= required ? required : 0;
-            case NORTH:
-                required = getOnSide(iBlockAccess, blockPos, facing);
-                total = getTargetStrength(iBlockAccess, blockPos.south(), EnumFacing.NORTH)
-                        + getTargetStrength(iBlockAccess, blockPos.west(), EnumFacing.EAST)
-                        + getTargetStrength(iBlockAccess, blockPos.east(), EnumFacing.WEST)
-                        + getTargetStrength(iBlockAccess, blockPos.down(), EnumFacing.UP)
-                        + getTargetStrength(iBlockAccess, blockPos.up(), EnumFacing.DOWN);
-                return total >= required ? required : 0;
-            case WEST:
-                required = getOnSide(iBlockAccess, blockPos, facing);
-                total = getTargetStrength(iBlockAccess, blockPos.south(), EnumFacing.NORTH)
-                        + getTargetStrength(iBlockAccess, blockPos.north(), EnumFacing.SOUTH)
-                        + getTargetStrength(iBlockAccess, blockPos.east(), EnumFacing.WEST)
-                        + getTargetStrength(iBlockAccess, blockPos.down(), EnumFacing.UP)
-                        + getTargetStrength(iBlockAccess, blockPos.up(), EnumFacing.DOWN);
-                return total >= required ? required : 0;
-
-            case EAST:
-                required = getOnSide(iBlockAccess, blockPos, facing);
-                total = getTargetStrength(iBlockAccess, blockPos.south(), EnumFacing.NORTH)
-                        + getTargetStrength(iBlockAccess, blockPos.west(), EnumFacing.EAST)
-                        + getTargetStrength(iBlockAccess, blockPos.north(), EnumFacing.SOUTH)
-                        + getTargetStrength(iBlockAccess, blockPos.down(), EnumFacing.UP)
-                        + getTargetStrength(iBlockAccess, blockPos.up(), EnumFacing.DOWN);
-                return total >= required ? required : 0;
-            case DOWN:
-                required = getOnSide(iBlockAccess, blockPos, facing);
-                total = getTargetStrength(iBlockAccess, blockPos.south(), EnumFacing.NORTH)
-                        + getTargetStrength(iBlockAccess, blockPos.west(), EnumFacing.EAST)
-                        + getTargetStrength(iBlockAccess, blockPos.north(), EnumFacing.SOUTH)
-                        + getTargetStrength(iBlockAccess, blockPos.east(), EnumFacing.WEST)
-                        + getTargetStrength(iBlockAccess, blockPos.up(), EnumFacing.DOWN);
-                return total >= required ? required : 0;
-            case UP:
-                required = getOnSide(iBlockAccess, blockPos, facing);
-                total = getTargetStrength(iBlockAccess, blockPos.south(), EnumFacing.NORTH)
-                        + getTargetStrength(iBlockAccess, blockPos.west(), EnumFacing.EAST)
-                        + getTargetStrength(iBlockAccess, blockPos.north(), EnumFacing.SOUTH)
-                        + getTargetStrength(iBlockAccess, blockPos.east(), EnumFacing.WEST)
-                        + getTargetStrength(iBlockAccess, blockPos.down(), EnumFacing.UP);
-                return total >= required ? required : 0;
-
+    private int getInvertedTargetPower(IBlockAccess iBlockAccess, BlockPos blockPos, EnumFacing facing,boolean ignoreStrength) {
+        int total = 0;
+        if (facing != EnumFacing.SOUTH) {
+            total += getTargetStrength(iBlockAccess, blockPos.south(), EnumFacing.NORTH,ignoreStrength);
         }
-        return 0;
+        if (facing != EnumFacing.NORTH) {
+            total += getTargetStrength(iBlockAccess, blockPos.north(), EnumFacing.SOUTH,ignoreStrength);
+        }
+        if (facing != EnumFacing.WEST) {
+            total += getTargetStrength(iBlockAccess, blockPos.west(), EnumFacing.EAST,ignoreStrength);
+        }
+        if (facing != EnumFacing.EAST) {
+            total += getTargetStrength(iBlockAccess, blockPos.east(), EnumFacing.WEST,ignoreStrength);
+        }
+        if (facing != EnumFacing.DOWN) {
+            total += getTargetStrength(iBlockAccess, blockPos.down(), EnumFacing.UP,ignoreStrength);
+        }
+        if (facing != EnumFacing.UP) {
+            total += getTargetStrength(iBlockAccess, blockPos.up(), EnumFacing.DOWN,ignoreStrength);
+        }
+        return total;
     }
 
     @Override
@@ -232,11 +196,16 @@ public class GearboxBlock extends Block implements IPoweredBlock {
 
     @Override
     public void observedNeighborChange(IBlockState blockState, World world, BlockPos blockPos, Block block, BlockPos blockPos1) {
-        world.scheduleUpdate(blockPos, this, 10);
+        world.scheduleUpdate(blockPos, this, 30);
     }
 
     @Override
     public void updateTick(World world, BlockPos blockPos, IBlockState blockState, Random random) {
         world.notifyNeighborsOfStateChange(blockPos, this, true);
+    }
+
+    @Override
+    public void setTooltip(List<String> tooltip) {
+        tooltip.add("Power level: "+tier.power);
     }
 }

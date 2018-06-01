@@ -1,6 +1,5 @@
 package hu.frontrider.gearcraft.blocks;
 
-import hu.frontrider.gearcraft.GearCraft;
 import hu.frontrider.gearcraft.api.IPoweredBlock;
 import hu.frontrider.gearcraft.registry.TierRegistry;
 import net.minecraft.block.Block;
@@ -23,32 +22,25 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Random;
 
-public class ShaftBlock extends Block implements IPoweredBlock {
+public class ShaftBlock extends BlockBase implements IPoweredBlock,TooltippedBlock {
 
     public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
     public static final PropertyInteger POWER = PropertyInteger.create("power", 0, 3);
 
     public static final AxisAlignedBB alignedY = new AxisAlignedBB(0.3125, 0.0D, 0.3125, 0.6875, 1D, 0.6875);
     public static final AxisAlignedBB alignedX = new AxisAlignedBB(0, 0.3125, 0.3125, 1, 0.6875, 0.6875);
-    public static final AxisAlignedBB alignedZ = new AxisAlignedBB(0.3125,0.3125, 0.0, 0.6875, 0.6875, 1D);
+    public static final AxisAlignedBB alignedZ = new AxisAlignedBB(0.3125, 0.3125, 0.0, 0.6875, 0.6875, 1D);
 
-    private final TierRegistry.Tier tier;
 
     public ShaftBlock(TierRegistry.Tier tier) {
-        this(tier,null);
+        this(tier, null);
     }
 
-    public ShaftBlock(TierRegistry.Tier tier,String tag) {
-        super(tier.material, tier.mapColor);
-        TierRegistry.Tier.setBlock(this, tier);
-        String suffix = "_shaft";
-        if(tag != null)
-            suffix += "_"+tag;
-        setRegistryName(GearCraft.MODID, tier.name + suffix);
-        setUnlocalizedName(tier.name + "_shaft");
-        this.tier = tier;
+    public ShaftBlock(TierRegistry.Tier tier, String tag) {
+        super(tier,"shaft",tag);
     }
 
     @SideOnly(Side.CLIENT)
@@ -93,12 +85,6 @@ public class ShaftBlock extends Block implements IPoweredBlock {
             default:
                 return state;
         }
-    }
-
-    @Override
-    public boolean eventReceived(IBlockState p_eventReceived_1_, World p_eventReceived_2_, BlockPos p_eventReceived_3_, int p_eventReceived_4_, int p_eventReceived_5_) {
-        System.out.println("Shaft updated");
-        return false;
     }
 
 
@@ -147,7 +133,7 @@ public class ShaftBlock extends Block implements IPoweredBlock {
 
 
     @Override
-    public int getPower(IBlockAccess iBlockAccess, BlockPos blockPos, IBlockState leftBlock) {
+    public int getPower(IBlockAccess iBlockAccess, BlockPos blockPos) {
         return iBlockAccess.getBlockState(blockPos).getValue(POWER);
     }
 
@@ -218,12 +204,12 @@ public class ShaftBlock extends Block implements IPoweredBlock {
 
         if (poweredLeft instanceof IPoweredBlock) {
             if (((IPoweredBlock) poweredLeft).isValidSide(world, left, leftSide))
-                leftPower = ((IPoweredBlock) poweredLeft).getPower(world, left, leftBlock);
+                leftPower = ((IPoweredBlock) poweredLeft).getPower(world, left);
             leftStrength = ((IPoweredBlock) poweredLeft).getStrength(world, left);
         }
         if (poweredRight instanceof IPoweredBlock) {
             if (((IPoweredBlock) poweredRight).isValidSide(world, right, rightSide))
-                rightPower = ((IPoweredBlock) poweredRight).getPower(world, right, rightBlock);
+                rightPower = ((IPoweredBlock) poweredRight).getPower(world, right);
             rightStrength = ((IPoweredBlock) poweredRight).getStrength(world, right);
         }
 
@@ -240,6 +226,9 @@ public class ShaftBlock extends Block implements IPoweredBlock {
                 world.setBlockState(thizPos, thizState.withProperty(POWER, rightPower - 1));
             }
         }
+
+        world.scheduleUpdate(left, this, 10);
+        world.scheduleUpdate(right, this, 10);
     }
 
 
@@ -247,11 +236,6 @@ public class ShaftBlock extends Block implements IPoweredBlock {
         return ((IPoweredBlock) blockState.getBlock()).getStrength(world, pos);
     }
 
-
-    @Override
-    public void neighborChanged(IBlockState blockState, World world, BlockPos pos, Block p_neighborChanged_4_, BlockPos p_neighborChanged_5_) {
-        update(blockState, world, pos);
-    }
 
     @Override
     public void observedNeighborChange(IBlockState blockState, World world, BlockPos blockPos, Block block, BlockPos neighbourPos) {
@@ -277,5 +261,10 @@ public class ShaftBlock extends Block implements IPoweredBlock {
                     (blockPos.getZ() + random.nextFloat() - 0.5F) * 0.2D,
                     0D, 0D, 0D);
         }
+    }
+
+    @Override
+    public void setTooltip(List<String> tooltip) {
+        tooltip.add("Power level: "+tier.power);
     }
 }

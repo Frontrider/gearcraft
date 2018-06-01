@@ -17,7 +17,7 @@ public class TierRegistry {
             .2f,
             SoundType.WOOD,
             Material.WOOD,
-            MapColor.BROWN);
+            MapColor.BROWN,3);
 
     public static final Tier IRON = new Tier(
             16,
@@ -28,11 +28,22 @@ public class TierRegistry {
             .4f,
             SoundType.METAL,
             Material.IRON,
-            MapColor.IRON
+            MapColor.IRON,10
+    );
+    public static final Tier STONE = new Tier(
+            4,
+            1,
+            "stone",
+            "pickaxe",
+            0,
+            .4f,
+            SoundType.STONE,
+            Material.ROCK,
+            MapColor.STONE,1
     );
 
     public static final Tier[] TIERS = {
-            WOODEN, IRON
+            WOODEN, IRON,STONE
     };
 
     public static class Tier {
@@ -46,8 +57,9 @@ public class TierRegistry {
         public final SoundType soundType;
         public final Material material;
         public final MapColor mapColor;
+        public final int factor;
 
-        public Tier(int power, int resistance, String name, String tool, int miningLevel, float hardness, SoundType soundType, Material material, MapColor mapColor) {
+        public Tier(int power, int resistance, String name, String tool, int miningLevel, float hardness, SoundType soundType, Material material, MapColor mapColor,int Multiplyer) {
             this.power = power;
             this.resistance = resistance;
             this.name = name;
@@ -57,6 +69,7 @@ public class TierRegistry {
             this.soundType = soundType;
             this.material = material;
             this.mapColor = mapColor;
+            factor = Multiplyer;
         }
 
         public static void setBlock(Block block, Tier tier) {

@@ -1,0 +1,6 @@
+{
+    "parent": "gearcraft:block/stone_engine",
+    "textures": {
+        "bottom": "blocks/observer_back_lit"
+    }
+}

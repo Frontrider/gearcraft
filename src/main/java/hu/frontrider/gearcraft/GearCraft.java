@@ -1,8 +1,9 @@
 package hu.frontrider.gearcraft;
 
-import hu.frontrider.gearcraft.items.CreativeTab;
 import hu.frontrider.gearcraft.proxy.CommonProxy;
+import hu.frontrider.gearcraft.registry.ItemRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -17,10 +18,17 @@ public class GearCraft {
     public static final String MODID = "gearcraft";
     public static final String NAME = "GearCraft";
     public static final String VERSION = "1.0-snapshot";
+    	//public static final String DEPENDENCIES = "required-after:forge@[14.23.3.2655,15.0.0.0]required-after:cofhcore@[4.5.0,4.6.0);";
+
 
     private static Logger logger;
     private static File configDir;
-    public static CreativeTabs creativeTab = new CreativeTab(CreativeTabs.getNextID(), "Tutorial Blocks");
+    public static CreativeTabs creativeTab = new CreativeTabs(MODID + "_tab") {
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ItemRegistry.wooden_gear);
+        }
+
+    };
 
     @Mod.Instance
     public static GearCraft instance;

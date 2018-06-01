@@ -4,7 +4,7 @@
     "body": "minecraft:blocks/iron_block",
     "particle": "minecraft:blocks/iron_block",
     "frame": "minecraft:blocks/concrete_silver",
-    "gear":"gearcraft:blocks/bearing_output",
-    "gear_input":"gearcraft:blocks/bearing_input"
+    "gear_input":"gearcraft:blocks/bearing_output",
+    "gear":"gearcraft:blocks/bearing_input"
   }
 }
