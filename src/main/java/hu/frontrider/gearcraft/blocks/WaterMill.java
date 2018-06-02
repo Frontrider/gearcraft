@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class WaterMill extends BlockBase implements IPoweredBlock {
 
-    public static final PropertyInteger stage = PropertyInteger.create("spin", 0, 15);
+    public static final PropertyInteger SPIN = PropertyInteger.create("spin", 0, 15);
 
     public WaterMill(TierRegistry.Tier tier, String tag) {
         super(tier, "watermill", tag);
@@ -29,12 +29,12 @@ public class WaterMill extends BlockBase implements IPoweredBlock {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, stage);
+        return new BlockStateContainer(this, SPIN);
     }
 
     @Override
     public int getPower(IBlockAccess iBlockAccess, BlockPos blockPos) {
-        final Integer stage = iBlockAccess.getBlockState(blockPos).getValue(WaterMill.stage);
+        final Integer stage = iBlockAccess.getBlockState(blockPos).getValue(WaterMill.SPIN);
         if (stage >= 3)
             return 4;
         return 0;
@@ -60,7 +60,7 @@ public class WaterMill extends BlockBase implements IPoweredBlock {
                         getWaterValue(world.getBlockState(blockPos.north())) +
                         getWaterValue(world.getBlockState(blockPos.south()));
 
-        final Integer value = blockState.getValue(stage);
+        final Integer value = blockState.getValue(SPIN);
         if (value == 15) {
             world.destroyBlock(blockPos, false);
             return;
@@ -68,16 +68,16 @@ public class WaterMill extends BlockBase implements IPoweredBlock {
         if (waterValue >= tier.factor) {
             //prevents it from becoming automateable with vanilla tools.
             if (random.nextBoolean() && value < 14) {
-                world.setBlockState(blockPos, blockState.withProperty(stage, value + 2));
+                world.setBlockState(blockPos, blockState.withProperty(SPIN, value + 2));
             } else {
-                world.setBlockState(blockPos, blockState.withProperty(stage, value + 1));
+                world.setBlockState(blockPos, blockState.withProperty(SPIN, value + 1));
             }
 
             world.notifyNeighborsOfStateChange(blockPos, this, true);
 
         } else {
             if (value > 0) {
-                world.setBlockState(blockPos, blockState.withProperty(stage, value - 1));
+                world.setBlockState(blockPos, blockState.withProperty(SPIN, value - 1));
                 world.notifyNeighborsOfStateChange(blockPos, this, true);
             }
         }
@@ -90,12 +90,12 @@ public class WaterMill extends BlockBase implements IPoweredBlock {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(stage, meta);
+        return getDefaultState().withProperty(SPIN, meta);
     }
 
     @Override
     public int getMetaFromState(IBlockState blockState) {
-        return blockState.getValue(stage);
+        return blockState.getValue(SPIN);
     }
 
     private int getWaterValue(IBlockState blockState) {

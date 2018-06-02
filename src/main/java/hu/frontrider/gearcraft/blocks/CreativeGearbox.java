@@ -17,7 +17,6 @@ public class CreativeGearbox  extends Block implements IPoweredBlock,TooltippedB
 
     public CreativeGearbox() {
         super(Material.ROCK,MapColor.BLACK);
-        setBlockUnbreakable();
         setRegistryName(MODID,blockName);
         setUnlocalizedName(blockName);
     }

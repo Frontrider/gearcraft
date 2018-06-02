@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,powered=true": { "model": "gearcraft:coal_stone_engine" },
+        "facing=south,powered=true": { "model": "gearcraft:coal_stone_engine", "y": 180 },
+        "facing=west,powered=true":  { "model": "gearcraft:coal_stone_engine", "y": 270 },
+        "facing=east,powered=true":  { "model": "gearcraft:coal_stone_engine", "y": 90 },
+        "facing=north,powered=false": { "model": "gearcraft:coal_stone_engine" },
+        "facing=south,powered=false": { "model": "gearcraft:coal_stone_engine", "y": 180 },
+        "facing=west,powered=false":  { "model": "gearcraft:coal_stone_engine", "y": 270 },
+        "facing=east,powered=false":  { "model": "gearcraft:coal_stone_engine", "y": 90 }
+    }
+}

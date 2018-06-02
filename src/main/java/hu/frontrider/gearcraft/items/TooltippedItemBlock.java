@@ -1,8 +1,10 @@
 package hu.frontrider.gearcraft.items;
 
+import hu.frontrider.gearcraft.GearCraft;
 import hu.frontrider.gearcraft.blocks.TooltippedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -19,5 +21,20 @@ public class TooltippedItemBlock extends ItemBlock {
     public void addInformation(ItemStack itemStack, @Nullable World world, List<String> information, ITooltipFlag flag) {
         super.addInformation(itemStack, world, information, flag);
         ((TooltippedBlock)block).setTooltip(information);
+    }
+
+    @Override
+    public CreativeTabs getCreativeTab() {
+        return GearCraft.creativeTab;
+    }
+
+    @Override
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[]{GearCraft.creativeTab};
+    }
+
+    @Override
+    protected boolean isInCreativeTab(CreativeTabs creativeTabs) {
+        return creativeTabs == GearCraft.creativeTab;
     }
 }

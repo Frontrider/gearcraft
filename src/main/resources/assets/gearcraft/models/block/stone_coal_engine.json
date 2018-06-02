@@ -1,0 +1,9 @@
+{
+  "parent": "gearcraft:block/engine",
+  "textures": {
+   "body": "minecraft:blocks/cobblestone",
+    "particle": "minecraft:blocks/cobblestone",
+    "frame": "minecraft:blocks/stone",
+    "nook": "gearcraft:blocks/bearing_input"
+  }
+}

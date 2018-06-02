@@ -52,13 +52,9 @@ repositories {
 dependencies {
     //compile "cofh:CoFHCore:${mc_version}-${cofh_core_version}:deobf"
 
-    //mockito, because we do not want to use actual classes for testing.
-    //also using mockito 2 for bugfixes.
-    testCompile 'org.mockito:mockito-core:2.8.0'
     //junit 5, because we want good tests.
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
-    // Enable use of the JUnitPlatform Runner within the IDE
     testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
 }
 

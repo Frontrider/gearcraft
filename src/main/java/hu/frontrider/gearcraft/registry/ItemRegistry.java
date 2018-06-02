@@ -25,7 +25,7 @@ public class ItemRegistry {
 
     public static Item wooden_gear = new Item()
             .setRegistryName(new ResourceLocation(MODID, "wooden_gear"))
-            .setUnlocalizedName("wooden_gear");
+            .setUnlocalizedName("wooden_gear").setCreativeTab(creativeTab);
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Item> event) {
@@ -41,7 +41,6 @@ public class ItemRegistry {
         int i = 0;
         for (Block block : blocks) {
             items[i] = itemToBlock(block);
-            items[i].setCreativeTab(creativeTab);
             ItemRegistry.items.add(items[i]);
             i++;
         }
@@ -53,13 +52,13 @@ public class ItemRegistry {
             return new TooltippedItemBlock(block)
                     .setRegistryName(block.getRegistryName()
                             .getResourcePath())
-                    .setUnlocalizedName(block.getUnlocalizedName())
-                    .setCreativeTab(GearCraft.creativeTab);
+                    .setCreativeTab(GearCraft.creativeTab)
+                    .setUnlocalizedName(block.getUnlocalizedName());
 
         return new ItemBlock(block)
                 .setRegistryName(block.getRegistryName()
                         .getResourcePath())
-                .setUnlocalizedName(block.getUnlocalizedName())
-                .setCreativeTab(GearCraft.creativeTab);
+                .setCreativeTab(GearCraft.creativeTab)
+                .setUnlocalizedName(block.getUnlocalizedName());
     }
 }

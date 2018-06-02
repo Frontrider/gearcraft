@@ -1,7 +1,7 @@
 package hu.frontrider.gearcraft.blocks;
 
-import hu.frontrider.gearcraft.api.IPoweredBlock;
 import hu.frontrider.gearcraft.registry.TierRegistry;
+import hu.frontrider.gearcraft.util.EnergyHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,7 +18,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class BlockBreaker extends BlockBase implements TooltippedBlock {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
@@ -80,30 +79,20 @@ public class BlockBreaker extends BlockBase implements TooltippedBlock {
 
     @Override
     public void observedNeighborChange(IBlockState blockState, World world, BlockPos blockPos, Block block, BlockPos blockPos1) {
-        world.scheduleUpdate(blockPos, this, 30);
-    }
-
-    @Override
-    public void updateTick(World world, BlockPos blockPos, IBlockState blockState, Random random) {
-        final EnumFacing value = blockState.getValue(FACING);
-        final BlockPos offset = blockPos.offset(value.getOpposite());
-        final BlockPos powerPos = blockPos.offset(value);
-        final Block block = world.getBlockState(powerPos).getBlock();
-        if (block instanceof IPoweredBlock) {
-            if (((IPoweredBlock) block).isValidSide(world, powerPos, value.getOpposite())) {
-                if (((IPoweredBlock) block).getStrength(world, powerPos) >= tier.power)
-                    if (((IPoweredBlock) block).getPower(world, powerPos) > 0) {
-
-                        final IBlockState targetState = world.getBlockState(offset);
-                        final int harvestLevel = targetState.getBlock().getHarvestLevel(targetState);
-                        if (harvestLevel <= tier.miningLevel)
-                            world.destroyBlock(offset, true);
-                    }
-            }
+         final EnumFacing value = blockState.getValue(FACING);
+        final int targetPower = EnergyHelper.getInvertedTargetPower(world, blockPos, value, tier.power/4, null);
+        if (targetPower >= tier.power/4) {
+            final BlockPos offset = blockPos.offset(value.getOpposite());
+            final IBlockState targetState = world.getBlockState(offset);
+            final int harvestLevel = targetState.getBlock().getHarvestLevel(targetState);
+            if (harvestLevel <= tier.miningLevel)
+                world.destroyBlock(offset, true);
         }
     }
+
     @Override
     public void setTooltip(List<String> tooltip) {
 
     }
+
 }
