@@ -2,6 +2,7 @@ package hu.frontrider.gearcraft.registry;
 
 import hu.frontrider.gearcraft.GearCraft;
 import hu.frontrider.gearcraft.blocks.TooltippedBlock;
+import hu.frontrider.gearcraft.items.StaffOfTheGhost;
 import hu.frontrider.gearcraft.items.TooltippedItemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -26,6 +27,10 @@ public class ItemRegistry {
     public static Item wooden_gear = new Item()
             .setRegistryName(new ResourceLocation(MODID, "wooden_gear"))
             .setUnlocalizedName("wooden_gear").setCreativeTab(creativeTab);
+    public static final Item GHOST_ROD = new StaffOfTheGhost()
+            .setRegistryName(MODID, "ghost_rod")
+            .setUnlocalizedName("ghost_rod")
+            .setCreativeTab(creativeTab);
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Item> event) {
@@ -33,7 +38,8 @@ public class ItemRegistry {
         registry.registerAll(
                 registerAll(
                         BLOCKS));
-        registry.register(wooden_gear);
+        registry.registerAll(wooden_gear, GHOST_ROD);
+
     }
 
     private static Item[] registerAll(Block... blocks) {

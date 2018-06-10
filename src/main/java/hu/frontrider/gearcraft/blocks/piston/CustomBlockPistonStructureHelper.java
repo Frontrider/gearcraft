@@ -1,4 +1,4 @@
-package hu.frontrider.gearcraft.piston;
+package hu.frontrider.gearcraft.blocks.piston;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
@@ -18,9 +18,9 @@ public class CustomBlockPistonStructureHelper
     private final BlockPos blockToMove;
     private final EnumFacing moveDirection;
     /** This is a List<BlockPos> of all blocks that will be moved by the piston. */
-    private final List<BlockPos> toMove = Lists.<BlockPos>newArrayList();
+    private final List<BlockPos> toMove = Lists.newArrayList();
     /** This is a List<BlockPos> of blocks that will be destroyed when a piston attempts to move them. */
-    private final List<BlockPos> toDestroy = Lists.<BlockPos>newArrayList();
+    private final List<BlockPos> toDestroy = Lists.newArrayList();
 
     public CustomBlockPistonStructureHelper(World worldIn, BlockPos posIn, EnumFacing pistonFacing, boolean extending)
     {
@@ -192,9 +192,9 @@ public class CustomBlockPistonStructureHelper
 
     private void reorderListAtCollision(int p_177255_1_, int p_177255_2_)
     {
-        List<BlockPos> list = Lists.<BlockPos>newArrayList();
-        List<BlockPos> list1 = Lists.<BlockPos>newArrayList();
-        List<BlockPos> list2 = Lists.<BlockPos>newArrayList();
+        List<BlockPos> list = Lists.newArrayList();
+        List<BlockPos> list1 = Lists.newArrayList();
+        List<BlockPos> list2 = Lists.newArrayList();
         list.addAll(this.toMove.subList(0, p_177255_2_));
         list1.addAll(this.toMove.subList(this.toMove.size() - p_177255_1_, this.toMove.size()));
         list2.addAll(this.toMove.subList(p_177255_2_, this.toMove.size() - p_177255_1_));

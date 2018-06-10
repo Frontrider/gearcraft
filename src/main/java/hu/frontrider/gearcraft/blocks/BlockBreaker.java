@@ -3,7 +3,6 @@ package hu.frontrider.gearcraft.blocks;
 import hu.frontrider.gearcraft.registry.TierRegistry;
 import hu.frontrider.gearcraft.util.EnergyHelper;
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,8 +18,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Objects;
 
+import static hu.frontrider.gearcraft.api.BlockStateHelpers.FACING;
+
 public class BlockBreaker extends BlockBase implements TooltippedBlock {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
     public BlockBreaker(TierRegistry.Tier tier, String tag) {
         super(tier, "breaker", tag);
@@ -94,5 +94,4 @@ public class BlockBreaker extends BlockBase implements TooltippedBlock {
     public void setTooltip(List<String> tooltip) {
 
     }
-
 }

@@ -1,7 +1,9 @@
-package hu.frontrider.gearcraft.piston;
+package hu.frontrider.gearcraft.blocks.piston;
 
 import com.google.common.collect.Lists;
 import hu.frontrider.gearcraft.GearCraft;
+import hu.frontrider.gearcraft.blocks.TooltippedBlock;
+import hu.frontrider.gearcraft.registry.BlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
@@ -28,7 +30,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class MechanicalPistonBase extends BlockDirectional
+public class MechanicalPistonBase extends BlockDirectional implements TooltippedBlock
 {
     public static final PropertyBool EXTENDED = PropertyBool.create("extended");
     protected static final AxisAlignedBB PISTON_BASE_EAST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.75D, 1.0D, 1.0D);
@@ -241,7 +243,7 @@ public class MechanicalPistonBase extends BlockDirectional
                 ((TileEntityPiston)tileentity1).clearPistonTileEntity();
             }
 
-            worldIn.setBlockState(pos, Blocks.PISTON_EXTENSION.getDefaultState().withProperty(BlockPistonMoving.FACING, enumfacing).withProperty(BlockPistonMoving.TYPE, this.isSticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT), 3);
+            worldIn.setBlockState(pos, BlockRegistry.PISTON_EXTENSION.getDefaultState().withProperty(BlockPistonMoving.FACING, enumfacing).withProperty(BlockPistonMoving.TYPE, this.isSticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT), 3);
             worldIn.setTileEntity(pos, BlockPistonMoving.createTilePiston(this.getStateFromMeta(param), enumfacing, false, true));
 
             if (this.isSticky)
@@ -251,7 +253,7 @@ public class MechanicalPistonBase extends BlockDirectional
                 Block block = iblockstate.getBlock();
                 boolean flag1 = false;
 
-                if (block == Blocks.PISTON_EXTENSION)
+                if (block == BlockRegistry.PISTON_EXTENSION)
                 {
                     TileEntity tileentity = worldIn.getTileEntity(blockpos);
 
@@ -394,7 +396,7 @@ public class MechanicalPistonBase extends BlockDirectional
                 IBlockState iblockstate2 = worldIn.getBlockState(blockpos3);
                 worldIn.setBlockState(blockpos3, Blocks.AIR.getDefaultState(), 2);
                 blockpos3 = blockpos3.offset(enumfacing);
-                worldIn.setBlockState(blockpos3, Blocks.PISTON_EXTENSION.getDefaultState().withProperty(FACING, direction), 4);
+                worldIn.setBlockState(blockpos3, BlockRegistry.PISTON_EXTENSION.getDefaultState().withProperty(FACING, direction), 4);
                 worldIn.setTileEntity(blockpos3, BlockPistonMoving.createTilePiston(list1.get(l), direction, extending, false));
                 --k;
                 aiblockstate[k] = iblockstate2;
@@ -406,7 +408,7 @@ public class MechanicalPistonBase extends BlockDirectional
             {
                 BlockPistonExtension.EnumPistonType blockpistonextension$enumpistontype = this.isSticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT;
                 IBlockState iblockstate3 = Blocks.PISTON_HEAD.getDefaultState().withProperty(BlockPistonExtension.FACING, direction).withProperty(BlockPistonExtension.TYPE, blockpistonextension$enumpistontype);
-                IBlockState iblockstate1 = Blocks.PISTON_EXTENSION.getDefaultState().withProperty(BlockPistonMoving.FACING, direction).withProperty(BlockPistonMoving.TYPE, this.isSticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT);
+                IBlockState iblockstate1 = BlockRegistry.PISTON_EXTENSION.getDefaultState().withProperty(BlockPistonMoving.FACING, direction).withProperty(BlockPistonMoving.TYPE, this.isSticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT);
                 worldIn.setBlockState(blockpos2, iblockstate1, 4);
                 worldIn.setTileEntity(blockpos2, BlockPistonMoving.createTilePiston(iblockstate3, direction, true, true));
             }
@@ -497,5 +499,10 @@ public class MechanicalPistonBase extends BlockDirectional
     {
         state = this.getActualState(state, worldIn, pos);
         return state.getValue(FACING) != face.getOpposite() && state.getValue(EXTENDED) ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
+    }
+
+    @Override
+    public void setTooltip(List<String> tooltip) {
+
     }
 }

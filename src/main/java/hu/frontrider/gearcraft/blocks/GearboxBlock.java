@@ -3,8 +3,6 @@ package hu.frontrider.gearcraft.blocks;
 import hu.frontrider.gearcraft.api.IPoweredBlock;
 import hu.frontrider.gearcraft.registry.TierRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,12 +20,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import static hu.frontrider.gearcraft.api.BlockStateHelpers.FACING;
+import static hu.frontrider.gearcraft.api.BlockStateHelpers.INVERTED;
 import static hu.frontrider.gearcraft.util.EnergyHelper.getInvertedTargetPower;
 import static hu.frontrider.gearcraft.util.EnergyHelper.getTargetPower;
 
 public class GearboxBlock extends BlockBase implements IPoweredBlock,TooltippedBlock {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing");
-    public static final PropertyBool INVERTED = PropertyBool.create("inverted");
+
 
     public GearboxBlock(TierRegistry.Tier tier, String tag) {
         super(tier,"gearbox",tag);

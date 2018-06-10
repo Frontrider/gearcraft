@@ -4,8 +4,6 @@ import hu.frontrider.gearcraft.api.IPoweredBlock;
 import hu.frontrider.gearcraft.registry.TierRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.EnumPushReaction;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -23,13 +21,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import static hu.frontrider.gearcraft.api.BlockStateHelpers.FACING;
+import static hu.frontrider.gearcraft.api.BlockStateHelpers.POWERED;
+import static hu.frontrider.gearcraft.util.BlockHelper.isPowered;
 import static net.minecraft.util.EnumFacing.DOWN;
 import static net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 
 public class CoalGenerator extends BlockBase implements IPoweredBlock, TooltippedBlock {
-    public static final PropertyBool POWER = PropertyBool.create("powered");
-    public static final PropertyDirection FACING = PropertyDirection.create("facing");
-
 
     public CoalGenerator(TierRegistry.Tier tier) {
         this(tier, null);
@@ -42,12 +40,12 @@ public class CoalGenerator extends BlockBase implements IPoweredBlock, Tooltippe
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, POWER, FACING);
+        return new BlockStateContainer(this, POWERED, FACING);
     }
 
     @Override
     public void randomTick(World world, BlockPos pos, IBlockState blockState, Random random) {
-        final Boolean power = blockState.getValue(POWER);
+        final Boolean power = blockState.getValue(POWERED);
         final BlockPos up = pos.up();
         final TileEntity tileEntity = world.getTileEntity(up);
         IItemHandler itemHandler = null;
@@ -64,7 +62,7 @@ public class CoalGenerator extends BlockBase implements IPoweredBlock, Tooltippe
             }
         }
         if (itemHandler == null) {
-            world.setBlockState(pos, blockState.withProperty(POWER, false));
+            world.setBlockState(pos, blockState.withProperty(POWERED, false));
             return;
         }
 
@@ -73,19 +71,19 @@ public class CoalGenerator extends BlockBase implements IPoweredBlock, Tooltippe
                 canItemsFuel(itemHandler, false);
 
             } else {
-                world.setBlockState(pos, blockState.withProperty(POWER, false));
+                world.setBlockState(pos, blockState.withProperty(POWERED, false));
             }
         } else {
             if (canItemsFuel(itemHandler, false)) {
-                world.setBlockState(pos, blockState.withProperty(POWER, true));
+                world.setBlockState(pos, blockState.withProperty(POWERED, true));
             }
         }
     }
 
     @Override
     public void observedNeighborChange(IBlockState iBlockState, World world, BlockPos pos, Block block, BlockPos blockPos) {
-        if (world.isBlockIndirectlyGettingPowered(pos) > 0 || world.isBlockPowered(pos)) {
-            if (!world.getBlockState(pos).getValue(POWER))
+        if (isPowered(world, pos)) {
+            if (!world.getBlockState(pos).getValue(POWERED))
                 randomTick(world, pos, iBlockState, world.rand);
         }
     }
@@ -94,7 +92,7 @@ public class CoalGenerator extends BlockBase implements IPoweredBlock, Tooltippe
     public int getMetaFromState(IBlockState state) {
         int i = 0;
         i = i | state.getValue(FACING).getIndex();
-        if (state.getValue(POWER)) {
+        if (state.getValue(POWERED)) {
             i |= 8;
         }
         return i;
@@ -104,7 +102,7 @@ public class CoalGenerator extends BlockBase implements IPoweredBlock, Tooltippe
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState()
                 .withProperty(FACING, Objects.requireNonNull(getFacing(meta)))
-                .withProperty(POWER, (meta & 8) > 0);
+                .withProperty(POWERED, (meta & 8) > 0);
     }
 
     public static EnumFacing getFacing(int p_getFacing_0_) {
@@ -135,7 +133,7 @@ public class CoalGenerator extends BlockBase implements IPoweredBlock, Tooltippe
     @Override
     public int getPower(IBlockAccess iBlockAccess, BlockPos blockPos) {
         final IBlockState blockState = iBlockAccess.getBlockState(blockPos);
-        return blockState.getValue(POWER) ? 4 : 0;
+        return blockState.getValue(POWERED) ? 4 : 0;
     }
 
     @Override

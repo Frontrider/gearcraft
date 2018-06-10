@@ -3,9 +3,6 @@ package hu.frontrider.gearcraft.blocks;
 import hu.frontrider.gearcraft.api.IPoweredBlock;
 import hu.frontrider.gearcraft.registry.TierRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,10 +22,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
+import static hu.frontrider.gearcraft.api.BlockStateHelpers.AXIS;
+import static hu.frontrider.gearcraft.api.BlockStateHelpers.POWER;
+
+
 public class ShaftBlock extends BlockBase implements IPoweredBlock,TooltippedBlock {
 
-    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class);
-    public static final PropertyInteger POWER = PropertyInteger.create("power", 0, 3);
 
     public static final AxisAlignedBB alignedY = new AxisAlignedBB(0.3125, 0.0D, 0.3125, 0.6875, 1D, 0.6875);
     public static final AxisAlignedBB alignedX = new AxisAlignedBB(0, 0.3125, 0.3125, 1, 0.6875, 0.6875);
@@ -118,7 +117,7 @@ public class ShaftBlock extends BlockBase implements IPoweredBlock,TooltippedBlo
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{AXIS, POWER});
+        return new BlockStateContainer(this, AXIS, POWER);
     }
 
     @Override

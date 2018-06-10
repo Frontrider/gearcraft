@@ -2,7 +2,8 @@ package hu.frontrider.gearcraft.registry;
 
 
 import hu.frontrider.gearcraft.blocks.*;
-import hu.frontrider.gearcraft.piston.MechanicalPistonBase;
+import hu.frontrider.gearcraft.blocks.piston.CustomPistonExtension;
+import hu.frontrider.gearcraft.blocks.piston.MechanicalPistonBase;
 import hu.frontrider.gearcraft.registry.TierRegistry.*;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
@@ -19,6 +20,8 @@ public class BlockRegistry {
 
     public static Block[] BLOCKS;
     public static final CreativeGearbox CREATIVE_GEARBOX = new CreativeGearbox();
+    public static final MechanicalPistonBase MECHANICAL_PISTON = new MechanicalPistonBase(false);
+    public static final CustomPistonExtension PISTON_EXTENSION = new CustomPistonExtension(MECHANICAL_PISTON);
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -38,9 +41,11 @@ public class BlockRegistry {
         }
         blocks.add(CREATIVE_GEARBOX);
         blocks.add(new Magnet());
-        blocks.add(new MechanicalPistonBase(false));
+        blocks.add(MECHANICAL_PISTON);
+        blocks.add(new MechanicalPumpkin());
 
         BLOCKS = blocks.toArray(new Block[0]);
         registry.registerAll(BLOCKS);
+        registry.registerAll(PISTON_EXTENSION);
     }
 }
