@@ -1,4 +1,4 @@
-# gearcraft
+# Gearcraft
 
 An unifinished minecraft mod, that has a power system that is the exact copy of what BTW used.
 
