@@ -1,0 +1,10 @@
+{
+  "parent": "gearcraft:block/breaker",
+  "textures": {
+    "body": "minecraft:blocks/iron_block",
+    "particle": "minecraft:blocks/iron_block",
+    "frame": "minecraft:blocks/concrete_silver",
+    "gear": "gearcraft:blocks/bearing_input",
+    "face": "minecraft:blocks/concrete_silver"
+  }
+}

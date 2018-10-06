@@ -1,0 +1,110 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "block/block",
+  "textures": {
+    "2": "gearcraft:blocks/bearing_output"
+  },
+  "elements": [
+    {
+      "name": "body",
+      "from": [0, 1, 0],
+      "to": [16, 15, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 14], "texture": "#body"},
+        "east": {"uv": [0, 0, 16, 14], "texture": "#body"},
+        "south": {"uv": [0, 0, 16, 14], "texture": "#body"},
+        "west": {"uv": [0, 0, 16, 14], "texture": "#body"},
+        "up": {"uv": [0, 0, 16, 14], "texture": "#body"},
+        "down": {"uv": [0, 0, 16, 14], "texture": "#body"}
+      }
+    },
+    {
+      "name": "frame",
+      "from": [0, 0, 0],
+      "to": [1, 1, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 1, 1], "texture": "#frame"},
+        "east": {"uv": [0, 0, 1, 1], "texture": "#frame"},
+        "south": {"uv": [0, 0, 1, 1], "texture": "#frame"},
+        "west": {"uv": [0, 0, 1, 1], "texture": "#frame"},
+        "up": {"uv": [0, 0, 1, 1], "texture": "#frame"},
+        "down": {"uv": [0, 0, 1, 1], "texture": "#frame"}
+      }
+    },
+    {
+      "name": "frame",
+      "from": [15, 0, 0],
+      "to": [16, 1, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 1, 16], "texture": "#frame"},
+        "east": {"uv": [0, 0, 1, 16], "texture": "#frame"},
+        "south": {"uv": [0, 0, 1, 16], "texture": "#frame"},
+        "west": {"uv": [0, 0, 1, 16], "texture": "#frame"},
+        "up": {"uv": [0, 0, 1, 16], "texture": "#frame"},
+        "down": {"uv": [0, 0, 1, 16], "texture": "#frame"}
+      }
+    },
+    {
+      "name": "frame",
+      "from": [1, 0, 15],
+      "to": [15, 1, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "east": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "south": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "west": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "up": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "down": {"uv": [0, 0, 14, 1], "texture": "#frame"}
+      }
+    },
+    {
+      "name": "frame",
+      "from": [1, 0, 0],
+      "to": [15, 1, 1],
+      "faces": {
+        "north": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "east": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "south": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "west": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "up": {"uv": [0, 0, 14, 1], "texture": "#frame"},
+        "down": {"uv": [0, 0, 14, 1], "texture": "#frame"}
+      }
+    },
+    {
+      "name": "output",
+      "from": [4, 0, 4],
+      "to": [12, 1, 12],
+      "faces": {
+        "north": {"uv": [4, 15, 12, 16], "texture": "#2"},
+        "east": {"uv": [12, 16, 4, 15], "texture": "#2"},
+        "south": {"uv": [4, 15, 12, 16], "texture": "#2"},
+        "west": {"uv": [4, 15, 12, 16], "texture": "#2"},
+        "up": {"uv": [4, 4, 12, 12], "texture": "#2"},
+        "down": {"uv": [4, 4, 12, 12], "texture": "#2"}
+      }
+    },
+    {
+      "from": [3, 15, 3],
+      "to": [13, 16, 13],
+      "faces": {
+        "north": {"uv": [0, 0, 10, 1], "texture": "#frame"},
+        "east": {"uv": [0, 0, 10, 1], "texture": "#frame"},
+        "south": {"uv": [0, 0, 10, 1], "texture": "#frame"},
+        "west": {"uv": [0, 0, 10, 1], "texture": "#frame"},
+        "up": {"uv": [0, 0, 10, 1], "texture": "#frame"},
+        "down": {"uv": [0, 0, 10, 1], "texture": "#frame"}
+      }
+    }
+  ],
+  "groups": [0,
+    {
+      "name": "bottom-frame",
+      "isOpen": true,
+      "shade": true,
+      "display": {
+        "visibility": true,
+        "autouv": true
+      },
+      "children": [1, 2, 3, 4, 5]
+    }, 6]
+}

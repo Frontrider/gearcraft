@@ -1,0 +1,20 @@
+{
+    "variants": {
+      "spin=0": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=1": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=2": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=3": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=4": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=5": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=6": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=7": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=8": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=9": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=10": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=11": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=12": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=13": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=14": { "model": "gearcraft:block/coal_stone_generator" },
+      "spin=15": { "model": "gearcraft:block/coal_stone_generator" }
+    }
+}

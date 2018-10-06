@@ -1,0 +1,5 @@
+rootProject.name = "gearcraft_root"
+include 'mod'
+include 'generator'
+include 'annotations'
+

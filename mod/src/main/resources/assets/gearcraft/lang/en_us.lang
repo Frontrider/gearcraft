@@ -1,0 +1,25 @@
+itemGroup.gearcraft_tab=GearCraft
+tile.gearcraft.wooden_gearbox.name=Wooden Gearbox
+tile.gearcraft.wooden_shaft.name=Wooden Shaft
+tile.gearcraft.iron_gearbox.name=Iron Gearbox
+tile.gearcraft.iron_shaft.name=Iron Shaft
+tile.gearcraft.stone_gearbox.name=Stone Gearbox
+tile.gearcraft.stone_shaft.name=Stone Shaft
+tile.gearcraft.horse_mill.name=Horse Mill
+tile.gearcraft.creative_gearbox.name=Creative Mechanical Power Source
+tile.gearcraft.stone_engine.name=Stone Heat Engine
+tile.gearcraft.stone_breaker.name=Stone Block Breaker
+tile.gearcraft.iron_breaker.name=Iron Block Breaker
+tile.gearcraft.wooden_breaker.name=Wooden Block Breaker
+tile.gearcraft.wooden_watermill.name=Wooden Water Mill
+tile.gearcraft.stone_watermill.name=Stone Water Mill
+tile.gearcraft.iron_watermill.name=Iron Water Mill
+
+item.gearcraft.wooden_gear.name=Wooden Gear
+item.gearcraft.stone_gear.name=Stone Gear
+
+#guide
+gearcraft.guide.welcome=The GearCraft manual.
+gearcraft.guide.name=Gearworker's Guide.
+gearcraft.guide.title=Gearworker's Guide
+

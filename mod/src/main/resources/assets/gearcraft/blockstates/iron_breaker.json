@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:iron_breaker","x":-90,"uvlock":true },
+    "facing=down":     { "model": "gearcraft:iron_breaker","x":90,"uvlock":true},
+    "facing=south":  { "model": "gearcraft:iron_breaker","x":180,"uvlock":true},
+    "facing=north":  { "model": "gearcraft:iron_breaker","uvlock":true},
+    "facing=west":   { "model": "gearcraft:iron_breaker","y":-90,"uvlock":true},
+    "facing=east":   { "model": "gearcraft:iron_breaker","y":90,"uvlock":true}
+  }
+}

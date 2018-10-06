@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "layers":{
+    "0":"gearcraft:items/wooden_gear"
+  }
+}

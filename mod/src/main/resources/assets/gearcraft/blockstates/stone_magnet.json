@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "gearcraft:block/stone_magnet"
+    }
+  }
+}
