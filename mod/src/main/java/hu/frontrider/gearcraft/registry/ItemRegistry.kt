@@ -17,7 +17,6 @@ import java.util.ArrayList
 
 import hu.frontrider.gearcraft.GearCraft.MODID
 import hu.frontrider.gearcraft.GearCraft.creativeTab
-import hu.frontrider.gearcraft.registry.BlockRegistry.BLOCKS
 
 @Mod.EventBusSubscriber(modid = MODID)
 object ItemRegistry {
@@ -38,7 +37,7 @@ object ItemRegistry {
     fun register(event: RegistryEvent.Register<Item>) {
         val registry = event.registry
 
-        val itemBlocks = registerAll(*BLOCKS)
+        val itemBlocks = registerAll()
         items.addAll(itemBlocks)
         items.add(wooden_gear)
         items.add(stone_gear)

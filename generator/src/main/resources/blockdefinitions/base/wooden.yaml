@@ -1,0 +1,18 @@
+name: wooden
+power: 4
+material: wood
+blocks:
+  - type: watermill
+    multiplier: 1
+    fastBreak: true
+  - type: breaker
+  - type: shaft
+  - type: gearbox
+frames:
+  - "minecraft:cobblestone"
+bases:
+  - resource: "minecraft:plank_oak"
+  - resource: "minecraft:plank_big_oak"
+  - resource: "minecraft:plank_birch"
+  - resource: "minecraft:plank_spruce"
+  - resource: "minecraft:plank_acacia"

@@ -1,0 +1,20 @@
+name: stone
+power: 8
+material: rock
+blocks:
+  - type: watermill
+    multiplier: 1
+    fastBreak: true
+  - type: breaker
+  - type: shaft
+  - type: gearbox
+  - type: generator
+    fuel: coal
+  - type: grinder
+frames:
+  - "minecraft:iron_block"
+bases:
+  - "minecraft:stone"
+  - "minecraft:granite"
+  - "minecraft:diorite"
+  - "minecraft:andesite"
