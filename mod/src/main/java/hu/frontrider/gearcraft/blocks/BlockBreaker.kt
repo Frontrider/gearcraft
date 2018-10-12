@@ -15,7 +15,7 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-import hu.frontrider.gearcraft.api.BlockStateHelpers.FACING
+import hu.frontrider.gearcraft.api.BlockStates.FACING
 import hu.frontrider.gearcraft.core.util.BlockHelper.getFacing
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor

@@ -2,10 +2,8 @@ package hu.frontrider.gearcraft.blocks
 
 import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.api.IPoweredBlock
-import net.minecraft.block.BlockLiquid
 import net.minecraft.block.state.BlockStateContainer
 import net.minecraft.block.state.IBlockState
-import net.minecraft.init.Blocks
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
@@ -13,7 +11,7 @@ import net.minecraft.world.World
 
 import java.util.Random
 
-import hu.frontrider.gearcraft.api.BlockStateHelpers.POWERED
+import hu.frontrider.gearcraft.api.BlockStates.POWERED
 import hu.frontrider.gearcraft.api.IEnginePowerSource
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType

@@ -13,7 +13,7 @@ import net.minecraft.world.World
 
 import java.util.Random
 
-import hu.frontrider.gearcraft.api.BlockStateHelpers.SPIN
+import hu.frontrider.gearcraft.api.BlockStates.SPIN
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor

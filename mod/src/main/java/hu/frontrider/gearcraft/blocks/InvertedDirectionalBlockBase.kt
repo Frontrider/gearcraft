@@ -13,8 +13,8 @@ import net.minecraft.world.World
 
 import java.util.Objects
 
-import hu.frontrider.gearcraft.api.BlockStateHelpers.FACING
-import hu.frontrider.gearcraft.api.BlockStateHelpers.INVERTED
+import hu.frontrider.gearcraft.api.BlockStates.FACING
+import hu.frontrider.gearcraft.api.BlockStates.INVERTED
 import hu.frontrider.gearcraft.core.util.BlockHelper.getFacing
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType

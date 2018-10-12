@@ -1,7 +1,7 @@
 package hu.frontrider.gearcraft.blocks
 
-import hu.frontrider.gearcraft.api.BlockStateHelpers.FACING
-import hu.frontrider.gearcraft.api.BlockStateHelpers.INVERTED
+import hu.frontrider.gearcraft.api.BlockStates.FACING
+import hu.frontrider.gearcraft.api.BlockStates.INVERTED
 import hu.frontrider.gearcraft.api.IPoweredBlock
 import hu.frontrider.gearcraft.core.util.EnergyHelper.getInvertedTargetPower
 import hu.frontrider.gearcraft.core.util.EnergyHelper.getTargetPower

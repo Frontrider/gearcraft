@@ -20,8 +20,9 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.Random
 
-import hu.frontrider.gearcraft.api.BlockStateHelpers.AXIS
-import hu.frontrider.gearcraft.api.BlockStateHelpers.POWER
+import hu.frontrider.gearcraft.api.BlockStates.AXIS
+import hu.frontrider.gearcraft.api.BlockStates.POWER
+import hu.frontrider.gearcraft.core.util.cap
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
 import net.minecraft.block.material.Material
@@ -178,13 +179,13 @@ class ShaftBlock (val power: Int,
 
         if (poweredLeft is IPoweredBlock) {
             if ((poweredLeft as IPoweredBlock).isValidSide(world, left, leftSide))
-                leftPower = (poweredLeft as IPoweredBlock).getPower(world, left)
-            leftStrength = (poweredLeft as IPoweredBlock).getStrength(world, left)
+                leftPower = (poweredLeft as IPoweredBlock).getPower(world, left).cap(4)
+            leftStrength = (poweredLeft as IPoweredBlock).getStrength(world, left).cap(4)
         }
         if (poweredRight is IPoweredBlock) {
             if ((poweredRight as IPoweredBlock).isValidSide(world, right, rightSide))
-                rightPower = (poweredRight as IPoweredBlock).getPower(world, right)
-            rightStrength = (poweredRight as IPoweredBlock).getStrength(world, right)
+                rightPower = (poweredRight as IPoweredBlock).getPower(world, right).cap(4)
+            rightStrength = (poweredRight as IPoweredBlock).getStrength(world, right).cap(4)
         }
 
         if (leftPower == rightPower) {
@@ -201,8 +202,8 @@ class ShaftBlock (val power: Int,
             }
         }
 
-        world.scheduleUpdate(left, this, 10)
-        world.scheduleUpdate(right, this, 10)
+        world.scheduleUpdate(left, poweredLeft, 10)
+        world.scheduleUpdate(right, poweredRight, 10)
     }
 
 
