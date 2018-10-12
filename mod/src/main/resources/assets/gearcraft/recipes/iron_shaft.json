@@ -1,0 +1,30 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "/S/",
+    "D_D",
+    "/S/"
+  ],
+  "key": {
+    "/": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetIron"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "_": {
+      "type": "forge:ore_dict",
+      "ore": "inotIron"
+    }
+  },
+  "result": {
+    "item": "gearcraft:iron_shaft",
+    "count": 2
+  },
+  "group": "shaft"
+}

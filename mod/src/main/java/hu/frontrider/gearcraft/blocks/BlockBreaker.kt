@@ -87,7 +87,7 @@ open class BlockBreaker(val power: Int,
 
     override fun updateTick(world: World, pos: BlockPos, state: IBlockState, rand: Random) {
         val value = state.getValue(FACING)
-        val targetPower = EnergyHelper.getInvertedTargetPower(world, pos, value.opposite, power, null)
+        val targetPower = EnergyHelper.getInvertedTargetPower(world, pos, value.opposite, power,javaClass)
         if (targetPower >= power) {
             val offset = pos.offset(value.opposite)
             val targetState = world.getBlockState(offset)

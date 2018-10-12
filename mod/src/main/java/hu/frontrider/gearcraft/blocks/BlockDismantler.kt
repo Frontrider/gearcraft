@@ -26,7 +26,7 @@ class BlockDismantler(power: Int,
     //will always destroy the block!
     override fun updateTick(world: World, pos: BlockPos, state: IBlockState, rand: Random) {
         val value = state.getValue(BlockStateHelpers.FACING)
-        val targetPower = EnergyHelper.getInvertedTargetPower(world, pos, value, power / 4, null)
+        val targetPower = EnergyHelper.getInvertedTargetPower(world, pos, value,false,power,javaClass)
         if (targetPower >= power) {
             val offset = pos.offset(value.opposite)
             val targetState = world.getBlockState(offset)
