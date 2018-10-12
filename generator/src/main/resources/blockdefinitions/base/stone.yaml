@@ -8,8 +8,7 @@ blocks:
   - type: breaker
   - type: shaft
   - type: gearbox
-  - type: generator
-    fuel: coal
+  - type: coal_generator
   - type: grinder
 frames:
   - "minecraft:iron_block"

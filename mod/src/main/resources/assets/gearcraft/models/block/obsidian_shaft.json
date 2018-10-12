@@ -1,0 +1,7 @@
+{
+  "parent": "gearcraft:block/shaft",
+  "textures": {
+    "body": "minecraft:blocks/obsidian",
+    "particle": "minecraft:blocks/obsidian"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:stone_grinder","x":-90,"uvlock":true },
+    "facing=down":     { "model": "gearcraft:stone_grinder","x":90,"uvlock":true},
+    "facing=south":  { "model": "gearcraft:stone_grinder","x":180,"uvlock":true},
+    "facing=north":  { "model": "gearcraft:stone_grinder","uvlock":true},
+    "facing=west":   { "model": "gearcraft:stone_grinder","y":-90,"uvlock":true},
+    "facing=east":   { "model": "gearcraft:stone_grinder","y":90,"uvlock":true}
+  }
+}

@@ -26,7 +26,7 @@ import amerifrance.guideapi.api.IGuideBook
 import amerifrance.guideapi.api.GuideBook
 import amerifrance.guideapi.api.impl.Book
 import hu.frontrider.gearcraft.GearCraft
-import hu.frontrider.gearcraft.GearCraft.MODID
+import hu.frontrider.gearcraft.GearCraft.Companion.MODID
 import net.minecraft.init.Items
 import java.awt.Color
 
@@ -52,7 +52,7 @@ class Book : IGuideBook {
         val categories = ArrayList<CategoryAbstract>()
         categories.add(CategoryItemStack(entries, "My Category", ItemStack(Blocks.COMMAND_BLOCK)))
 
-        // Setup the book's base information
+        // Setup the book's basePlugin information
         myGuide = Book()
         myGuide.title = "gearcraft.guide.title"
         myGuide.isSpawnWithBook = true

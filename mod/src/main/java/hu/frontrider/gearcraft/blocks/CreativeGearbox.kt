@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 
-import hu.frontrider.gearcraft.GearCraft.MODID
+import hu.frontrider.gearcraft.GearCraft.Companion.MODID
 
 class CreativeGearbox : Block(Material.ROCK, MapColor.BLACK), IPoweredBlock, TooltippedBlock {
     init {

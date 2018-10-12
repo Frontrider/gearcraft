@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:obsidian_breaker","x":-90,"uvlock":true },
+    "facing=down":     { "model": "gearcraft:obsidian_breaker","x":90,"uvlock":true},
+    "facing=south":  { "model": "gearcraft:obsidian_breaker","x":180,"uvlock":true},
+    "facing=north":  { "model": "gearcraft:obsidian_breaker","uvlock":true},
+    "facing=west":   { "model": "gearcraft:obsidian_breaker","y":-90,"uvlock":true},
+    "facing=east":   { "model": "gearcraft:obsidian_breaker","y":90,"uvlock":true}
+  }
+}

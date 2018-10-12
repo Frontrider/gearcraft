@@ -1,7 +1,7 @@
 package hu.frontrider.gearcraft.blocks
 
+import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.api.IPoweredBlock
-import hu.frontrider.gearcraft.registry.TierRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.state.BlockStateContainer
 import net.minecraft.block.state.IBlockState
@@ -22,10 +22,30 @@ import java.util.Random
 
 import hu.frontrider.gearcraft.api.BlockStateHelpers.AXIS
 import hu.frontrider.gearcraft.api.BlockStateHelpers.POWER
+import net.minecraft.block.SoundType
+import net.minecraft.block.material.MapColor
+import net.minecraft.block.material.Material
 
 
-class ShaftBlock @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String? = null) : BlockBase(tier, "shaft", tag), IPoweredBlock, TooltippedBlock {
+class ShaftBlock (val power: Int,
+                  resistance: Float,
+                  name: String,
+                  tool: String,
+                  miningLevel: Int,
+                  hardness: Float,
+                  soundType: SoundType,
+                  material: Material,
+                  mapColor: MapColor) : Block(material,mapColor), IPoweredBlock, TooltippedBlock {
 
+    init{
+        setRegistryName(GearCraft.MODID,name)
+        setSoundType(soundType)
+        setResistance(resistance)
+        setHardness(hardness)
+        setHarvestLevel(tool,miningLevel)
+        tickRandomly = true
+        unlocalizedName = "${GearCraft.MODID}.$name"
+    }
     @SideOnly(Side.CLIENT)
     override fun getBlockLayer(): BlockRenderLayer {
         return BlockRenderLayer.CUTOUT
@@ -100,7 +120,7 @@ class ShaftBlock @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String?
     }
 
     override fun getStrength(iBlockAccess: IBlockAccess, blockPos: BlockPos): Int {
-        return tier.power
+        return power
     }
 
     override fun isValidSide(access: IBlockAccess, pos: BlockPos, facing: EnumFacing): Boolean {
@@ -171,12 +191,12 @@ class ShaftBlock @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String?
             world.setBlockState(thizPos, thizState.withProperty(POWER, 0))
         } else {
             if (leftPower > rightPower
-                    && leftStrength >= tier.power
-                    && rightStrength <= tier.power) {
+                    && leftStrength >= power
+                    && rightStrength <= power) {
                 world.setBlockState(thizPos, thizState.withProperty(POWER, leftPower - 1))
             } else if (leftPower < rightPower
-                    && rightStrength >= tier.power
-                    && leftStrength <= tier.power) {
+                    && rightStrength >= power
+                    && leftStrength <= power) {
                 world.setBlockState(thizPos, thizState.withProperty(POWER, rightPower - 1))
             }
         }
@@ -215,7 +235,7 @@ class ShaftBlock @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String?
     }
 
     override fun setTooltip(tooltip: MutableList<String>) {
-        tooltip.add("Power level: " + tier.power)
+        tooltip.add("Power level: " + power)
     }
 
     companion object {

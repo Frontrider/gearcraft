@@ -25,16 +25,16 @@ public class TooltippedItemBlock extends ItemBlock {
 
     @Override
     public CreativeTabs getCreativeTab() {
-        return GearCraft.creativeTab;
+        return GearCraft.Companion.getCreativeTab();
     }
 
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{GearCraft.creativeTab};
+        return new CreativeTabs[]{GearCraft.Companion.getCreativeTab()};
     }
 
     @Override
     protected boolean isInCreativeTab(CreativeTabs creativeTabs) {
-        return creativeTabs == GearCraft.creativeTab;
+        return creativeTabs == GearCraft.Companion.getCreativeTab();
     }
 }

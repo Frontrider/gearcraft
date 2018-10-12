@@ -1,6 +1,7 @@
 {
-  "parent": "item/generated",
-  "layers":{
-    "0":"gearcraft:items/wooden_gear"
+  "parent":"item/generated",
+  "textures": {
+    "layer0": "gearcraft:items/gear_inside",
+    "layer1": "gearcraft:items/gear_outline"
   }
 }

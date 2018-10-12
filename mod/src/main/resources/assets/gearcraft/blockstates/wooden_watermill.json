@@ -1,0 +1,20 @@
+{
+    "variants": {
+      "spin=0": { "model": "gearcraft:wooden_watermill" },
+      "spin=1": { "model": "gearcraft:wooden_watermill" },
+      "spin=2": { "model": "gearcraft:wooden_watermill" },
+      "spin=3": { "model": "gearcraft:wooden_watermill" },
+      "spin=4": { "model": "gearcraft:wooden_watermill" },
+      "spin=5": { "model": "gearcraft:wooden_watermill" },
+      "spin=6": { "model": "gearcraft:wooden_watermill" },
+      "spin=7": { "model": "gearcraft:wooden_watermill" },
+      "spin=8": { "model": "gearcraft:wooden_watermill" },
+      "spin=9": { "model": "gearcraft:wooden_watermill" },
+      "spin=10": { "model": "gearcraft:wooden_watermill" },
+      "spin=11": { "model": "gearcraft:wooden_watermill" },
+      "spin=12": { "model": "gearcraft:wooden_watermill" },
+      "spin=13": { "model": "gearcraft:wooden_watermill" },
+      "spin=14": { "model": "gearcraft:wooden_watermill" },
+      "spin=15": { "model": "gearcraft:wooden_watermill" }
+    }
+}

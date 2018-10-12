@@ -1,0 +1,27 @@
+{
+  "type": "forge:wildcard",
+  "pattern": [
+    "/S/",
+    "D_D",
+    "/S/"
+  ],
+  "key": {
+    "/": {
+      "item": "{{ stick }}"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "D": {
+      "item": "{{ gear }}"
+    },
+    "_": {
+      "item": "{{ slab }}"
+    }
+  },
+  "result": {
+    "item": "{{ result }}",
+    "count": 1
+  },
+  "group": "shaft"
+}

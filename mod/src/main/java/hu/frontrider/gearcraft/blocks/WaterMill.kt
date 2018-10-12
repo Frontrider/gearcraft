@@ -1,9 +1,8 @@
 package hu.frontrider.gearcraft.blocks
 
+import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.api.IPoweredBlock
-import hu.frontrider.gearcraft.registry.TierRegistry
 import net.minecraft.block.BlockLiquid
-import net.minecraft.block.properties.PropertyInteger
 import net.minecraft.block.state.BlockStateContainer
 import net.minecraft.block.state.IBlockState
 import net.minecraft.init.Blocks
@@ -15,14 +14,34 @@ import net.minecraft.world.World
 import java.util.Random
 
 import hu.frontrider.gearcraft.api.BlockStateHelpers.SPIN
+import net.minecraft.block.Block
+import net.minecraft.block.SoundType
+import net.minecraft.block.material.MapColor
+import net.minecraft.block.material.Material
+import net.minecraft.util.BlockRenderLayer
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 
-class WaterMill @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String? = null) : BlockBase(tier, "watermill", tag), IPoweredBlock {
+class WaterMill(val power: Int,
+                resistance: Float,
+                name: String,
+                tool: String,
+                hardness: Float,
+                soundType: SoundType,
+                material: Material,
+                mapColor: MapColor,
+                val miningLevel: Int) : Block(material, mapColor), IPoweredBlock {
 
 
-    init {
+    init{
+        setRegistryName(GearCraft.MODID,name)
+        setSoundType(soundType)
+        setResistance(resistance)
+        setHardness(hardness)
+        setHarvestLevel(tool,miningLevel)
         tickRandomly = true
+        unlocalizedName = "${GearCraft.MODID}.$name"
     }
-
     override fun createBlockState(): BlockStateContainer {
         return BlockStateContainer(this, SPIN)
     }
@@ -33,7 +52,7 @@ class WaterMill @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String? 
     }
 
     override fun getStrength(iBlockAccess: IBlockAccess, blockPos: BlockPos): Int {
-        return tier.power / 2
+        return power
 
     }
 
@@ -53,7 +72,7 @@ class WaterMill @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String? 
             world.destroyBlock(blockPos, false)
             return
         }
-        if (waterValue >= tier.factor) {
+        if (waterValue >= 4) {
             //prevents it from becoming automateable with vanilla tools.
             if (random.nextBoolean() && value < 14) {
                 world.setBlockState(blockPos, blockState.withProperty(SPIN, value + 2))
@@ -79,6 +98,7 @@ class WaterMill @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String? 
         return defaultState.withProperty(SPIN, meta)
     }
 
+    //may or may not drop itself.
     override fun quantityDropped(random: Random): Int {
         return if (random.nextInt(10) < 3) 1 else 0
     }
@@ -95,5 +115,10 @@ class WaterMill @JvmOverloads constructor(tier: TierRegistry.Tier, tag: String? 
         if (level > 4)
             return 4
         return if (level < 2) 0 else level
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun getBlockLayer(): BlockRenderLayer {
+        return BlockRenderLayer.CUTOUT
     }
 }

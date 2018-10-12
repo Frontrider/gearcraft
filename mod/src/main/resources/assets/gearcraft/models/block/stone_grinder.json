@@ -1,0 +1,10 @@
+{
+  "parent": "gearcraft:block/grinder",
+  "textures": {
+    "body": "minecraft:blocks/cobblestone",
+    "particle": "minecraft:blocks/cobblestone",
+    "frame": "minecraft:blocks/stone",
+    "gear": "gearcraft:blocks/bearing_input",
+    "face": "minecraft:blocks/stone"
+  }
+}
