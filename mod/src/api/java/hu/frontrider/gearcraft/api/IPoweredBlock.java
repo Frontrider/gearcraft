@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 /**
- * This interface have to be implemented by every block, which can output power. (only if you output! you don't need it if you only input!)
+ * This data have to be implemented by every block, which can output power. (only if you output! you don't need it if you only input!)
  *
  * Include it in your mod for compatibility.
  * */

@@ -27,6 +27,10 @@ version = "1.0"
 group = "hu.frontrider.gearcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "gearcraft"
 
+configurations{
+    fatJar
+    compile.extendsFrom fatJar
+}
 //sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 compileJava {
@@ -71,11 +75,13 @@ dependencies {
     compile "info.amerifrance.guideapi:Guide-API:${guideapi_version}"
     //forgelin
     compile group: "net.shadowfacts", name: "Forgelin", version: "1.7.3"
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
     testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
 
+    fatJar(project(":gear_core")){
+        transitive = false
+    }
     //code generation
     compileOnly project(":annotations")
     kapt project(":generator")
@@ -101,4 +107,8 @@ processResources {
 }
 idea{
 
+}
+
+jar{
+    from(configurations.fatJar.collect{ it.isDirectory() ? it : zipTree(it) })
 }

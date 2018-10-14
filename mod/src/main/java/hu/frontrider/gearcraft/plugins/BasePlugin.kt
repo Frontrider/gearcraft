@@ -3,6 +3,8 @@ package hu.frontrider.gearcraft.plugins
 import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.api.Plugin
 import hu.frontrider.gearcraft.blocks.*
+import hu.frontrider.gearcraft.blocks.power.BlockShaft
+import hu.frontrider.gearcraft.blocks.power.CreativeGearbox
 import hu.frontrider.gearcraft.items.ColoredItem
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
@@ -39,7 +41,7 @@ class BasePlugin : Plugin {
     }
 
     private val blocks: Array<Block> = arrayOf(
-            GearboxBlock(
+            BlockGearboxNormal(
                     4,
                     2f,
                     "wooden_gearbox",
@@ -50,7 +52,7 @@ class BasePlugin : Plugin {
                     WOOD,
                     MapColor.WOOD
             ),
-            GearboxBlock(
+            BlockGearboxNormal(
                     32,
                     4f,
                     "obsidian_gearbox",
@@ -61,7 +63,7 @@ class BasePlugin : Plugin {
                     ROCK,
                     MapColor.OBSIDIAN
             ),
-            GearboxBlock(
+            BlockGearboxNormal(
                     8,
                     2f,
                     "stone_gearbox",
@@ -72,7 +74,7 @@ class BasePlugin : Plugin {
                     ROCK,
                     MapColor.STONE
             ),
-            GearboxBlock(
+            BlockGearboxNormal(
                     16,
                     2f,
                     "iron_gearbox",
@@ -84,7 +86,7 @@ class BasePlugin : Plugin {
                     MapColor.IRON
             ),
             CreativeGearbox(),
-            ShaftBlock(
+            BlockShaft(
                     8,
                     4f,
                     "stone_shaft",
@@ -95,7 +97,7 @@ class BasePlugin : Plugin {
                     ROCK,
                     STONE
             ),
-            ShaftBlock(
+            BlockShaft(
                     4,
                     4f,
                     "wooden_shaft",
@@ -106,7 +108,7 @@ class BasePlugin : Plugin {
                     WOOD,
                     MapColor.WOOD
             ),
-            ShaftBlock(
+            BlockShaft(
                     16,
                     4f,
                     "iron_shaft",
@@ -116,7 +118,7 @@ class BasePlugin : Plugin {
                     SoundType.METAL,
                     IRON,
                     MapColor.IRON
-            ), ShaftBlock(
+            ), BlockShaft(
             32,
             4f,
             "obsidian_shaft",

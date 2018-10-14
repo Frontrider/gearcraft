@@ -1,16 +1,41 @@
 package hu.frontrider.gearcraft.core.power
 
 import hu.frontrider.gearcraft.api.BlockStates.*
-import hu.frontrider.gearcraft.api.IGearPowered
+import hu.frontrider.gearcraft.api.power.IGearPowered
 import net.minecraft.block.state.IBlockState
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class PowerHandler(val block: IGearPowered, val power: Int) : IGearPowered {
+class PowerHandler(val power: Int, val isTransmission: Boolean = true) : IGearPowered {
 
-    override fun getPower(world: World?, blockPos: BlockPos?, blockState: IBlockState?): Int {
-        return power
+    override fun getPower(world: World, blockPos: BlockPos, blockState: IBlockState): Int {
+        val properties = blockState.propertyKeys
+
+        return if (isTransmission) {
+            power
+        } else {
+            return when {
+                properties.contains(FACING) && properties.contains(INVERTED) -> {
+                    val state = world.getBlockState(blockPos)
+
+                    val inverted = state.getValue(INVERTED)
+                    val facing = state.getValue(FACING)
+
+                    if (inverted) {
+                        val required = getTargetPower(world, blockPos.offset(facing), facing, power)
+                        val total = getInvertedTargetPower(world, blockPos, facing, power)
+
+                        if (total >= required) total else 0
+                    } else {
+                        val total = getTargetPower(world, blockPos.offset(facing), facing, power)
+                        val required = getInvertedTargetPower(world, blockPos, facing, true, power)
+                        if (total >= required) total else 0
+                    }
+                }
+                else -> 0
+            }
+        }
     }
 
     override fun getStrength(world: World, blockPos: BlockPos, blockState: IBlockState): Int {
@@ -44,5 +69,6 @@ class PowerHandler(val block: IGearPowered, val power: Int) : IGearPowered {
         sides.add(side)
     }
 
-
 }
+
+

@@ -80,7 +80,7 @@ class GearboxBlock(
         }
     }
 
-    override fun observedNeighborChange(blockState: IBlockState?, world: World?, blockPos: BlockPos?, block: Block?, blockPos1: BlockPos?) {
+    override fun observedNeighborChange(blockState: IBlockState?, world: World?, blockPos: BlockPos, block: Block?, blockPos1: BlockPos?) {
         world!!.scheduleUpdate(blockPos, this, 30)
     }
 

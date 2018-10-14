@@ -1,4 +1,4 @@
-package hu.frontrider.gearcraft.api;
+package hu.frontrider.gearcraft.api.power;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
- * The interface that marks a block to support mechanical power.
+ * The data that marks a block to support mechanical power.
  *
  * MUST BE ON THE BLOCK, NOT THE TILE ENTITY!
  *
