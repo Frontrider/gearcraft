@@ -1,8 +1,12 @@
 itemGroup.gearcraft_tab=GearCraft
-tile.gearcraft.wooden_gearbox.name=Wooden Gearbox
-tile.gearcraft.wooden_shaft.name=Wooden Shaft
+tile.gearcraft.wooden_gearbox.name=Oak Gearbox
+tile.gearcraft.wooden_shaft.name=Oak Shaft
 tile.gearcraft.iron_gearbox.name=Iron Gearbox
+tile.gearcraft.obsidian_gearbox.name=Obsidian Gearbox
 tile.gearcraft.iron_shaft.name=Iron Shaft
+tile.gearcraft.obsidian_shaft.name=Obsidian Shaft
+
+tile.gearcraft.composite_shaft.name=Composite Shaft
 tile.gearcraft.stone_gearbox.name=Stone Gearbox
 tile.gearcraft.stone_shaft.name=Stone Shaft
 tile.gearcraft.horse_mill.name=Horse Mill
@@ -11,18 +15,112 @@ tile.gearcraft.stone_engine.name=Stone Heat Engine
 tile.gearcraft.stone_breaker.name=Stone Block Breaker
 tile.gearcraft.obsidian_breaker.name=Obsidian Block Breaker
 tile.gearcraft.iron_breaker.name=Iron Block Breaker
-tile.gearcraft.wooden_breaker.name=Wooden Block Breaker
-tile.gearcraft.wooden_watermill.name=Wooden Water Mill
-tile.gearcraft.stone_watermill.name=Stone Water Mill
-tile.gearcraft.iron_watermill.name=Iron Water Mill
+tile.gearcraft.wooden_breaker.name=Oak Block Breaker
+tile.gearcraft.wooden_watermill.name=Oak Water Mill
+tile.gearcraft.strong_watermill.name=Strong Water Mill
+
+tile.gearcraft.wooden_watermill_acacia.name=Acacia Water Mill
+tile.gearcraft.wooden_watermill_spruce.name=Spruce Water Mill
+tile.gearcraft.wooden_watermill_big_oak.name=Dark Oak Water Mill
+tile.gearcraft.wooden_watermill_jungle.name=Jungle Water Mill
+tile.gearcraft.wooden_watermill_birch.name=Birch Water Mill
+
+tile.gearcraft.wooden_shaft_acacia.name=Acacia Shaft
+tile.gearcraft.wooden_shaft_spruce.name=Spruce Shaft
+tile.gearcraft.wooden_shaft_dark_oak.name=Dark Oak Shaft
+tile.gearcraft.wooden_shaft_jungle.name=Jungle Shaft
+tile.gearcraft.wooden_shaft_birch.name=Birch Shaft
+
+tile.gearcraft.stone_gearbox_granite.name=Granite Gearbox
+tile.gearcraft.stone_gearbox_andesite.name=Andesite Gearbox
+tile.gearcraft.stone_gearbox_diorite.name=Diorite Gearbox
+
+tile.gearcraft.stone_shaft_granite.name=Granite Shaft
+tile.gearcraft.stone_shaft_andesite.name=Andesite Shaft
+tile.gearcraft.stone_shaft_diorite.name=Diorite Shaft
+
+tile.gearcraft.combustion_engine.name=Combustion Engine
+tile.gearcraft.combustion_engine_purple.name=Purple Combustion Engine
+tile.gearcraft.combustion_engine_brown.name=Brown Combustion Engine
+tile.gearcraft.combustion_engine_cyan.name=Cyan Combustion Engine
+tile.gearcraft.combustion_engine_red.name=Red Combustion Engine
+tile.gearcraft.combustion_engine_yellow.name=Yellow Combustion Engine
+tile.gearcraft.combustion_engine_gray.name=Gray Combustion Engine
+tile.gearcraft.combustion_engine_white.name=White Combustion Engine
+tile.gearcraft.combustion_engine_black.name=Black Combustion Engine
+tile.gearcraft.combustion_engine_magenta.name=Magenta Combustion Engine
+tile.gearcraft.combustion_engine_green.name=Green Combustion Engine
+tile.gearcraft.combustion_engine_orange.name=Orange Combustion Engine
+tile.gearcraft.combustion_engine_pink.name=Pink Combustion Engine
+tile.gearcraft.combustion_engine_blue.name=Blue Combustion Engine
+tile.gearcraft.combustion_engine_lime.name=Lime Combustion Engine
+tile.gearcraft.combustion_engine_light_blue.name=Light Blue Combustion Engine
+
+tile.gearcraft.wooden_gearbox_jungle.name=Jungle Gearbox
+tile.gearcraft.wooden_gearbox_dark_oak.name=Dark Oak Gearbox
+tile.gearcraft.wooden_gearbox_birch.name=Birch Gearbox
+tile.gearcraft.wooden_gearbox_acacia.name=Acacia Gearbox
+tile.gearcraft.wooden_gearbox_spruce.name=Spruce Gearbox
+
+tile.gearcraft.planks_treated_wood.name=Treated Wood Planks
+tile.gearcraft.hardened_glue.name=Glue Block
+tile.gearcraft.glue_composite.name=Glue Composite Block
+
+tile.gearcraft.wooden_dismantler.name=Oak Dismantler
+tile.gearcraft.wooden_dismantler_jungle.name=Jungle Dismantler
+tile.gearcraft.wooden_dismantler_acacia.name=Acacia Dismantler
+tile.gearcraft.wooden_dismantler_big_oak.name=Dark Oak Dismantler
+tile.gearcraft.wooden_dismantler_birch.name=Birch Dismantler
+tile.gearcraft.wooden_dismantler_spruce.name=Spruce Dismantler
+
+
+tile.gearcraft.scaffold_wooden.name=Oak Scaffold
+tile.gearcraft.scaffold_jungle.name=Jungle Scaffold
+tile.gearcraft.scaffold_acacia.name=Acacia Scaffold
+tile.gearcraft.scaffold_big_oak.name=Dark Oak Scaffold
+tile.gearcraft.scaffold_birch.name=Birch Scaffold
+tile.gearcraft.scaffold_spruce.name=Spruce Scaffold
+
+tile.gearcraft.stone_dismantler.name=Stone Dismantler
+tile.gearcraft.stone_dismantler_granite.name=Granite Dismantler
+tile.gearcraft.stone_dismantler_andesite.name=Andesite Dismantler
+tile.gearcraft.stone_dismantler_diorite.name=Diorite Dismantler
+tile.gearcraft.iron_dismantler.name=Iron Dismantler
+tile.gearcraft.obsidian_dismantler.name=Obsidian Dismantler
 
 item.gearcraft.wooden_gear.name=Wooden Gear
 item.gearcraft.stone_gear.name=Stone Gear
 item.gearcraft.iron_gear.name=Iron Gear
 item.gearcraft.obsidian_gear.name=Obsidian Gear
+item.gearcraft.glueball.name=Glue Ball
+item.gearcraft.wood_pulp.name=Wood Pulp
+item.gearcraft.stone_dust.name=Stone Dust
+item.gearcraft.raw_preservative.name=Raw Preservative
+item.gearcraft.fine_preservative.name=Fine Preservative
+
+#informatiom
+gearcraft.powertooltip=Power level: %s
+gearcraft.creative_only=Creative Only!
+gearcraft.infinite_power=Infinite Power
+gearcraft.transmission=Power Transmitter
+
+gearcraft.spin_up=Must spin up before producing power
+gearcraft.spin_level=Has to reach %s
+
+gearcraft.inverted=Shift place to invert
+gearcraft.gearbox.invertmessage=Output sides become input sides
+gearcraft.router.redstone=Pulls a stack of items when reciving a redstone signal
+
+gearcraft.seaplace=Must be placed in an ocean!
+
+gearcraft.redstone_controlled=Interacts with redstone
+gearcraft.redstone_controlled.engine=Will be disabled, but will lose power if shafts try to pull power from it!
 
 #guide
 gearcraft.guide.welcome=The GearCraft manual.
 gearcraft.guide.name=Gearworker's Guide.
 gearcraft.guide.title=Gearworker's Guide
 
+gearcraft.guide.power=Power
+gearcraft.guide.power.construction=Construction
+gearcraft.guide.wip=Work in progress.

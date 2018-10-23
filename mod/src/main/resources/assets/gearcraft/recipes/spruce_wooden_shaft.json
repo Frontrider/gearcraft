@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/S/",
+    "D_D",
+    "/S/"
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearWood"
+    },
+    "_": {
+      "item": "minecraft:wooden_slab",
+      "data":1
+    }
+  },
+  "result": {
+    "item": "gearcraft:wooden_shaft_spruce",
+    "count": 2
+  },
+  "group": "shaft"
+}

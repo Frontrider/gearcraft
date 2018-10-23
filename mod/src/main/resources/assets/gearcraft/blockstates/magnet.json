@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+    }
+  },
+  "variants": {
+    "normal": {
+      "model": "gearcraft:magnet"
+    },
+    "inventory": {
+      "model": "gearcraft:magnet"
+    }
+  }
+}

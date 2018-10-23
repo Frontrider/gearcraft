@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/DG",
+    "D_D",
+    "CDN"
+  ],
+  "key": {
+    "/": {
+      "item": "gearcraft:iron_shaft"
+    },
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "N": {
+      "item":"minecraft:heavy_weighted_pressure_plate"
+    },
+    "_": {
+      "item": "minecraft:concrete",
+      "data":8
+    },
+    "C": {
+
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  },
+  "result": {
+    "item": "gearcraft:iron_gearbox",
+    "count": 1
+  },
+  "group": "gearbox"
+}

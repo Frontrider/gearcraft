@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/B/",
+    "IDI",
+    "_SE"
+  ],
+  "key": {
+    "/": {
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    },
+    "S": {
+      "item": "minecraft:comparator"
+    }, "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "B": {
+      "item": "minecraft:light_weighted_pressure_plate"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearObsidian"
+    },"I": {
+      "type": "forge:ore_dict",
+      "ore":"ingotIron"
+    },
+    "_": {
+      "item": "gearcraft:planks_treated_wood",
+      "data":0
+    }
+  },
+  "result": {
+    "item": "gearcraft:magnet",
+    "count": 1
+  },
+  "group": "shaft"
+}

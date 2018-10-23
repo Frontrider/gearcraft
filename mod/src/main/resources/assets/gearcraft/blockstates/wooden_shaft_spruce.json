@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y,power=0":  { "model": "gearcraft:wooden_shaft_spruce" ,"uvlock":true},
+    "axis=y,power=1":  { "model": "gearcraft:wooden_shaft_spruce" ,"uvlock":true},
+    "axis=y,power=2":  { "model": "gearcraft:wooden_shaft_spruce" ,"uvlock":true},
+    "axis=y,power=3":  { "model": "gearcraft:wooden_shaft_spruce" ,"uvlock":true},
+    "axis=z,power=0":  { "model": "gearcraft:wooden_shaft_spruce", "x": 90 ,"uvlock":true},
+    "axis=z,power=1":  { "model": "gearcraft:wooden_shaft_spruce", "x": 90 ,"uvlock":true},
+    "axis=z,power=2":  { "model": "gearcraft:wooden_shaft_spruce", "x": 90 ,"uvlock":true},
+    "axis=z,power=3":  { "model": "gearcraft:wooden_shaft_spruce", "x": 90 ,"uvlock":true},
+    "axis=x,power=0":  { "model": "gearcraft:wooden_shaft_spruce", "x": 90, "y": 90 ,"uvlock":true},
+    "axis=x,power=1":  { "model": "gearcraft:wooden_shaft_spruce", "x": 90, "y": 90 ,"uvlock":true},
+    "axis=x,power=2":  { "model": "gearcraft:wooden_shaft_spruce", "x": 90, "y": 90 ,"uvlock":true},
+    "axis=x,power=3":  { "model": "gearcraft:wooden_shaft_spruce", "x": 90, "y": 90 ,"uvlock":true}
+  }
+}

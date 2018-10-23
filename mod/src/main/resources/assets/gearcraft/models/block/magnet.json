@@ -1,0 +1,10 @@
+{
+  "parent": "gearcraft:block/magnet_base",
+  "textures": {
+    "base": "minecraft:blocks/iron_block",
+    "frame": "gearcraft:blocks/planks_treated_wood",
+    "nook": "gearcraft:blocks/bearing_input",
+    "top": "minecraft:blocks/gold_block",
+    "particle": "minecraft:blocks/iron_block"
+  }
+}

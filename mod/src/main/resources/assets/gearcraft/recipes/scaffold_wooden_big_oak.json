@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "/G/",
+    "T/T"
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "G": [
+      {
+        "type": "forge:ore_dict",
+        "ore": "ballGlue"
+      },
+      {
+        "type": "forge:ore_dict",
+        "ore": "ballSlime"
+      }
+    ],
+    "S": {
+      "item": "minecraft:wooden_slab",
+      "data":5
+    },
+    "T": {
+      "item": "gearcraft:planks_treated_wood"
+    }
+  },
+  "result": {
+    "item": "gearcraft:scaffold_big_oak",
+    "count": 4
+  },
+  "group": "gearbox"
+}

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/DC",
+    "D_D",
+    "CDG"
+  ],
+  "key": {
+    "/": {
+      "item": "gearcraft:obsidian_shaft"
+    },
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearObsidian"
+    },
+    "_": {
+      "item": "minecraft:obsidian"
+    },
+    "C": {
+
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    }
+  },
+  "result": {
+    "item": "gearcraft:obsidian_gearbox",
+    "count": 1
+  },
+  "group": "gearbox"
+}

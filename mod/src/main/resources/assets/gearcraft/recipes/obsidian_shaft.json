@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GSQ",
+    "D_D",
+    "QS/"
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:string"
+
+    },
+    "S": {
+      "item": "minecraft:clay"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearObsidian"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "_": {
+      "item": "minecraft:obsidian"
+    },
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    }
+  },
+  "result": {
+    "item": "gearcraft:obsidian_shaft",
+    "count": 4
+  },
+  "group": "shaft"
+}

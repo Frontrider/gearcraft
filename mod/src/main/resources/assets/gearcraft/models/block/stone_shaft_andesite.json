@@ -1,0 +1,7 @@
+{
+  "parent": "gearcraft:block/shaft",
+  "textures": {
+    "body": "minecraft:blocks/stone_andesite_smooth",
+    "particle": "minecraft:blocks/stone_andesite_smooth"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "I_I",
+    "IDI"
+  ],
+  "key": {
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "D": {
+      "item": "gearcraft:composite_shaft"
+
+    },
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "_": {
+      "item": "gearcraft:planks_treated_wood"
+    }
+  },
+  "result": {
+    "item": "gearcraft:strong_watermill",
+    "count": 1
+  },
+  "group": "watermill"
+}

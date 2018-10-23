@@ -2,7 +2,7 @@
   "parent": "gearcraft:block/gearbox",
   "textures": {
     "body": "minecraft:blocks/planks_oak",
-    "frame": "minecraft:blocks/stone",
+    "frame": "minecraft:blocks/cobblestone",
     "gear_input":"gearcraft:blocks/bearing_output",
     "gear":"gearcraft:blocks/bearing_input",
     "particle":"minecraft:blocks/planks_oak"

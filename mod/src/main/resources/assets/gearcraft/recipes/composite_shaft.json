@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/SB",
+    "D_D",
+    "BS/"
+  ],
+  "key": {
+    "/": {
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearWood"
+    },
+    "_": {
+      "item": "gearcraft:planks_treated_wood",
+      "data":0
+    }
+  },
+  "result": {
+    "item": "gearcraft:composite_shaft",
+    "count": 8
+  },
+  "group": "shaft"
+}

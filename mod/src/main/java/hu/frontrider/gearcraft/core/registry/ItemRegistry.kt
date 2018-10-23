@@ -1,7 +1,7 @@
 package hu.frontrider.gearcraft.core.registry
 
 import hu.frontrider.gearcraft.GearCraft
-import hu.frontrider.gearcraft.blocks.TooltippedBlock
+import hu.frontrider.gearcraft.api.traits.ITooltipped
 import hu.frontrider.gearcraft.items.TooltippedItemBlock
 import net.minecraft.block.Block
 import net.minecraft.item.Item
@@ -18,6 +18,7 @@ import hu.frontrider.gearcraft.basePlugin
 @Mod.EventBusSubscriber(modid = MODID)
 object ItemRegistry {
     var items =ArrayList<Item>()
+
     @SubscribeEvent
     @JvmStatic
     fun register(event: RegistryEvent.Register<Item>) {
@@ -39,7 +40,7 @@ object ItemRegistry {
     }
 
     private fun itemToBlock(block: Block): Item {
-        return if (block is TooltippedBlock) TooltippedItemBlock(block)
+        return if (block is ITooltipped) TooltippedItemBlock(block)
                 .setRegistryName(block.registryName)
                 .setCreativeTab(GearCraft.creativeTab)
                 .setUnlocalizedName(block.unlocalizedName) else ItemBlock(block)

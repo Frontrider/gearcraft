@@ -2,7 +2,7 @@
   "parent": "gearcraft:block/watermill",
   "textures": {
     "body": "minecraft:blocks/planks_oak",
-    "frame": "minecraft:blocks/stone",
+    "frame": "minecraft:blocks/cobblestone",
     "particle":"minecraft:blocks/planks_oak"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:wooden_grinder_jungle","x":-90,"uvlock":true },
+    "facing=down":     { "model": "gearcraft:wooden_grinder_jungle","x":90,"uvlock":true},
+    "facing=south":  { "model": "gearcraft:wooden_grinder_jungle","x":180,"uvlock":true},
+    "facing=north":  { "model": "gearcraft:wooden_grinder_jungle","uvlock":true},
+    "facing=west":   { "model": "gearcraft:wooden_grinder_jungle","y":-90,"uvlock":true},
+    "facing=east":   { "model": "gearcraft:wooden_grinder_jungle","y":90,"uvlock":true}
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "/S/",
     "D_D",
@@ -17,8 +17,8 @@
       "ore": "gearWood"
     },
     "_": {
-      "type": "forge:ore_dict",
-      "ore": "slabWood"
+      "item": "minecraft:wooden_slab",
+      "data":0
     }
   },
   "result": {

@@ -1,0 +1,20 @@
+{
+    "variants": {
+      "spin=0": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=1": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=2": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=3": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=4": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=5": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=6": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=7": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=8": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=9": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=10": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=11": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=12": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=13": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=14": { "model": "gearcraft:combustion_engine_lime" },
+      "spin=15": { "model": "gearcraft:combustion_engine_lime" }
+    }
+}

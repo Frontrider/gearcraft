@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " / ",
+    "/G/",
+    " / "
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:obsidian"
+    },
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    }
+  },
+  "result": {
+    "item": "gearcraft:obsidian_gear",
+    "count": 1
+  },
+  "group": "gear"
+}

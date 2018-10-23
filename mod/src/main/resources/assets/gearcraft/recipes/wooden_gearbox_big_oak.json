@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SD/",
+    "D_D",
+    "CDS"
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearWood"
+    },
+    "_": {
+      "item": "minecraft:planks",
+      "data":5
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "gearcraft:wooden_gearbox_dark_oak",
+    "count": 1
+  },
+  "group": "gearbox"
+}

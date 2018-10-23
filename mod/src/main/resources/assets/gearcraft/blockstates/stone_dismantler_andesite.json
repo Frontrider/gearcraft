@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:stone_grinder_andesite","x":-90,"uvlock":true },
+    "facing=down":     { "model": "gearcraft:stone_grinder_andesite","x":90,"uvlock":true},
+    "facing=south":  { "model": "gearcraft:stone_grinder_andesite","x":180,"uvlock":true},
+    "facing=north":  { "model": "gearcraft:stone_grinder_andesite","uvlock":true},
+    "facing=west":   { "model": "gearcraft:stone_grinder_andesite","y":-90,"uvlock":true},
+    "facing=east":   { "model": "gearcraft:stone_grinder_andesite","y":90,"uvlock":true}
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients":[
+    {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+   {
+     "item": "gearcraft:fine_preservative"
+    }
+  ],
+  "result": {
+    "item": "gearcraft:planks_treated_wood",
+    "count": 8
+  },
+  "group": "material"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients":[
+    {
+      "item":"gearcraft:hardened_glue"
+    }
+  ],
+  "result": {
+    "item": "gearcraft:glueball",
+    "count": 9
+  },
+  "group": "gearbox"
+}

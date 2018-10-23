@@ -1,0 +1,20 @@
+{
+    "variants": {
+      "spin=0": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=1": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=2": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=3": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=4": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=5": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=6": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=7": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=8": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=9": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=10": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=11": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=12": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=13": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=14": { "model": "gearcraft:combustion_engine_magenta" },
+      "spin=15": { "model": "gearcraft:combustion_engine_magenta" }
+    }
+}

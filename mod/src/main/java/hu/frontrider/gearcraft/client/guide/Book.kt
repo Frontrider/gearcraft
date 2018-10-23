@@ -28,11 +28,13 @@ import amerifrance.guideapi.api.impl.Book
 import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.GearCraft.Companion.MODID
 import net.minecraft.init.Items
+import net.minecraft.item.Item
 import java.awt.Color
 
 
 @GuideBook
 class Book : IGuideBook {
+
 
     override fun buildBook(): Book {
         // Create the map of entries. A LinkedHashMap is used to retain the order of entries.
@@ -40,17 +42,12 @@ class Book : IGuideBook {
 
         // Creation of our first entry.
         val pages1 = ArrayList<IPage>()
-        pages1.add(PageText("This is a page in my guide!"))
-        entries[ResourceLocation("example", "entry_one")] = EntryItemStack(pages1, "Entry One", ItemStack(Blocks.BEACON))
-
-        // Creation of our second entry.
-        val pages2 = ArrayList<IPage>()
-        pages2.add(PageFurnaceRecipe("oreGold"))
-        entries[ResourceLocation("example", "entry_two")] = EntryItemStack(pages2, "Entry Two", ItemStack(Items.DIAMOND_SWORD))
+        pages1.add(PageText("gearcraft.guide.wip"))
+        entries[ResourceLocation(MODID, "gearcraft.guide.traits.construction")] = EntryItemStack(pages1, "gearcraft.guide.traits.construction", ItemStack(Blocks.BEACON))
 
         // Setup the list of categories and add our entries to it.
         val categories = ArrayList<CategoryAbstract>()
-        categories.add(CategoryItemStack(entries, "My Category", ItemStack(Blocks.COMMAND_BLOCK)))
+        categories.add(CategoryItemStack(entries, "gearcraft.guide.traits", ItemStack(icon)))
 
         // Setup the book's basePlugin information
         myGuide = Book()
@@ -61,7 +58,7 @@ class Book : IGuideBook {
         myGuide.author = "Frontrider"
         myGuide.color = Color.RED
         myGuide.categoryList = categories
-        myGuide.registryName = ResourceLocation(MODID, "first_guide")
+        myGuide.registryName = ResourceLocation(MODID, "gear_guide")
         myGuide.creativeTab = GearCraft.creativeTab
         return myGuide
     }
@@ -77,6 +74,8 @@ class Book : IGuideBook {
     }
 
     companion object {
+        @GameRegistry.ObjectHolder("$MODID:wooden_gear")
+        lateinit var icon: Item
 
         lateinit var myGuide: Book
     }

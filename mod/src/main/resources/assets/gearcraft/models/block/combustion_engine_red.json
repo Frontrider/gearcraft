@@ -1,0 +1,8 @@
+{
+  "parent": "gearcraft:block/engine",
+  "textures": {
+    "body": "minecraft:blocks/concrete_red",
+    "particle": "minecraft:blocks/iron_block",
+    "frame": "minecraft:blocks/iron_block"
+  }
+}

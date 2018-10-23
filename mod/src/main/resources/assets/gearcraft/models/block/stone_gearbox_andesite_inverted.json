@@ -1,0 +1,10 @@
+{
+  "parent": "gearcraft:block/gearbox",
+  "textures": {
+    "body": "minecraft:blocks/stone_andesite_smooth",
+    "particle": "minecraft:blocks/stone_andesite_smooth",
+    "frame": "minecraft:blocks/cobblestone",
+    "gear_input":"gearcraft:blocks/bearing_output",
+    "gear":"gearcraft:blocks/bearing_input"
+  }
+}

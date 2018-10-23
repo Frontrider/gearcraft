@@ -30,17 +30,8 @@ abstract class InvertedDirectionalBlockBase(
         soundType: SoundType,
         material: Material,
         mapColor: MapColor
-) : Block(material,mapColor) {
+) : BlockBase(resistance, name, tool, miningLevel, hardness, soundType, material, mapColor) {
 
-    init{
-        setRegistryName(GearCraft.MODID,name)
-        this.setSoundType(soundType)
-        this.setResistance(resistance)
-        this.setHardness(hardness)
-        this.setHarvestLevel(tool,miningLevel)
-        unlocalizedName = "$MODID.$name"
-        tickRandomly = true
-    }
     override fun createBlockState(): BlockStateContainer {
         return BlockStateContainer(this, FACING, INVERTED)
     }

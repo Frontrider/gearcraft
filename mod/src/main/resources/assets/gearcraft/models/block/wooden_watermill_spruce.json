@@ -1,0 +1,8 @@
+{
+  "parent": "gearcraft:block/watermill",
+  "textures": {
+    "body": "minecraft:blocks/planks_spruce",
+    "frame": "minecraft:blocks/cobblestone",
+    "particle":"minecraft:blocks/planks_spruce"
+  }
+}

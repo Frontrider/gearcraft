@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CDC",
+    "G_L",
+    "SPS"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:stone_pickaxe"
+    },
+    "S": {
+      "item": "minecraft:flint"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearStone"
+    },
+    "_": {
+      "item": "minecraft:stone",
+      "data":3
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    },
+    "L":{
+      "item":"minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "gearcraft:stone_dismantler_diorite",
+    "count": 1
+  },
+  "group": "gearbox"
+}

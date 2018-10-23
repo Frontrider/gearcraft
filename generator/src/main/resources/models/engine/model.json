@@ -1,9 +1,0 @@
-{
-  "parent": "gearcraft:block/engine",
-  "textures": {
-    "body": "{{ base }}",
-    "particle": "{{ base }}",
-    "frame": "{{ frame }}",
-    "state":"{{ stage }}"
-  }
-}

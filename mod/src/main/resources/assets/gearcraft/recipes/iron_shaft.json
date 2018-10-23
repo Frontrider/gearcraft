@@ -1,5 +1,5 @@
 {
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "/S/",
     "D_D",
@@ -19,12 +19,12 @@
     },
     "_": {
       "type": "forge:ore_dict",
-      "ore": "inotIron"
+      "ore": "blockIron"
     }
   },
   "result": {
     "item": "gearcraft:iron_shaft",
-    "count": 2
+    "count": 4
   },
   "group": "shaft"
 }

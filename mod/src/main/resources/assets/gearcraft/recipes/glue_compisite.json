@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients":[
+    {
+      "type": "forge:ore_dict",
+      "ore": "pulpWood"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "pulpWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "pulpWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "pulpWood"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "dustStone"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "dustStone"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "dustStone"
+    },{
+      "type": "forge:ore_dict",
+      "ore": "dustStone"
+    },
+    {
+      "item":"minecraft:leather"
+    }
+  ],
+  "result": {
+    "item": "gearcraft:glue_composite",
+    "count": 1
+  },
+  "group": "gearbox"
+}

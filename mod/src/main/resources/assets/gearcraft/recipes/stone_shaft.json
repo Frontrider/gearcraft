@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/S/",
+    "D_D",
+    "/S/"
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stone_button"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearStone"
+    },
+    "_": {
+      "item": "minecraft:stone",
+      "data":0
+    }
+  },
+  "result": {
+    "item": "gearcraft:stone_shaft",
+    "count": 2
+  },
+  "group": "shaft"
+}

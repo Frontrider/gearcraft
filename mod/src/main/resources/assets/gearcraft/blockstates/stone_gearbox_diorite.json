@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "facing=down,inverted=false":   { "model": "gearcraft:stone_gearbox_diorite","x":180,"uvlock":true },
+    "facing=up,inverted=false":     { "model": "gearcraft:stone_gearbox_diorite","uvlock":true},
+    "facing=north,inverted=false":  { "model": "gearcraft:stone_gearbox_diorite","x":90 ,"uvlock":true},
+    "facing=south,inverted=false":  { "model": "gearcraft:stone_gearbox_diorite","x":270,"uvlock":true},
+    "facing=west,inverted=false":   { "model": "gearcraft:stone_gearbox_diorite","x":90,"y":270,"uvlock":true},
+    "facing=east,inverted=false":   { "model": "gearcraft:stone_gearbox_diorite","x":90,"y":90,"uvlock":true},
+
+
+    "facing=down,inverted=true":   { "model": "gearcraft:stone_gearbox_diorite_inverted","x":180 ,"uvlock":true},
+    "facing=up,inverted=true":     { "model": "gearcraft:stone_gearbox_diorite_inverted","uvlock":true},
+    "facing=north,inverted=true":  { "model": "gearcraft:stone_gearbox_diorite_inverted","x":90 ,"uvlock":true},
+    "facing=south,inverted=true":  { "model": "gearcraft:stone_gearbox_diorite_inverted","x":270,"uvlock":true},
+    "facing=west,inverted=true":   { "model": "gearcraft:stone_gearbox_diorite_inverted","x":90,"y":270,"uvlock":true},
+    "facing=east,inverted=true":   { "model": "gearcraft:stone_gearbox_diorite_inverted","x":90,"y":90,"uvlock":true}
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R_R",
+    "SDS"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:cobblestone"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearWood"
+    },
+    "_": {
+      "item": "minecraft:planks",
+      "data":5
+    },
+    "S": {
+      "item": "minecraft:wooden_slab",
+      "data":5
+    }
+  },
+  "result": {
+    "item": "gearcraft:wooden_watermill_big_oak",
+    "count": 1
+  },
+  "group": "watermill"
+}

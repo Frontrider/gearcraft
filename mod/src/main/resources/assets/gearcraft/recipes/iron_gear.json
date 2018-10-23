@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " / ",
+    "/G/",
+    " / "
+  ],
+  "key": {
+    "/": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    }
+  },
+  "result": {
+    "item": "gearcraft:iron_gear",
+    "count": 1
+  },
+  "group": "gear"
+}

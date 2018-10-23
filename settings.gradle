@@ -3,4 +3,5 @@ include 'mod'
 include 'generator'
 include 'annotations'
 include 'gear_core'
+include 'nuclear'
 

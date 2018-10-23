@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CDC",
+    "G_L",
+    "SPS"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "S": {
+      "item": "minecraft:flint"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "_": {
+      "item": "minecraft:concrete",
+      "data":8
+    },
+    "C": {
+
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    },
+    "L":{
+      "item":"minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "gearcraft:iron_dismantler",
+    "count": 1
+  },
+  "group": "gearbox"
+}

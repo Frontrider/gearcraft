@@ -1,0 +1,7 @@
+{
+  "parent": "gearcraft:block/shaft",
+  "textures": {
+    "body": "minecraft:blocks/planks_big_oak",
+    "particle":"minecraft:blocks/planks_big_oak"
+  }
+}

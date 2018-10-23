@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GDF",
+    "R_R",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "R": {
+      "item": "minecraft:piston"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "_": {
+      "item": "minecraft:concrete",
+      "data":8
+    },
+    "F": {
+
+      "type": "forge:ore_dict",
+      "ore": "blockIron"
+    },
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    }
+  },
+  "result": {
+    "item": "gearcraft:iron_breaker",
+    "count": 1
+  },
+  "group": "gearbox"
+}

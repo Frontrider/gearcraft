@@ -1,0 +1,10 @@
+{
+  "parent": "gearcraft:block/gearbox",
+  "textures": {
+    "body": "minecraft:blocks/planks_spruce",
+    "frame": "minecraft:blocks/cobblestone",
+    "gear":"gearcraft:blocks/bearing_output",
+    "gear_input":"gearcraft:blocks/bearing_input",
+    "particle":"minecraft:blocks/planks_spruce"
+  }
+}

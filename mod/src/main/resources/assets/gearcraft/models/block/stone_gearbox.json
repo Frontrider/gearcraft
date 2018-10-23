@@ -1,9 +1,9 @@
 {
   "parent": "gearcraft:block/gearbox",
   "textures": {
-    "body": "minecraft:blocks/cobblestone",
-    "particle": "minecraft:blocks/cobblestone",
-    "frame": "minecraft:blocks/stone",
+    "body": "minecraft:blocks/stone",
+    "particle": "minecraft:blocks/stone",
+    "frame": "minecraft:blocks/cobblestone",
     "gear": "gearcraft:blocks/bearing_output",
     "gear_input": "gearcraft:blocks/bearing_input"
   }

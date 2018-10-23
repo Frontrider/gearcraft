@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients":[
+    {
+      "type": "forge:ore_dict",
+      "ore": "pulpWood"
+    },
+   {
+      "item":"minecraft:potion"
+    },{
+      "item":"minecraft:dye",
+      "data":1
+
+    },{
+      "item":"minecraft:reeds"
+
+    }
+  ],
+  "result": {
+    "item": "gearcraft:raw_preservative",
+    "count": 1
+  },
+  "group": "material"
+}
