@@ -1,9 +1,7 @@
 package hu.frontrider.gearcraft.blocks.machine
 
 import hu.frontrider.gearcraft.api.BlockStates
-import hu.frontrider.gearcraft.api.BlockStates.FACING
-import hu.frontrider.gearcraft.api.dismantler.DismantlerRecipe
-import hu.frontrider.gearcraft.core.util.EnergyHelper
+import hu.frontrider.gearcraft.api.recipes.IDismantlerRecipe
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
 import net.minecraft.block.material.Material
@@ -24,7 +22,7 @@ class BlockDismantler(power: Int,
                       mapColor: MapColor,
                       miningLevel: Int) : BlockBreaker(power, resistance, name, tool, hardness, soundType, material, mapColor, miningLevel) {
 
-    //changed the tick method, so now it will do the dismantler recipe, instead of breaking it normally.
+    //changed the tick method, so now it will do the recipes recipe, instead of breaking it normally.
     //will always destroy the block!
     override fun updateTick(world: World, pos: BlockPos, state: IBlockState, rand: Random) {
         if(world.isRemote)
@@ -57,6 +55,6 @@ class BlockDismantler(power: Int,
     }
 
     companion object {
-        val dismantleRecipes=ArrayList<DismantlerRecipe>()
+        val dismantleRecipes=ArrayList<IDismantlerRecipe>()
     }
 }

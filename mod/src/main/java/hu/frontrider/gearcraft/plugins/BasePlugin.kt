@@ -2,17 +2,18 @@ package hu.frontrider.gearcraft.plugins
 
 import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.api.Plugin
-import hu.frontrider.gearcraft.blocks.ItemLessBlock
 import hu.frontrider.gearcraft.blocks.machine.BlockBreaker
 import hu.frontrider.gearcraft.blocks.machine.BlockMagnet
 import hu.frontrider.gearcraft.blocks.power.BlockGearbox
 import hu.frontrider.gearcraft.blocks.power.BlockShaft
 import hu.frontrider.gearcraft.blocks.power.CreativeGearbox
 import hu.frontrider.gearcraft.blocks.util.BlockComposite
+import hu.frontrider.gearcraft.blocks.util.BlockGlue
 import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import hu.frontrider.gearcraft.core.util.factory.ItemFactory
 import hu.frontrider.gearcraft.items.ColoredItem
 import hu.frontrider.gearcraft.items.OreDictedItem
+import hu.frontrider.gearcraft.items.tools.RedstoneTablet
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -52,8 +53,11 @@ class BasePlugin : Plugin {
             ItemFactory.start(ColoredItem(arrayOf(16777215, 10511104), "bottleRawFurfuryl"))
                     .setResourourceLocation("raw_preservative")
                     .build(),
-            ItemFactory.start(ColoredItem(arrayOf(16777215, 10511104), "bottleFurfuryl"))
+            ItemFactory.start(ColoredItem(arrayOf(16777215, 16766371), "bottleFurfuryl"))
                     .setResourourceLocation("fine_preservative")
+                    .build(),
+            ItemFactory.start(RedstoneTablet())
+                    .setResourourceLocation("tablet")
                     .build()
     )
 
@@ -61,15 +65,15 @@ class BasePlugin : Plugin {
         return items
     }
 
-    val hardenedGlue = BlockFactory.start(ItemLessBlock(Material.ROCK, MapColor.CLOTH))
-            .setResourourceLocation("hardened_glue")
+    val hardenedGlue = BlockFactory.start(BlockGlue())
+            .setResourourceLocation("glue_block")
             .build()
     private val blocks: Array<Block> = arrayOf(
             BlockFactory.start(BlockComposite(SAND, MapColor.BROWN, hardenedGlue))
                     .setResourourceLocation("glue_composite")
                     .build(),
             hardenedGlue,
-            BlockGearbox(
+            BlockFactory.start(BlockGearbox(
                     32,
                     4f,
                     "obsidian_gearbox",
@@ -79,9 +83,10 @@ class BasePlugin : Plugin {
                     SoundType.STONE,
                     ROCK,
                     MapColor.OBSIDIAN
-            ),
-
-            BlockGearbox(
+            ))
+                    .setResourourceLocation("obsidian_gearbox")
+                    .build(),
+            BlockFactory.start(BlockGearbox(
                     16,
                     2f,
                     "iron_gearbox",
@@ -90,22 +95,25 @@ class BasePlugin : Plugin {
                     1f,
                     SoundType.METAL,
                     IRON,
-                    MapColor.IRON
-            ),
-            CreativeGearbox(),
+                    MapColor.IRON))
+                    .setResourourceLocation("iron_gearbox")
+                    .build(),
+            BlockFactory.start(
 
-            BlockShaft(
-                    1,
-                    4f,
-                    "composite_shaft",
-                    "axe",
-                    2,
-                    1f,
-                    SoundType.WOOD,
-                    WOOD,
-                    MapColor.BROWN
-            ),
-            BlockShaft(
+                    BlockShaft(
+                            1,
+                            4f,
+                            "composite_shaft",
+                            "axe",
+                            2,
+                            1f,
+                            SoundType.WOOD,
+                            WOOD,
+                            MapColor.BROWN
+                    ))
+                    .setResourourceLocation("composite_shaft")
+                    .build(),
+            BlockFactory.start(BlockShaft(
                     16,
                     4f,
                     "iron_shaft",
@@ -115,18 +123,25 @@ class BasePlugin : Plugin {
                     SoundType.METAL,
                     IRON,
                     MapColor.IRON
-            ), BlockShaft(
-            32,
-            4f,
-            "obsidian_shaft",
-            "pickaxe",
-            3,
-            4f,
-            SoundType.STONE,
-            ROCK,
-            MapColor.STONE
-    ),
-            BlockBreaker(
+            ))
+                    .setResourourceLocation("iron_shaft")
+                    .build(),
+            CreativeGearbox(),
+            BlockFactory.start(BlockShaft(
+                    32,
+                    4f,
+                    "obsidian_shaft",
+                    "pickaxe",
+                    3,
+                    4f,
+                    SoundType.STONE,
+                    ROCK,
+                    MapColor.STONE
+            ))
+                    .setResourourceLocation("obsidian_shaft")
+                    .build(),
+
+            BlockFactory.start(BlockBreaker(
                     2,
                     2f,
                     "stone_breaker",
@@ -136,8 +151,11 @@ class BasePlugin : Plugin {
                     ROCK,
                     MapColor.STONE,
                     0
-            ),
-            BlockBreaker(
+            ))
+                    .setResourourceLocation("stone_breaker")
+                    .build(),
+
+            BlockFactory.start(BlockBreaker(
                     4,
                     4f,
                     "iron_breaker",
@@ -147,8 +165,11 @@ class BasePlugin : Plugin {
                     IRON,
                     MapColor.IRON,
                     2
-            ),
-            BlockBreaker(
+            ))
+                    .setResourourceLocation("iron_breaker")
+                    .build(),
+
+            BlockFactory.start(BlockBreaker(
                     16,
                     8f,
                     "obsidian_breaker",
@@ -158,11 +179,10 @@ class BasePlugin : Plugin {
                     ROCK,
                     MapColor.OBSIDIAN,
                     3
-            ),
-            BlockFactory.start(Block(Material.WOOD, MapColor.WOOD))
-                    .setResourourceLocation("planks_treated_wood")
+            ))
+                    .setResourourceLocation("obsidian_breaker")
                     .build(),
-            BlockMagnet(4,
+            BlockFactory.start(BlockMagnet(4,
                     4f,
                     "magnet",
                     "pickaxe",
@@ -170,7 +190,13 @@ class BasePlugin : Plugin {
                     SoundType.METAL,
                     IRON,
                     MapColor.IRON,
-                    2)
+                    2))
+                    .setResourourceLocation("magnet")
+                    .build(),
+            BlockFactory.start(Block(Material.WOOD, MapColor.WOOD))
+                    .setResourourceLocation("planks_treated_wood")
+                    .build()
+
 
     )
 

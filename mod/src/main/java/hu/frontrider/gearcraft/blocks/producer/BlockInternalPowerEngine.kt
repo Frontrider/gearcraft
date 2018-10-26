@@ -6,11 +6,12 @@ import hu.frontrider.gearcraft.api.BlockStates.SPIN
 import hu.frontrider.gearcraft.api.traits.block.IMetaBlock
 import hu.frontrider.gearcraft.api.traits.power.IGearPowered
 import hu.frontrider.gearcraft.api.traits.ITooltipped
-import hu.frontrider.gearcraft.core.traits.producer.SpinUpPowerSource
-import hu.frontrider.gearcraft.core.tooltip.DoNotBreakTooltip
-import hu.frontrider.gearcraft.core.tooltip.MultiTooltip
-import hu.frontrider.gearcraft.core.tooltip.PowerTooltip
-import hu.frontrider.gearcraft.core.tooltip.RedstoneControlled
+import hu.frontrider.gearcraft.blocks.BlockBase
+import hu.frontrider.gearcraft.gears.traits.producer.SpinUpPowerSource
+import hu.frontrider.gearcraft.gears.tooltip.DoNotBreakTooltip
+import hu.frontrider.gearcraft.gears.tooltip.MultiTooltip
+import hu.frontrider.gearcraft.gears.tooltip.PowerTooltip
+import hu.frontrider.gearcraft.gears.tooltip.RedstoneControlled
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -38,8 +39,8 @@ class BlockInternalPowerEngine(val power: Int,
                                soundType: SoundType,
                                material: Material,
                                mapColor: MapColor,
-                               private val spinUpPowerManager: SpinUpPowerSource = SpinUpPowerSource(power, EnumFacing.DOWN, 0)
-) : Block(material, mapColor),
+                               private val spinUpPowerManager: SpinUpPowerSource = SpinUpPowerSource(power, EnumFacing.DOWN, 1)
+) : BlockBase(resistance, tool, miningLevel, hardness, soundType, material, mapColor),
         IGearPowered by spinUpPowerManager,
         IMetaBlock by spinUpPowerManager,
         ITooltipped by MultiTooltip(PowerTooltip(power),
@@ -89,15 +90,7 @@ class BlockInternalPowerEngine(val power: Int,
         return BlockStateContainer(this, BlockStates.SPIN)
     }
 
-    init {
-        setRegistryName(GearCraft.MODID, name)
-        setSoundType(soundType)
-        setResistance(resistance)
-        setHardness(hardness)
-        setHarvestLevel(tool, miningLevel)
-        tickRandomly = true
-        unlocalizedName = "${GearCraft.MODID}.$name"
-    }
+
 
     //block stuff
     @SideOnly(Side.CLIENT)

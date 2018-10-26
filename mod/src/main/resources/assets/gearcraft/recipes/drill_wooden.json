@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBM",
+    "BGL",
+    "MP/"
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gearWood"
+    },
+    "M": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+
+    "B": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    }
+  },
+  "result": {
+    "item": "gearcraft:wooden_drill",
+    "count": 1
+  },
+  "group": "tools"
+}

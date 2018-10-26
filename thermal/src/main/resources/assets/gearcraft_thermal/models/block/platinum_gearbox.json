@@ -1,0 +1,10 @@
+{
+  "parent": "gearcraft:block/gearbox",
+  "textures": {
+    "body": "thermalfoundation:blocks/storage/block_platinum",
+    "particle":"thermalfoundation:blocks/storage/block_platinum",
+    "frame": "thermalfoundation:blocks/storage/block_signalum",
+    "gear": "gearcraft:blocks/bearing_output",
+    "gear_input": "gearcraft:blocks/bearing_input"
+  }
+}

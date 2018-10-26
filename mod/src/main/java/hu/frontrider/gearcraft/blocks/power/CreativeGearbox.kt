@@ -1,7 +1,7 @@
 package hu.frontrider.gearcraft.blocks.power
 
-import hu.frontrider.arcana.util.strings.ChatFormat
-import hu.frontrider.arcana.util.strings.formatTranslate
+import hu.frontrider.gearcraft.core.util.ChatFormat
+import hu.frontrider.gearcraft.core.util.formatTranslate
 import hu.frontrider.gearcraft.GearCraft.Companion.MODID
 import hu.frontrider.gearcraft.api.traits.power.IGearPowered
 import hu.frontrider.gearcraft.api.traits.ITooltipped

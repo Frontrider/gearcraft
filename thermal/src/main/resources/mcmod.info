@@ -1,0 +1,17 @@
+[
+  {
+    "modid": "gearcraft_thermal",
+    "name": "GearCraft: Expanded Thermally",
+    "description": "Thermal Expansion compatibility for GearCraft.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Frontrider"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": []
+  }
+]

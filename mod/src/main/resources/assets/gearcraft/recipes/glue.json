@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients":[
     {
-      "item":"gearcraft:hardened_glue"
+      "item":"gearcraft:glue_block"
     }
   ],
   "result": {

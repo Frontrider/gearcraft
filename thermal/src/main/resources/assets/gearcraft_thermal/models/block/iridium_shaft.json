@@ -1,0 +1,7 @@
+{
+  "parent": "gearcraft:block/shaft",
+  "textures": {
+    "particle": "thermalfoundation:blocks/storage/block_iridium",
+    "body": "thermalfoundation:blocks/storage/block_iridium"
+  }
+}

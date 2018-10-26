@@ -3,6 +3,7 @@ package hu.frontrider.gearcraft.plugins
 import hu.frontrider.gearcraft.api.Plugin
 import hu.frontrider.gearcraft.blocks.power.BlockGearbox
 import hu.frontrider.gearcraft.blocks.power.BlockShaft
+import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -33,20 +34,22 @@ class WoodenShafts: Plugin {
     }
 
     fun makeShaft(name:String):Block{
-       return BlockShaft(
-                4,
-                4f,
-                name,
-                "axe",
-                1,
-                1f,
-                SoundType.WOOD,
-                Material.WOOD,
-                MapColor.WOOD
-        )
+       return     BlockFactory.start(BlockShaft(
+               4,
+               4f,
+               name,
+               "axe",
+               1,
+               1f,
+               SoundType.WOOD,
+               Material.WOOD,
+               MapColor.WOOD
+       ))
+               .setResourourceLocation(name)
+               .build()
     }
     fun makeGearbox(name:String):Block{
-        return BlockGearbox(
+        return BlockFactory.start(BlockGearbox(
                 4,
                 2f,
                 name,
@@ -56,6 +59,9 @@ class WoodenShafts: Plugin {
                 SoundType.WOOD,
                 Material.WOOD,
                 MapColor.WOOD
-        )
+        ))
+                .setResourourceLocation(name)
+                .build()
+
     }
 }

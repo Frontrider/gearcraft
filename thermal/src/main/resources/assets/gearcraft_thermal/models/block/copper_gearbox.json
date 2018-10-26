@@ -1,0 +1,10 @@
+{
+  "parent": "gearcraft:block/gearbox",
+  "textures": {
+    "body": "thermalfoundation:blocks/storage/block_copper",
+    "particle":"thermalfoundation:blocks/storage/block_copper",
+    "frame": "minecraft:blocks/cobblestone",
+    "gear": "gearcraft:blocks/bearing_output",
+    "gear_input": "gearcraft:blocks/bearing_input"
+  }
+}

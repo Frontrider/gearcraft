@@ -1,0 +1,7 @@
+{
+  "parent": "gearcraft:block/shaft",
+  "textures": {
+    "particle": "thermalfoundation:blocks/storage/block_tin",
+    "body": "thermalfoundation:blocks/storage/block_tin"
+  }
+}

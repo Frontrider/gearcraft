@@ -1,6 +1,6 @@
 package hu.frontrider.gearcraft.blocks
 
-import hu.frontrider.gearcraft.GearCraft
+import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -11,7 +11,6 @@ import net.minecraft.block.material.Material
  * */
 open class BlockBase(
         resistance: Float,
-        name: String,
         tool: String,
         miningLevel: Int,
         hardness: Float,
@@ -21,12 +20,9 @@ open class BlockBase(
 ) : Block(material,mapColor)  {
 
     init{
-        this.setRegistryName(GearCraft.MODID,name)
         this.soundType = soundType
         this.setResistance(resistance)
         this.setHardness(hardness)
         this.setHarvestLevel(tool,miningLevel)
-        this.unlocalizedName = "${GearCraft.MODID}.$name"
-        this.tickRandomly = true
     }
 }

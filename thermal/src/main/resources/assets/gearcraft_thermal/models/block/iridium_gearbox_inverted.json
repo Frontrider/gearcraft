@@ -1,0 +1,10 @@
+{
+  "parent": "gearcraft:block/gearbox",
+  "textures": {
+    "body": "thermalfoundation:blocks/storage/block_iridium",
+    "particle":"thermalfoundation:blocks/storage/block_iridium",
+    "frame": "thermalfoundation:blocks/storage/block_enderium",
+    "gear": "gearcraft:blocks/bearing_input",
+    "gear_input": "gearcraft:blocks/bearing_output"
+  }
+}

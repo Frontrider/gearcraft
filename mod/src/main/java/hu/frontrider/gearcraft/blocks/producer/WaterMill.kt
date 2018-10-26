@@ -13,11 +13,12 @@ import java.util.Random
 import hu.frontrider.gearcraft.api.BlockStates.SPIN
 import hu.frontrider.gearcraft.api.traits.power.IGearPowered
 import hu.frontrider.gearcraft.api.traits.ITooltipped
+import hu.frontrider.gearcraft.blocks.BlockBase
 import hu.frontrider.gearcraft.core.IFluidHelper
-import hu.frontrider.gearcraft.core.traits.producer.FluidBlockHelper
-import hu.frontrider.gearcraft.core.traits.producer.SpinUpPowerSource
-import hu.frontrider.gearcraft.core.tooltip.MultiTooltip
-import hu.frontrider.gearcraft.core.tooltip.PowerTooltip
+import hu.frontrider.gearcraft.gears.traits.producer.FluidBlockHelper
+import hu.frontrider.gearcraft.gears.traits.producer.SpinUpPowerSource
+import hu.frontrider.gearcraft.gears.tooltip.MultiTooltip
+import hu.frontrider.gearcraft.gears.tooltip.PowerTooltip
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -36,23 +37,13 @@ class WaterMill(val power: Int,
                 mapColor: MapColor,
                 miningLevel: Int,
                 private val spinUpPowerManager: SpinUpPowerSource = SpinUpPowerSource(power, EnumFacing.DOWN)
-) : Block(material, mapColor),
+) : BlockBase(resistance, tool, miningLevel, hardness, soundType, material, mapColor),
         IGearPowered by spinUpPowerManager,
         ITooltipped by MultiTooltip(PowerTooltip(power), spinUpPowerManager),
         IFluidHelper by FluidBlockHelper(Blocks.WATER,{
             it in 2..4
         }) {
 
-
-    init {
-        setRegistryName(GearCraft.MODID, name)
-        setSoundType(soundType)
-        setResistance(resistance)
-        setHardness(hardness)
-        setHarvestLevel(tool, miningLevel)
-        tickRandomly = true
-        unlocalizedName = "${GearCraft.MODID}.$name"
-    }
 
     override fun createBlockState(): BlockStateContainer {
         return BlockStateContainer(this, SPIN)

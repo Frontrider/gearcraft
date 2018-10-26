@@ -7,22 +7,18 @@ import net.minecraftforge.common.capabilities.Capability
 
 interface IBedrockHeat {
     var heatValue:Int
-    val heatCap:Int
-    val regen:Int
 }
 
 class BedrockHeatStorage: Capability.IStorage<IBedrockHeat>{
 
-    override fun readNBT(capability: Capability<IBedrockHeat>?, instance: IBedrockHeat?, side: EnumFacing?, nbt: NBTBase?) {
-
+    override fun readNBT(capability: Capability<IBedrockHeat>?, instance: IBedrockHeat, side: EnumFacing, nbt: NBTBase) {
+        instance.heatValue =  (nbt as NBTTagCompound).getInteger("heatValue")
     }
 
     override fun writeNBT(capability: Capability<IBedrockHeat>, instance: IBedrockHeat, side: EnumFacing): NBTBase? {
         val nbtTagCompound = NBTTagCompound()
 
         nbtTagCompound.setInteger("heatValue",instance.heatValue)
-        nbtTagCompound.setInteger("heatCap",instance.heatCap)
-        nbtTagCompound.setInteger("regen",instance.regen)
 
         return nbtTagCompound
     }

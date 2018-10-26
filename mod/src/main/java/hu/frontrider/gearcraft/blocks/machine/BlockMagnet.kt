@@ -1,10 +1,9 @@
 package hu.frontrider.gearcraft.blocks.machine
 
-import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.api.traits.power.ITransmission
 import hu.frontrider.gearcraft.api.traits.ITooltipped
 import hu.frontrider.gearcraft.blocks.BlockBase
-import hu.frontrider.gearcraft.core.tooltip.PowerTooltip
+import hu.frontrider.gearcraft.gears.tooltip.PowerTooltip
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -28,7 +27,7 @@ class BlockMagnet(val power: Int,
                   soundType: SoundType,
                   material: Material,
                   mapColor: MapColor,
-                  miningLevel: Int) : BlockBase(resistance, name, tool, miningLevel, hardness, soundType, material, mapColor), ITooltipped {
+                  miningLevel: Int) : BlockBase(resistance,  tool, miningLevel, hardness, soundType, material, mapColor), ITooltipped {
     private val powerTooltip = PowerTooltip(power)
 
     override fun observedNeighborChange(blockState: IBlockState?, world: World?, pos: BlockPos?, block: Block?, pos1: BlockPos?) {

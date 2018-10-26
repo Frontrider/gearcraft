@@ -1,0 +1,6 @@
+{
+  "parent":"gearcraft:item/drill",
+  "textures": {
+    "0": "gearcraft:items/stone_drill"
+  }
+}

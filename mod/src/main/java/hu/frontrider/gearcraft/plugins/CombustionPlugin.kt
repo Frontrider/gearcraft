@@ -2,13 +2,14 @@ package hu.frontrider.gearcraft.plugins
 
 import hu.frontrider.gearcraft.api.Plugin
 import hu.frontrider.gearcraft.blocks.producer.BlockInternalPowerEngine
+import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
 import net.minecraft.block.material.Material
 import net.minecraft.item.Item
 
-class CombustionPlugin:Plugin {
+class CombustionPlugin: Plugin {
 
     private val blocks = arrayOf(
             makeEngine("combustion_engine_white"),
@@ -38,7 +39,7 @@ class CombustionPlugin:Plugin {
     }
 
     fun makeEngine(name:String):Block{
-    return  BlockInternalPowerEngine(
+       return BlockFactory.start(BlockInternalPowerEngine(
                 16,
                 2f,
                 name,
@@ -48,6 +49,8 @@ class CombustionPlugin:Plugin {
                 SoundType.METAL,
                 Material.IRON,
                 MapColor.IRON
-        )
+        ))
+                .setResourourceLocation(name)
+                .build()
     }
 }

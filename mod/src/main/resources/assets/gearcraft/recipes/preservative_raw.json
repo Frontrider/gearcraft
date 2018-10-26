@@ -1,19 +1,22 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients":[
+  "ingredients": [
     {
       "type": "forge:ore_dict",
       "ore": "pulpWood"
     },
-   {
-      "item":"minecraft:potion"
-    },{
-      "item":"minecraft:dye",
-      "data":1
-
-    },{
-      "item":"minecraft:reeds"
-
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:dye",
+      "data": 1
+    },
+    {
+      "item": "minecraft:reeds"
     }
   ],
   "result": {

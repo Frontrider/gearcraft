@@ -63,7 +63,7 @@ tile.gearcraft.wooden_gearbox_acacia.name=Acacia Gearbox
 tile.gearcraft.wooden_gearbox_spruce.name=Spruce Gearbox
 
 tile.gearcraft.planks_treated_wood.name=Treated Wood Planks
-tile.gearcraft.hardened_glue.name=Glue Block
+tile.gearcraft.glue_block.name=Glue Block
 tile.gearcraft.glue_composite.name=Glue Composite Block
 
 tile.gearcraft.wooden_dismantler.name=Oak Dismantler
@@ -88,6 +88,8 @@ tile.gearcraft.stone_dismantler_diorite.name=Diorite Dismantler
 tile.gearcraft.iron_dismantler.name=Iron Dismantler
 tile.gearcraft.obsidian_dismantler.name=Obsidian Dismantler
 
+tile.gearcraft.temporary_redstone.name=Temporary Redstone Block
+
 item.gearcraft.wooden_gear.name=Wooden Gear
 item.gearcraft.stone_gear.name=Stone Gear
 item.gearcraft.iron_gear.name=Iron Gear
@@ -97,6 +99,15 @@ item.gearcraft.wood_pulp.name=Wood Pulp
 item.gearcraft.stone_dust.name=Stone Dust
 item.gearcraft.raw_preservative.name=Raw Preservative
 item.gearcraft.fine_preservative.name=Fine Preservative
+
+item.gearcraft.wooden_drill.name=Wooden Hand Drill
+item.gearcraft.stone_drill.name=Stone Hand Drill
+item.gearcraft.iron_drill.name=Iron Hand Drill
+item.gearcraft.gold_drill.name=Gold Hand Drill
+item.gearcraft.diamond_drill.name=Diamond Hand Drill
+item.gearcraft.tablet.name=Redstone Tablet
+
+
 
 #informatiom
 gearcraft.powertooltip=Power level: %s
@@ -118,9 +129,26 @@ gearcraft.redstone_controlled.engine=Will be disabled, but will lose power if sh
 
 #guide
 gearcraft.guide.welcome=The GearCraft manual.
-gearcraft.guide.name=Gearworker's Guide.
-gearcraft.guide.title=Gearworker's Guide
 
-gearcraft.guide.power=Power
-gearcraft.guide.power.construction=Construction
+gearcraft.guide.page.energy=Energy
+gearcraft.guide.page.power_transfer=Transmission
+gearcraft.guide.page.glue=Glue
+gearcraft.guide.page.drill=Hand Drills
+gearcraft.guide.page.tablet=Redstone Tablet
+gearcraft.guide.group.materials=Materials
+gearcraft.guide.group.tools=Tools
+gearcraft.guide.group.power=Power
+
 gearcraft.guide.wip=Work in progress.
+
+gearcraft.guide.energy=Power is the constant movement of the structure, where every block has a power value, indicated on the item.<BR>If a component does not recive the required power level, than it will not operate.<BR>If it recives more than it needs, than it will use the amount it can, and the overflow is lost.
+gearcraft.guide.transfer=Mechanical Energy can be transferred via the shaft network. It is constructed by connecting shafts and gearboxes together, you must have at least one shaft between every gearbox.<BR><BR>  Machines can only recive power via shafts as well.
+gearcraft.guide.tablet= The redstone table is a device that can be used to emit redstone signals manually. By defaut, it will produce a localised 1 tick pulse when used on a block, for other uses see the redstone control tab.<BR><BR>It is also the guide for Gearcraft.
+
+gearcraft.guide.glue=Composite glue is used to craft most of the items in gearcraft. It can be crafted by putting a block of Glue Composite into water.
+gearcraft.guide.drills=Hand drills behave like giant pickaxes, they have a lot of durability, but require both hands to operate.<BR> They can break anything that can be broken by a pickaxe or a shovel.
+
+gearcraft.tablet.selecttab=Select a tab to start.
+gearcraft.tablet.guidetab=Guide
+gearcraft.tablet.select_pos=Select a position
+gearcraft.tablet.new_proxy=New Proxy

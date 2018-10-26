@@ -1,5 +1,5 @@
 {
   "recipes":{
-    "gearcraft:tippedtool":"hu.frontrider.gearcraft.core.recipes.RecipeTippedToolFactory"
+    "tippedtool":"hu.frontrider.gearcraft.core.recipes.RecipeTippedToolFactory"
   }
 }

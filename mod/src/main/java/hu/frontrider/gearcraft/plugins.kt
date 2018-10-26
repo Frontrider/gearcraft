@@ -6,24 +6,26 @@ import net.minecraft.block.Block
 import net.minecraft.item.Item
 
 
-val basePlugin = PluginContainer()
+lateinit var basePlugin : PluginContainer
 
 class PluginContainer: Plugin {
-
-    val allPlugins = arrayOf(
-            BasePlugin(),
-            WoodenShafts(),
-            StoneShafts(),
-            CombustionPlugin(),
-            Watermills(),
-            Dismantlers(),
-            Scaffolds()
-    )
 
     var allBlocks :Array<Block>
     var allItems :Array<Item>
 
     init{
+        val allPlugins = arrayOf(
+                BasePlugin(),
+                WoodenShafts(),
+                StoneShafts(),
+                CombustionPlugin(),
+                Watermills(),
+                Dismantlers(),
+                Scaffolds(),
+                Routers(),
+                Tools(),
+                Redstone()
+        )
         val blocks = ArrayList<Block>()
         val items = ArrayList<Item>()
         allPlugins.forEach {
@@ -41,5 +43,4 @@ class PluginContainer: Plugin {
     override fun getItems(): Array<Item> {
         return allItems
     }
-
 }

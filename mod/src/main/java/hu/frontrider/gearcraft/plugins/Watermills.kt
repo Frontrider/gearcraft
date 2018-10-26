@@ -3,6 +3,7 @@ package hu.frontrider.gearcraft.plugins
 import hu.frontrider.gearcraft.api.Plugin
 import hu.frontrider.gearcraft.blocks.producer.StrongWatermill
 import hu.frontrider.gearcraft.blocks.producer.WaterMill
+import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -17,7 +18,7 @@ class Watermills : Plugin {
             makeWatermill("wooden_watermill_big_oak"),
             makeWatermill("wooden_watermill_jungle"),
             makeWatermill("wooden_watermill_acacia"),
-            StrongWatermill(
+            BlockFactory.start(StrongWatermill(
                     16,
                     2f,
                     "strong_watermill",
@@ -27,7 +28,10 @@ class Watermills : Plugin {
                     Material.IRON,
                     MapColor.IRON,
                     2
-            )
+            ))
+                    .setResourourceLocation("strong_watermill")
+                    .build()
+
     )
 
     override fun getBlocks(): Array<Block> {
@@ -39,14 +43,16 @@ class Watermills : Plugin {
     }
 
     fun makeWatermill(name: String): Block {
-
-        return WaterMill(4,
+      return  BlockFactory.start(WaterMill(4,
                 2f,
                 name,
                 "axe",
                 1f,
                 SoundType.WOOD,
                 Material.WOOD,
-                MapColor.WOOD, 1)
+                MapColor.WOOD, 1))
+                .setResourourceLocation(name)
+                .build()
+
     }
 }

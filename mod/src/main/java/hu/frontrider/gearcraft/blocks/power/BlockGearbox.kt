@@ -3,10 +3,10 @@ package hu.frontrider.gearcraft.blocks.power
 import hu.frontrider.gearcraft.api.traits.power.IGearPowered
 import hu.frontrider.gearcraft.blocks.InvertedDirectionalBlockBase
 import hu.frontrider.gearcraft.api.traits.ITooltipped
-import hu.frontrider.gearcraft.core.tooltip.PowerTooltip
-import hu.frontrider.gearcraft.core.traits.gearbox.GearboxPower
-import hu.frontrider.gearcraft.core.tooltip.InvertedToolTip
-import hu.frontrider.gearcraft.core.tooltip.MultiTooltip
+import hu.frontrider.gearcraft.gears.tooltip.PowerTooltip
+import hu.frontrider.gearcraft.gears.traits.gearbox.GearboxPower
+import hu.frontrider.gearcraft.gears.tooltip.InvertedToolTip
+import hu.frontrider.gearcraft.gears.tooltip.MultiTooltip
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor

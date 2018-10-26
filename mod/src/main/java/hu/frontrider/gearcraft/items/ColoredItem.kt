@@ -8,5 +8,4 @@ class ColoredItem(val color : Array<Int>,val oreDict:String): Item(), IOredictio
     override fun getName(): String {
         return oreDict
     }
-
 }

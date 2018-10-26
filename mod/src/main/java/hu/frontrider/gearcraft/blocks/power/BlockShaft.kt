@@ -4,12 +4,13 @@ import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.api.BlockStates
 import hu.frontrider.gearcraft.api.traits.power.ITransmission
 import hu.frontrider.gearcraft.api.traits.ITooltipped
-import hu.frontrider.gearcraft.core.tooltip.PowerTooltip
-import hu.frontrider.gearcraft.core.traits.shaft.ShaftPower
-import hu.frontrider.gearcraft.core.traits.shaft.ShaftState
-import hu.frontrider.gearcraft.core.traits.shaft.ShaftUpdater
-import hu.frontrider.gearcraft.core.tooltip.MultiTooltip
-import hu.frontrider.gearcraft.core.tooltip.TransmissionTooltip
+import hu.frontrider.gearcraft.blocks.BlockBase
+import hu.frontrider.gearcraft.gears.tooltip.PowerTooltip
+import hu.frontrider.gearcraft.gears.traits.shaft.ShaftPower
+import hu.frontrider.gearcraft.gears.traits.shaft.ShaftState
+import hu.frontrider.gearcraft.gears.traits.shaft.ShaftUpdater
+import hu.frontrider.gearcraft.gears.tooltip.MultiTooltip
+import hu.frontrider.gearcraft.gears.tooltip.TransmissionTooltip
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -40,22 +41,14 @@ class BlockShaft(val power: Int,
                  material: Material,
                  mapColor: MapColor,
                  private val shaftPower: ITransmission = ShaftPower(power)
-) : Block(material, mapColor),
+) : BlockBase(resistance, tool, miningLevel, hardness, soundType, material, mapColor),
         ITransmission by shaftPower,
         ITooltipped by MultiTooltip(PowerTooltip(power),TransmissionTooltip()) {
 
     private val shaftUpdater: ShaftUpdater = ShaftUpdater(power)
     private val shaftState:ShaftState = ShaftState()
 
-    init {
-        setRegistryName(GearCraft.MODID, name)
-        setSoundType(soundType)
-        setResistance(resistance)
-        setHardness(hardness)
-        setHarvestLevel(tool, miningLevel)
-        //tickRandomly = true
-        unlocalizedName = "${GearCraft.MODID}.$name"
-    }
+
 
     override fun observedNeighborChange(blockState: IBlockState?, world: World?, blockPos: BlockPos?, block: Block?, neighbourPos: BlockPos?) {
         shaftUpdater.update(blockState!!, world, blockPos)
@@ -108,6 +101,10 @@ class BlockShaft(val power: Int,
     }
 
     override fun getMetaFromState(blockState: IBlockState): Int {
+        if(shaftState == null)
+        {
+            return ShaftState().getMetaFromState(blockState)
+        }
         return shaftState.getMetaFromState(blockState)
     }
 

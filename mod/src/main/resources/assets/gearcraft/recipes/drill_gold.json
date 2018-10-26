@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BMM",
+    "MGL",
+    "MP/"
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "M": {
+      "type": "forge:ore_dict",
+      "ore": "ingotGold"
+    },
+
+    "B": {
+      "type": "forge:ore_dict",
+      "ore": "blockGold"
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    }
+  },
+  "result": {
+    "item": "gearcraft:gold_drill",
+    "count": 1
+  },
+  "group": "tools"
+}

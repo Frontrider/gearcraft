@@ -1,23 +1,13 @@
 package hu.frontrider.gearcraft.blocks.util
 
-import hu.frontrider.gearcraft.GearCraft
-import hu.frontrider.gearcraft.api.BlockStates.RANGE
-import hu.frontrider.gearcraft.api.traits.block.IRangedBlock
 import hu.frontrider.gearcraft.blocks.BlockBase
-import hu.frontrider.gearcraft.core.traits.RangedBlockFromState
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
 import net.minecraft.block.material.Material
-import net.minecraft.block.state.BlockStateContainer
 import net.minecraft.block.state.IBlockState
-import net.minecraft.entity.Entity
-import net.minecraft.entity.item.EntityFallingBlock
 import net.minecraft.util.BlockRenderLayer
-import net.minecraft.util.EnumFacing
-import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.math.BlockPos
-import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
@@ -30,7 +20,7 @@ class BlockScaffold(resistance: Float,
                     hardness: Float,
                     soundType: SoundType,
                     material: Material,
-                    mapColor: MapColor) : BlockBase(resistance, name, tool, miningLevel, hardness, soundType, material, mapColor)
+                    mapColor: MapColor) : BlockBase(resistance,  tool, miningLevel, hardness, soundType, material, mapColor)
 {
 
     override fun onBlockAdded(worldIn: World, pos: BlockPos, state: IBlockState) {

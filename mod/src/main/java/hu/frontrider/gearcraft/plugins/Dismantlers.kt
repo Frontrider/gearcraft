@@ -2,14 +2,14 @@ package hu.frontrider.gearcraft.plugins
 
 import hu.frontrider.gearcraft.api.Plugin
 import hu.frontrider.gearcraft.blocks.machine.BlockDismantler
-import hu.frontrider.gearcraft.blocks.producer.BlockInternalPowerEngine
+import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
 import net.minecraft.block.material.Material
 import net.minecraft.item.Item
 
-class Dismantlers: Plugin {
+class Dismantlers : Plugin {
 
     private val blocks = arrayOf(
             makeWooden("wooden_dismantler"),
@@ -22,7 +22,7 @@ class Dismantlers: Plugin {
             makeStone("stone_dismantler_granite"),
             makeStone("stone_dismantler_andesite"),
             makeStone("stone_dismantler_diorite"),
-            BlockDismantler(
+            BlockFactory.start(BlockDismantler(
                     4,
                     2f,
                     "iron_dismantler",
@@ -32,8 +32,9 @@ class Dismantlers: Plugin {
                     Material.IRON,
                     MapColor.IRON,
                     2
-            ),
-            BlockDismantler(
+            )).setResourourceLocation("iron_dismantler")
+                    .build(),
+            BlockFactory.start(BlockDismantler(
                     8,
                     4f,
                     "obsidian_dismantler",
@@ -43,7 +44,10 @@ class Dismantlers: Plugin {
                     Material.ROCK,
                     MapColor.OBSIDIAN,
                     3
-            ))
+            ))  .setResourourceLocation("obsidian_dismantler")
+                    .build()
+
+    )
 
     override fun getBlocks(): Array<Block> {
         return blocks
@@ -53,8 +57,8 @@ class Dismantlers: Plugin {
         return arrayOf()
     }
 
-    private fun makeWooden(name:String):Block{
-        return   BlockDismantler(
+    private fun makeWooden(name: String): Block {
+        return BlockFactory.start(BlockDismantler(
                 1,
                 2f,
                 name,
@@ -64,10 +68,15 @@ class Dismantlers: Plugin {
                 Material.WOOD,
                 MapColor.WOOD,
                 0
-        )
+        ))
+                .setResourourceLocation(name)
+                .build()
+
+
     }
-    private fun makeStone(name:String):Block{
-      return  BlockDismantler(
+
+    private fun makeStone(name: String): Block {
+      return  BlockFactory.start(BlockDismantler(
                 2,
                 2f,
                 name,
@@ -77,6 +86,10 @@ class Dismantlers: Plugin {
                 Material.ROCK,
                 MapColor.STONE,
                 1
-        )
+        ))
+                .setResourourceLocation(name)
+                .build()
+
+
     }
 }
