@@ -1,0 +1,8 @@
+[
+  {
+    "modid": "gearcraft",
+    "name": "GearCraft2",
+    "version": "2.0.0",
+    "mainClass": "hu.frontrider.gearcraft2.GearCraft"
+  }
+]

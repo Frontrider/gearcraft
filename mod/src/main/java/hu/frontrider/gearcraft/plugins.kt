@@ -18,13 +18,14 @@ class PluginContainer: Plugin {
                 BasePlugin(),
                 WoodenShafts(),
                 StoneShafts(),
-                CombustionPlugin(),
                 Watermills(),
                 Dismantlers(),
                 Scaffolds(),
                 Routers(),
                 Tools(),
-                Redstone()
+                Redstone(),
+                Saws(),
+                CombustionPlugin()
         )
         val blocks = ArrayList<Block>()
         val items = ArrayList<Item>()

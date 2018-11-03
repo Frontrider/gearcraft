@@ -8,10 +8,10 @@ import hu.frontrider.gearcraft.gears.tooltip.MultiTooltip
 import hu.frontrider.gearcraft.gears.tooltip.PowerTooltip
 import hu.frontrider.gearcraft.gears.tooltip.RedstoneControlled
 import hu.frontrider.gearcraft.gears.traits.SideManager
-import hu.frontrider.gearcraft.core.util.InventoryChooser
-import hu.frontrider.gearcraft.core.util.items.addItemStackToInventory
-import hu.frontrider.gearcraft.core.util.items.extract
-import hu.frontrider.gearcraft.core.util.items.extractFirst
+import hu.frontrider.gearcraft.core.util.inventory.InventoryChooser
+import hu.frontrider.gearcraft.core.util.inventory.addItemStackToInventory
+import hu.frontrider.gearcraft.core.util.inventory.extract
+import hu.frontrider.gearcraft.core.util.inventory.extractFirst
 import hu.frontrider.gearcraft.core.util.items.isNotEmpty
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
@@ -28,7 +28,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class BlockRouter(val power: Int,
                   resistance: Float,
-                  name: String,
                   tool: String,
                   hardness: Float,
                   soundType: SoundType,
@@ -37,9 +36,9 @@ class BlockRouter(val power: Int,
                   val miningLevel: Int,
                   val movedItems: Int,
                   private val tooltip: ITooltipped = MultiTooltip(PowerTooltip(power),
-                          RedstoneControlled("gearcraft.router.tooltip.redstone"))
+                          RedstoneControlled("gearcraft.router.redstone"))
 ) :
-        DirectionalBlockBase(resistance, name, tool, miningLevel, hardness, soundType, material, mapColor),
+        DirectionalBlockBase(resistance,  tool, miningLevel, hardness, soundType, material, mapColor),
         ITooltipped {
     protected val powerConsumer = PowerConsumer()
     private val sideManager = SideManager()
@@ -49,7 +48,8 @@ class BlockRouter(val power: Int,
     }
 
     override fun observedNeighborChange(blockState: IBlockState, world: World, pos: BlockPos, block: Block, pos1: BlockPos) {
-        if (world.isBlockIndirectlyGettingPowered(pos) > 0 || world.isBlockPowered(pos)) {
+        val blockIndirectlyGettingPowered = world.isBlockIndirectlyGettingPowered(pos)
+        if (blockIndirectlyGettingPowered > 0) {
 
             val facing = blockState.getValue(FACING)
             val sides = sideManager.getSidesForTop(facing)
@@ -62,7 +62,7 @@ class BlockRouter(val power: Int,
                     if (target.isPresent) {
                         val sourceInventory = source.get()
                         val targetInventory = target.get()
-                        val testExtract = sourceInventory.extractFirst(false)
+                        val testExtract = sourceInventory.extractFirst(false,movedItems)
                         val oldCount = testExtract.count
                         if(testExtract.isNotEmpty()){
                             if(targetInventory.addItemStackToInventory(testExtract))

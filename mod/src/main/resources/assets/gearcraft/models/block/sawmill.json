@@ -1,0 +1,8 @@
+{
+  "parent": "gearcraft:block/saw_base",
+  "textures": {
+    "body": "minecraft:blocks/planks_oak",
+    "particle": "minecraft:blocks/plank_oak",
+    "frame": "minecraft:blocks/iron_block"
+  }
+}

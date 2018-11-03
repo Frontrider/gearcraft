@@ -3,26 +3,25 @@ package hu.frontrider.gearcraft.tablet.network.redstoneproxy.use
 import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.core.util.data.inRange
 import hu.frontrider.gearcraft.core.util.data.toBlockPos
-import hu.frontrider.gearcraft.core.util.translateFormatting
 import hu.frontrider.gearcraft.items.tools.RedstoneTablet
 import hu.frontrider.gearcraft.tablet.TabletData
+import hu.frontrider.gearcraft.tablet.network.redstoneproxy.modify.RedstoneProxyMessage
 import net.minecraft.block.Block
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.nbt.NBTTagList
-import net.minecraft.util.text.TextComponentString
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext
 import net.minecraftforge.fml.common.registry.GameRegistry
 
-class RedstoneProxyHandler: IMessageHandler<RedstoneProxyMessage, RedstoneProxyFailed> {
+class RedstoneProxyHandler: IMessageHandler<RedstoneProxyMessage, IMessage> {
     companion object {
 
         @GameRegistry.ObjectHolder("${GearCraft.MODID}:temporary_redstone")
         lateinit var tempRedstone: Block
     }
-    override fun onMessage(message: RedstoneProxyMessage, context: MessageContext): RedstoneProxyFailed? {
+    override fun onMessage(message: RedstoneProxyMessage, context: MessageContext): IMessage? {
         message.id
         val player = context.serverHandler.player
 
@@ -59,7 +58,7 @@ class RedstoneProxyHandler: IMessageHandler<RedstoneProxyMessage, RedstoneProxyF
             worldIn.setBlockState(proxyPos, tempRedstone.defaultState)
             RedstoneTablet.tempRedstone.onBlockPlacedBy(worldIn, proxyPos,worldIn.getBlockState(proxyPos),player, ItemStack.EMPTY)
         }else{
-            return RedstoneProxyFailed()
+            return null
         }
         return null
     }

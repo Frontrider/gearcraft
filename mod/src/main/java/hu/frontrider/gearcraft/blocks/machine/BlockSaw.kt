@@ -8,6 +8,8 @@ import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
 import net.minecraft.entity.EntityLiving
 import net.minecraft.entity.item.EntityItem
+import net.minecraft.util.DamageSource
+import net.minecraft.util.SoundEvent
 import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
@@ -49,13 +51,19 @@ class BlockSaw(power: Int,
                 world.destroyBlock(offset, false)
 
                 if(recipe.splintery()){
-                    world.getEntitiesWithinAABB(EntityLiving::class.java, AxisAlignedBB(pos.offset(value.opposite),pos.offset(value.opposite,5)))
+                    val entitiesWithinAABB = world.getEntitiesWithinAABB(EntityLiving::class.java, AxisAlignedBB(pos.offset(value.opposite), pos.offset(value.opposite, 5)))
+                    entitiesWithinAABB.forEach {
+                        it.attackEntityFrom(DamageSource.GENERIC,1f)
+                    }
+                }
+                for (drop in block.getDrops(world,offset,targetState,0)) {
+                    val results = recipe.getResults(drop, world)
+                    results.forEach {
+                        val entityItem = EntityItem(world, offset.x + .5, offset.y + .5, offset.z + .5, it)
+                        world.spawnEntity(entityItem)
+                    }
                 }
 
-                recipe.getResults(block).forEach {
-                    val entityItem = EntityItem(world, offset.x + .5, offset.y + .5, offset.z + .5, it)
-                    world.spawnEntity(entityItem)
-                }
             }
         }
     }

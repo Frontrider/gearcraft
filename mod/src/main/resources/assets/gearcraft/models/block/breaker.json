@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "block/block",
+	"parent": "gearcraft:block/machine_base",
 	"elements": [
 		{
 			"name": "body",

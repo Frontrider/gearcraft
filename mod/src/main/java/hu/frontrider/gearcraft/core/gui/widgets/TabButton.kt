@@ -16,5 +16,4 @@ class TabButton(override var x: Int,
     override fun render(guiBase: BaseGui) {
         guiBase.drawTab(x, y, texture)
     }
-
 }

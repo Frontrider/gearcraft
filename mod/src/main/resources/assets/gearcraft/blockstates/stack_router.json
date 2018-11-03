@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:router_stack","x":-90,"uvlock":true },
+    "facing=down":     { "model": "gearcraft:router_stack","x":90,"uvlock":true},
+    "facing=south":  { "model": "gearcraft:router_stack","x":180,"uvlock":true},
+    "facing=north":  { "model": "gearcraft:router_stack","uvlock":true},
+    "facing=west":   { "model": "gearcraft:router_stack","y":-90,"uvlock":true},
+    "facing=east":   { "model": "gearcraft:router_stack","y":90,"uvlock":true}
+  }
+}

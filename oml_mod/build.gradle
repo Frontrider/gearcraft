@@ -1,0 +1,118 @@
+import com.openmodloader.gradle.OpenGradlePlugin
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {
+  repositories {
+
+      jcenter()
+      mavenCentral()
+      maven {
+          url "https://plugins.gradle.org/m2/"
+      }
+      maven {
+          url 'http://oss.sonatype.org/content/repositories/snapshots'
+      }
+    maven { url = 'http://maven.modmuss50.me' }
+  }
+  dependencies {
+      classpath 'com.openmodloader:OpenGradle:0.0.11-SNAPSHOT'
+  }
+}
+plugins{
+    id "idea"
+    id "java"
+    id 'org.jetbrains.kotlin.jvm' version '1.2.71'
+}
+
+apply plugin: OpenGradlePlugin
+
+version = '1.0.0'
+group = 'hu.frontrider.gearcraft'
+archivesBaseName = 'GearCraft'
+sourceCompatibility = 1.8
+
+minecraft {
+  version = '18w43b'
+  omlVersion = '1.0.8.9'
+  pomfVersion = '5'
+}
+
+repositories {
+  maven { url = 'https://libraries.minecraft.net' }
+  maven { url = 'http://maven.fabricmc.net' }
+  maven { url = 'http://files.minecraftforge.net/maven' }
+    mavenCentral()
+}
+
+processResources {
+  from(sourceSets.main.resources.srcDirs) {
+    include 'mod.json', 'pack.mcmeta'
+    filter ReplaceTokens, tokens: [
+      'version': version
+    ]
+  }
+  from(sourceSets.main.resources.srcDirs) {
+    exclude 'mod.json', 'pack.mcmeta'
+  }
+}
+
+task createIntellijRunClientConfiguration(type:DefaultTask) {
+    doFirst {
+        def runConfigurationsDir = new File(".idea/runConfigurations")
+        runConfigurationsDir.mkdirs()
+
+        def writer = new FileWriter(new File(runConfigurationsDir, "runMCClient.xml"))
+        def xml = new groovy.xml.MarkupBuilder(writer)
+
+        xml.component(name: "ProjectRunConfigurationManager") {
+            configuration(default: 'false', name: "Minecraft Client", type: "Application", factoryName: "Application", singleton: "true") {
+                option(name: 'MAIN_CLASS_NAME', value: "cpw.mods.modlauncher.Launcher")
+                option(name: 'VM_PARAMETERS', value: "-Djava.library.path=\$USER_HOME\$/.gradle/caches/opengradle/18w43b-natives -Doml.development=true")
+                option(name: 'PROGRAM_PARAMETERS', value: "--launchTarget oml --accessToken not_a_real_token --version 18w43b --assetIndex 1.14 --assetsDir \$USER_HOME\$/.gradle/caches/opengradle/assets-18w43b")
+                option(name: 'WORKING_DIRECTORY', value: 'file://$PROJECT_DIR$/run')
+                module(name: '${project.name}_main')
+                
+            }
+        }
+    }
+}
+
+
+task createIntellijRunServerConfiguration(type:DefaultTask) {
+    doFirst {
+        def runConfigurationsDir = new File(".idea/runConfigurations")
+        runConfigurationsDir.mkdirs()
+        
+        def writer = new FileWriter(new File(runConfigurationsDir, "runMCServer.xml"))
+        def xml = new groovy.xml.MarkupBuilder(writer)
+
+        xml.component(name: "ProjectRunConfigurationManager") {
+            configuration(default: 'false', name: "Minecraft Server", type: "Application", factoryName: "Application", singleton: "true") {
+                option(name: 'MAIN_CLASS_NAME', value: "com.openmodloader.loader.launch.ServerLauncher")
+                option(name: 'VM_PARAMETERS', value: "-Doml.development=true")
+                option(name: 'WORKING_DIRECTORY', value: 'file://$PROJECT_DIR$/runServer')
+                module(name: 'module-name',value:"${project.name}_main")
+            }
+        }
+    }
+}
+
+task genIntelliJRuns{
+    group="ide"
+
+    dependsOn 'createIntellijRunServerConfiguration'
+    dependsOn 'createIntellijRunClientConfiguration'
+}
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}

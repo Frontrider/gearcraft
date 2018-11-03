@@ -7,16 +7,16 @@ import hu.frontrider.gearcraft.blocks.machine.BlockSaw
 import hu.frontrider.gearcraft.gears.events.DrillHandler
 import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import hu.frontrider.gearcraft.core.util.factory.ItemFactory
-import hu.frontrider.gearcraft.items.OreDictAssistant
-import hu.frontrider.gearcraft.plugins.recipes.dismantler.BaseDismantlerRecipes
+import hu.frontrider.gearcraft.craftinggear.events.KeyEventHandler
+import hu.frontrider.gearcraft.plugins.entities.Entities
 import hu.frontrider.gearcraft.plugins.recipes.CraftingEventhandler
 import hu.frontrider.gearcraft.proxy.CommonProxy
+import hu.frontrider.gearcraft.craftinggear.networking.OpenGuiMessage
+import hu.frontrider.gearcraft.craftinggear.networking.OpenGuiMessageHandler
 import hu.frontrider.gearcraft.tablet.network.redstoneproxy.create.CreateProxyMessage
-import hu.frontrider.gearcraft.tablet.network.redstoneproxy.use.RedstoneProxyFailed
 import hu.frontrider.gearcraft.tablet.network.redstoneproxy.create.CreateServerSideMessageHandler
-import hu.frontrider.gearcraft.tablet.network.redstoneproxy.use.RedstoneProxyFailHandler
-import hu.frontrider.gearcraft.tablet.network.redstoneproxy.use.RedstoneProxyHandler
-import hu.frontrider.gearcraft.tablet.network.redstoneproxy.use.RedstoneProxyMessage
+import hu.frontrider.gearcraft.tablet.network.redstoneproxy.modify.RedstoneProxyHandler
+import hu.frontrider.gearcraft.tablet.network.redstoneproxy.modify.RedstoneProxyMessage
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -45,17 +45,24 @@ class GearCraft {
             modid = MODID
             creativeTabs = creativeTab
         }
+
         ItemFactory.apply {
             modid = MODID
             creativeTabs = creativeTab
         }
+
         logger = event.modLog
         configDir = event.modConfigurationDirectory
 
         NETWORK_WRAPPER.registerMessage(CreateServerSideMessageHandler::class.java, CreateProxyMessage::class.java, 0, Side.SERVER)
-        NETWORK_WRAPPER.registerMessage(RedstoneProxyFailHandler::class.java, RedstoneProxyFailed::class.java, 1, Side.CLIENT)
         NETWORK_WRAPPER.registerMessage(RedstoneProxyHandler::class.java, RedstoneProxyMessage::class.java, 2, Side.SERVER)
+        NETWORK_WRAPPER.registerMessage(OpenGuiMessageHandler::class.java, OpenGuiMessage::class.java, 1, Side.SERVER)
+
         basePlugin =PluginContainer()
+
+        Entities().init()
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, GuiHandler())
     }
 
     @EventHandler
@@ -63,12 +70,14 @@ class GearCraft {
         proxy.init(event)
         OreDictAssistant().register()
 
-        MinecraftForge.EVENT_BUS.register(BaseDismantlerRecipes())
         MinecraftForge.EVENT_BUS.register(CraftingEventhandler())
         MinecraftForge.EVENT_BUS.register(DrillHandler())
+        MinecraftForge.EVENT_BUS.register(Entities())
+        MinecraftForge.EVENT_BUS.register(KeyEventHandler())
 
         GameRegistry.addSmelting(preservativeRaw,ItemStack(preservativeFine),.1f)
     }
+
     @EventHandler
     fun postInit(event: FMLPostInitializationEvent) {
         //fireing the event to set up the recipes
@@ -80,7 +89,6 @@ class GearCraft {
 
         @GameRegistry.ObjectHolder("$MODID:wooden_gear")
         lateinit var icon: Item
-
         @GameRegistry.ObjectHolder("$MODID:raw_preservative")
         lateinit var preservativeRaw: Item
         @GameRegistry.ObjectHolder("$MODID:fine_preservative")
@@ -88,8 +96,7 @@ class GearCraft {
 
         const val MODID = "gearcraft"
         const val NAME = "GearCraft"
-        const val VERSION = "1.0-snapshot"
-        //public static final String DEPENDENCIES = "required-after:forge@[14.23.3.2655,15.0.0.0]required-after:cofhcore@[4.5.0,4.6.0);";
+        const val VERSION = "0.4a"
 
         private var logger: Logger? = null
         private var configDir: File? = null
@@ -98,6 +105,8 @@ class GearCraft {
                 return ItemStack(icon)
             }
         }
+        @Mod.Instance
+        lateinit var instance:GearCraft
 
         @SidedProxy(clientSide = "hu.frontrider.gearcraft.proxy.ClientProxy", serverSide = "hu.frontrider.gearcraft.proxy.CommonProxy")
         lateinit var proxy: CommonProxy

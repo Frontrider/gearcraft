@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:sawmill_spruce","x":-90 },
+    "facing=down":     { "model": "gearcraft:sawmill_spruce","x":90},
+    "facing=south":  { "model": "gearcraft:sawmill_spruce","x":180},
+    "facing=north":  { "model": "gearcraft:sawmill_spruce"},
+    "facing=west":   { "model": "gearcraft:sawmill_spruce","y":-90},
+    "facing=east":   { "model": "gearcraft:sawmill_spruce","y":90}
+  }
+}

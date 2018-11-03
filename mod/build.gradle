@@ -1,4 +1,3 @@
-
 buildscript {
     repositories {
         jcenter()
@@ -24,7 +23,7 @@ version = mod_version
 group = "hu.frontrider.gearcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "gearcraft"
 
-configurations{
+configurations {
     fatJar
     compile.extendsFrom fatJar
 }
@@ -50,7 +49,7 @@ minecraft {
 repositories {
     maven {
         url "https://jitpack.io"
-    }   
+    }
     maven {
         // location of the maven that hosts JEI files
         name = "Progwml6 maven"
@@ -60,6 +59,13 @@ repositories {
         // location of a maven mirror for JEI files, as a fallback
         name = "ModMaven"
         url = "modmaven.k-4u.nl"
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+    maven{
+        url "http://maven.thiakil.com"
     }
 }
 
@@ -71,10 +77,11 @@ dependencies {
     //compile "cofh:CoFHCore:${mc_version}-${cofh_core_version}:deobf"
     //forgelin
     compile group: "net.shadowfacts", name: "Forgelin", version: "1.7.3"
+    compile(files("lib/Baubles-1.12-1.5.2.jar", "lib/project42-1.0-SNAPSHOT.jar"))
+    deobfCompile(group:"com.azanor.baubles",name:"Baubles",version:"1.12-1.5.2")
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
     testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
-    fatJar(project(":api"))
 }
 
 processResources {
@@ -87,7 +94,7 @@ processResources {
         include 'mcmod.info'
 
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
 
     // copy everything else except the mcmod.info
@@ -96,7 +103,25 @@ processResources {
     }
 }
 
-jar{
-    from(configurations.fatJar.collect{ it.isDirectory() ? it : zipTree(it) })
-    
+jar {
+    from(configurations.fatJar.collect { it.isDirectory() ? it : zipTree(it) })
+
+}
+def path = project.projectDir.absolutePath
+task deobfbaubles (type: JavaExec) {
+    main = "-jar";
+    // arguments to pass to the application
+    args "$path/BON.jar -mcp /run/media/frontrider/nagy/API/mcp1.12/ -in $path/deobflib/Baubles-1.12-1.5.2.jar -out $path/lib/Baubles-1.12-1.5.2.jar"
+}
+
+task deobfproject42(type: JavaExec) {
+    main = "-jar";
+    // arguments to pass to the application
+    args "$path/BON.jar -mcp /run/media/frontrider/nagy/API/mcp1.12/ "//-in $path/deobflib/project42-1.0-SNAPSHOT.jar -out $path/lib/project42-1.0-SNAPSHOT.jar"
+}  
+
+task deobf{
+    group = "build"
+    dependsOn deobfbaubles
+    dependsOn deobfproject42
 }

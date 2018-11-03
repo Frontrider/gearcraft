@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GDF",
+    " _ ",
+    "GDF"
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gearWood"
+    },
+    "_": {
+      "item": "gearcraft:planks_treated_wood"
+    },
+    "F": {
+      "item": "minecraft:cobblestone"
+
+    },
+    "D":{
+      "item": "minecraft:dropper"
+    }
+  },
+  "result": {
+    "item": "gearcraft:router",
+    "count": 1
+  },
+  "group": "gearbox"
+}

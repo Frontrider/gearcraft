@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:sawmill_big_oak","x":-90 },
+    "facing=down":     { "model": "gearcraft:sawmill_big_oak","x":90},
+    "facing=south":  { "model": "gearcraft:sawmill_big_oak","x":180},
+    "facing=north":  { "model": "gearcraft:sawmill_big_oak"},
+    "facing=west":   { "model": "gearcraft:sawmill_big_oak","y":-90},
+    "facing=east":   { "model": "gearcraft:sawmill_big_oak","y":90}
+  }
+}

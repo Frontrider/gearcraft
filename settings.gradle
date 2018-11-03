@@ -3,4 +3,5 @@ include 'mod'
 include 'nuclear'
 include 'thermal'
 include 'api'
+include 'generator'
 

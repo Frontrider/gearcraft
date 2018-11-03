@@ -2,13 +2,19 @@ package hu.frontrider.gearcraft.blocks.machine
 
 import hu.frontrider.gearcraft.api.BlockStates
 import hu.frontrider.gearcraft.api.recipes.IDismantlerRecipe
+import hu.frontrider.gearcraft.core.traits.InventoryConsumer
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
 import net.minecraft.entity.item.EntityItem
+import net.minecraft.init.Items
+import net.minecraft.item.Item
+import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import net.minecraftforge.fml.common.registry.GameRegistry
+import net.minecraftforge.oredict.OreDictionary
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -22,6 +28,7 @@ class BlockDismantler(power: Int,
                       mapColor: MapColor,
                       miningLevel: Int) : BlockBreaker(power, resistance, name, tool, hardness, soundType, material, mapColor, miningLevel) {
 
+    val consumes = arrayOf(Items.IRON_NUGGET)
     //changed the tick method, so now it will do the recipes recipe, instead of breaking it normally.
     //will always destroy the block!
     override fun updateTick(world: World, pos: BlockPos, state: IBlockState, rand: Random) {
@@ -44,6 +51,9 @@ class BlockDismantler(power: Int,
                     it.isBlock(block)
                 } ?: return
 
+                if(!InventoryConsumer.consumeOne(consumes,world,pos,EnumFacing.values().filter { it != value }.toTypedArray()))
+                    return
+
                 world.destroyBlock(offset, false)
 
                 recipe.getResults(block).forEach {
@@ -56,5 +66,6 @@ class BlockDismantler(power: Int,
 
     companion object {
         val dismantleRecipes=ArrayList<IDismantlerRecipe>()
+
     }
 }

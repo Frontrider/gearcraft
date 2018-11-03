@@ -81,6 +81,13 @@ tile.gearcraft.scaffold_big_oak.name=Dark Oak Scaffold
 tile.gearcraft.scaffold_birch.name=Birch Scaffold
 tile.gearcraft.scaffold_spruce.name=Spruce Scaffold
 
+tile.gearcraft.saw_wooden.name=Oak Sawmill
+tile.gearcraft.saw_jungle.name=Jungle Sawmill
+tile.gearcraft.saw_acacia.name=Acacia Sawmill
+tile.gearcraft.saw_big_oak.name=Dark Oak Sawmill
+tile.gearcraft.saw_birch.name=Birch Sawmill
+tile.gearcraft.saw_spruce.name=Spruce Sawmill
+
 tile.gearcraft.stone_dismantler.name=Stone Dismantler
 tile.gearcraft.stone_dismantler_granite.name=Granite Dismantler
 tile.gearcraft.stone_dismantler_andesite.name=Andesite Dismantler
@@ -90,6 +97,10 @@ tile.gearcraft.obsidian_dismantler.name=Obsidian Dismantler
 
 tile.gearcraft.temporary_redstone.name=Temporary Redstone Block
 
+tile.gearcraft.router.name=Item Router
+tile.gearcraft.heavy_router.name=Heavy Item Router
+tile.gearcraft.stack_router.name=Item Stack Router
+
 item.gearcraft.wooden_gear.name=Wooden Gear
 item.gearcraft.stone_gear.name=Stone Gear
 item.gearcraft.iron_gear.name=Iron Gear
@@ -97,6 +108,10 @@ item.gearcraft.obsidian_gear.name=Obsidian Gear
 item.gearcraft.glueball.name=Glue Ball
 item.gearcraft.wood_pulp.name=Wood Pulp
 item.gearcraft.stone_dust.name=Stone Dust
+item.gearcraft.iron_dust.name=Iron Dust
+item.gearcraft.gold_dust.name=Gold Dust
+item.gearcraft.obsidian_dust.name=Obsidian Dust
+
 item.gearcraft.raw_preservative.name=Raw Preservative
 item.gearcraft.fine_preservative.name=Fine Preservative
 
@@ -115,12 +130,13 @@ gearcraft.creative_only=Creative Only!
 gearcraft.infinite_power=Infinite Power
 gearcraft.transmission=Power Transmitter
 
+
 gearcraft.spin_up=Must spin up before producing power
 gearcraft.spin_level=Has to reach %s
 
 gearcraft.inverted=Shift place to invert
 gearcraft.gearbox.invertmessage=Output sides become input sides
-gearcraft.router.redstone=Pulls a stack of items when reciving a redstone signal
+gearcraft.router.redstone=Pulls items when reciving a redstone signal
 
 gearcraft.seaplace=Must be placed in an ocean!
 
@@ -129,7 +145,7 @@ gearcraft.redstone_controlled.engine=Will be disabled, but will lose power if sh
 
 #guide
 gearcraft.guide.welcome=The GearCraft manual.
-
+gearcraft.guide.name=Gearworker's guide
 gearcraft.guide.page.energy=Energy
 gearcraft.guide.page.power_transfer=Transmission
 gearcraft.guide.page.glue=Glue
@@ -151,4 +167,5 @@ gearcraft.guide.drills=Hand drills behave like giant pickaxes, they have a lot o
 gearcraft.tablet.selecttab=Select a tab to start.
 gearcraft.tablet.guidetab=Guide
 gearcraft.tablet.select_pos=Select a position
-gearcraft.tablet.new_proxy=New Proxy
+gearcraft.tablet.new_proxy=Create
+gearcraft.tablet.rename=Create

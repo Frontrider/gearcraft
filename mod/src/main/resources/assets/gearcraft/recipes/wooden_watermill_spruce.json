@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
+    " M ",
     "R_R",
     "SDS"
   ],
@@ -19,6 +20,9 @@
     "S": {
       "item": "minecraft:wooden_slab",
       "data":1
+    },
+    "M":{
+      "item":"minecraft:redstone"
     }
   },
   "result": {

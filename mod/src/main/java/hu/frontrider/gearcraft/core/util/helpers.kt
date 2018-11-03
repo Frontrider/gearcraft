@@ -9,3 +9,11 @@ fun Int.cap(cap: Int): Int {
     else
         this
 }
+
+fun Double.cap(cap: Double): Double {
+    return if (this > cap)
+        cap
+    else
+        this
+}
+

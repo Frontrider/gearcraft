@@ -7,6 +7,7 @@ import hu.frontrider.gearcraft.api.traits.block.IMetaBlock
 import hu.frontrider.gearcraft.api.traits.power.IGearPowered
 import hu.frontrider.gearcraft.api.traits.ITooltipped
 import hu.frontrider.gearcraft.blocks.BlockBase
+import hu.frontrider.gearcraft.entities.EntityPowerManager
 import hu.frontrider.gearcraft.gears.traits.producer.SpinUpPowerSource
 import hu.frontrider.gearcraft.gears.tooltip.DoNotBreakTooltip
 import hu.frontrider.gearcraft.gears.tooltip.MultiTooltip
@@ -14,6 +15,7 @@ import hu.frontrider.gearcraft.gears.tooltip.PowerTooltip
 import hu.frontrider.gearcraft.gears.tooltip.RedstoneControlled
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
+import net.minecraft.block.material.EnumPushReaction
 import net.minecraft.block.material.MapColor
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockStateContainer
@@ -23,6 +25,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.EnumHand
+import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
@@ -49,9 +52,15 @@ class BlockInternalPowerEngine(val power: Int,
                 RedstoneControlled("gearcraft.redstone_controlled.engine")) {
 
     override fun randomTick(world: World, blockPos: BlockPos, blockState: IBlockState, random: Random) {
-        val flag = !world.isBlockPowered(blockPos)
+
+    }
+
+    override fun updateTick(worldIn: World, pos: BlockPos, state: IBlockState, rand: Random) {
+        super.updateTick(worldIn, pos, state, rand)
+        worldIn.scheduleUpdate(pos,this,1000)
+        val flag = !worldIn.isBlockPowered(pos)
         if (flag)
-            spinUpPowerManager.doSpinUp(world, blockPos, blockState, random, flag)
+            spinUpPowerManager.doSpinUp(worldIn, pos, state, rand, flag)
     }
 
     override fun getPower(world: World, blockPos: BlockPos, blockState: IBlockState?, side: EnumFacing?): Int {
@@ -90,6 +99,21 @@ class BlockInternalPowerEngine(val power: Int,
         return BlockStateContainer(this, BlockStates.SPIN)
     }
 
+    override fun onBlockPlacedBy(worldIn: World, pos: BlockPos, state: IBlockState, placer: EntityLivingBase, stack: ItemStack) {
+        val powerManager = EntityPowerManager(worldIn)
+        powerManager.posX = pos.x+.5
+        powerManager.posY = pos.y+.5
+        powerManager.posZ = pos.z+.5
+
+        worldIn.spawnEntity(powerManager)
+    }
+
+    override fun breakBlock(worldIn: World, pos: BlockPos, state: IBlockState) {
+        super.breakBlock(worldIn, pos, state)
+        for (entityPowerManager in worldIn.getEntitiesWithinAABB(EntityPowerManager::class.java, AxisAlignedBB(pos))) {
+            worldIn.removeEntity(entityPowerManager)
+        }
+    }
 
 
     //block stuff
@@ -104,5 +128,9 @@ class BlockInternalPowerEngine(val power: Int,
 
     override fun isOpaqueCube(blockState: IBlockState?): Boolean {
         return false
+    }
+
+    override fun getMobilityFlag(state: IBlockState): EnumPushReaction {
+        return if(state.getValue(BlockStates.SPIN)>0) EnumPushReaction.BLOCK else EnumPushReaction.NORMAL
     }
 }

@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GSI",
+    "D_D",
+    "OBO"
+  ],
+  "key": {
+    "O": {
+      "type": "forge:ore_dict",
+      "ore": "dustObsidian"
+    },
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearWood"
+    },
+    "_": {
+      "item": "minecraft:planks",
+      "data":0
+    },
+    "B": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "S": {
+      "item": "gearcraft:composite_shaft"
+    },
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    }
+  },
+  "result": {
+    "item": "gearcraft:oak_saw",
+    "count": 1
+  },
+  "group": "redstone"
+}

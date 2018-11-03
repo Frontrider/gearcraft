@@ -1,0 +1,6 @@
+{
+  "parent": "gearcraft:block/coal_engine",
+  "textures": {
+    "#0":"blocks/furnace_front_on"
+  }
+}

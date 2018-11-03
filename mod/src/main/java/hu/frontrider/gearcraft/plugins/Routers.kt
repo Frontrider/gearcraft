@@ -13,7 +13,6 @@ class Routers : Plugin {
     private val blocks = arrayOf<Block>(
             BlockFactory.start(BlockRouter(1,
                     4f,
-                    "router",
                     "axe",
                     2f,
                     SoundType.WOOD,
@@ -25,7 +24,17 @@ class Routers : Plugin {
                     .build(),
             BlockFactory.start(BlockRouter(1,
                     4f,
-                    "heavy_router",
+                    "pickaxe",
+                    2f,
+                    SoundType.METAL,
+                    Material.IRON,
+                    MapColor.IRON,
+                    1,
+                    32))
+                    .setResourourceLocation("heavy_router")
+                    .build(),
+            BlockFactory.start(BlockRouter(1,
+                    4f,
                     "pickaxe",
                     2f,
                     SoundType.METAL,
@@ -33,7 +42,7 @@ class Routers : Plugin {
                     MapColor.IRON,
                     1,
                     64))
-                    .setResourourceLocation("heavy_router")
+                    .setResourourceLocation("stack_router")
                     .build()
     )
 

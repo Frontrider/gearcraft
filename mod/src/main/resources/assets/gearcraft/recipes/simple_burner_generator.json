@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ","PFP","GMG"
+  ],
+  "key": {
+    "G":{
+      "type": "forge:ore_dict",
+      "ore": "ballGlue"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "M": {
+      "item":"minecraft:piston"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },"P":{
+      "item": "gearcraft:planks_treated_wood",
+      "data":0
+    }
+  },
+  "result": {
+    "item": "gearcraft:simple_burner_engine",
+    "count": 1
+  },
+  "group": "gearbox"
+}

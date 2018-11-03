@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LSL",
+    "GCG"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gearIron"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "slabWood"
+    },
+    "C":{
+      "item": "minecraft:crafting_table"
+
+    }
+  },
+  "result": {
+    "item": "gearcraft:crafting_gear",
+    "count": 1
+  },
+  "group": "redstone"
+}

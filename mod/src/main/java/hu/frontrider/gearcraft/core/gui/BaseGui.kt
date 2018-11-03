@@ -80,6 +80,10 @@ open class BaseGui : GuiScreen() {
         this.mc.textureManager.bindTexture(resourceLocation)
         drawModalRectWithCustomSizedTexture(x + 6, y, 0f, 0f, 16, 16, 16f, 16f)
     }
+    internal fun drawTab(x: Int, y: Int) {
+        this.mc.textureManager.bindTexture(TAB)
+        drawModalRectWithCustomSizedTexture(x, y, 0f, 0f, 28, 16, 28f, 16f)
+    }
 
     internal fun drawText(x: Int, y: Int, width: Int, formattedText: String, multiLine: Boolean = false,color:Int=0) {
         if (multiLine) {

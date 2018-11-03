@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GDF",
+    " _ ",
+    "GDF"
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gearObsidian"
+    },
+    "_": {
+      "item": "gearcraft:planks_treated_wood"
+    },
+    "F": {
+
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    },
+    "D":{
+      "item": "minecraft:dropper"
+    }
+  },
+  "result": {
+    "item": "gearcraft:stack_router",
+    "count": 1
+  },
+  "group": "gearbox"
+}

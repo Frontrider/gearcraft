@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up":   { "model": "gearcraft:sawmill_jungle","x":-90 },
+    "facing=down":     { "model": "gearcraft:sawmill_jungle","x":90},
+    "facing=south":  { "model": "gearcraft:sawmill_jungle","x":180},
+    "facing=north":  { "model": "gearcraft:sawmill_jungle"},
+    "facing=west":   { "model": "gearcraft:sawmill_jungle","y":-90},
+    "facing=east":   { "model": "gearcraft:sawmill_jungle","y":90}
+  }
+}

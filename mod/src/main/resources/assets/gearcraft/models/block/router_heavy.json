@@ -1,0 +1,6 @@
+{
+  "parent": "gearcraft:block/router_base",
+  "textures": {
+    "frame": "minecraft:blocks/iron_block"
+  }
+}

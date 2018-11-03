@@ -19,7 +19,6 @@ import net.minecraft.block.material.Material
 
 abstract class DirectionalBlockBase(
         resistance: Float,
-        name: String,
         tool: String,
         miningLevel: Int,
         hardness: Float,

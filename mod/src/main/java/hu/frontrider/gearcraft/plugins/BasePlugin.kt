@@ -13,6 +13,7 @@ import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import hu.frontrider.gearcraft.core.util.factory.ItemFactory
 import hu.frontrider.gearcraft.items.ColoredItem
 import hu.frontrider.gearcraft.items.OreDictedItem
+import hu.frontrider.gearcraft.items.tools.ItemCraftingGear
 import hu.frontrider.gearcraft.items.tools.RedstoneTablet
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
@@ -50,6 +51,15 @@ class BasePlugin : Plugin {
             ItemFactory.start(OreDictedItem("dustStone"))
                     .setResourourceLocation("stone_dust")
                     .build(),
+            ItemFactory.start(OreDictedItem("dustObsidian"))
+                    .setResourourceLocation("obsidian_dust")
+                    .build(),
+            ItemFactory.start(OreDictedItem("dustIron"))
+                    .setResourourceLocation("iron_dust")
+                    .build(),
+            ItemFactory.start(OreDictedItem("dustGold"))
+                    .setResourourceLocation("gold_dust")
+                    .build(),
             ItemFactory.start(ColoredItem(arrayOf(16777215, 10511104), "bottleRawFurfuryl"))
                     .setResourourceLocation("raw_preservative")
                     .build(),
@@ -58,6 +68,9 @@ class BasePlugin : Plugin {
                     .build(),
             ItemFactory.start(RedstoneTablet())
                     .setResourourceLocation("tablet")
+                    .build(),
+            ItemFactory.start(ItemCraftingGear())
+                    .setResourourceLocation("crafting_gear")
                     .build()
     )
 

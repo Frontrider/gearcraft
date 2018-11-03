@@ -2,7 +2,7 @@ package hu.frontrider.gearcraft.tablet.gui
 
 import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.core.gui.widgets.interfaces.Clickable
-import hu.frontrider.gearcraft.tablet.network.redstoneproxy.use.RedstoneProxyMessage
+import hu.frontrider.gearcraft.tablet.network.redstoneproxy.modify.RedstoneProxyMessage
 
 class ProxyAction(val id:Int):Clickable {
     override fun onClick(mouseX: Int, mouseY: Int, mouseButton: Int) {

@@ -1,9 +1,9 @@
 package hu.frontrider.gearcraft.tablet.network.redstoneproxy.create
 
 import hu.frontrider.gearcraft.core.util.data.toNBT
+import hu.frontrider.gearcraft.craftinggear.networking.OpenGuiMessage
 import hu.frontrider.gearcraft.items.tools.RedstoneTablet
 import hu.frontrider.gearcraft.tablet.TabletData
-import hu.frontrider.gearcraft.tablet.network.redstoneproxy.use.RedstoneProxyFailed
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.nbt.NBTTagList
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage
