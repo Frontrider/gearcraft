@@ -21,15 +21,15 @@ class GearboxPower(val power: Int) : IGearPowered,PowerConsumer() {
         }
     }
 
-    override fun getStrength(iBlockAccess: World, blockPos: BlockPos, state: IBlockState, side:EnumFacing): Int {
-        val strength = getPower(iBlockAccess, blockPos, state,side)
+    override fun getGearStrength(iBlockAccess: World, blockPos: BlockPos, state: IBlockState, side:EnumFacing): Int {
+        val strength = getGearPower(iBlockAccess, blockPos, state,side)
         return if (strength != 0)
             4
         else
             0
     }
 
-    override fun getPower(iBlockAccess: World, blockPos: BlockPos, state: IBlockState, side:EnumFacing): Int {
+    override fun getGearPower(iBlockAccess: World, blockPos: BlockPos, state: IBlockState, side:EnumFacing): Int {
 
         val inverted = state.getValue(BlockStates.INVERTED)
         val facing = state.getValue(BlockStates.FACING)

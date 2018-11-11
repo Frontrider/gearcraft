@@ -1,0 +1,7 @@
+{
+    "variants": {
+      "powerstate=0": { "model": "gearcraft:strong_watermill" },
+      "powerstate=1": { "model": "gearcraft:strong_watermill" },
+      "powerstate=2": { "model": "gearcraft:strong_watermill" }
+    }
+}

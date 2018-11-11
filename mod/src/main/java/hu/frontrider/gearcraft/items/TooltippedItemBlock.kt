@@ -1,7 +1,6 @@
 package hu.frontrider.gearcraft.items
 
 import hu.frontrider.gearcraft.GearCraft
-import hu.frontrider.gearcraft.api.traits.block.IMetaBlock
 import hu.frontrider.gearcraft.api.traits.ITooltipped
 import net.minecraft.block.Block
 import net.minecraft.client.util.ITooltipFlag
@@ -12,12 +11,6 @@ import net.minecraft.world.World
 
 class TooltippedItemBlock(p_i45328_1_: Block) : ItemBlock(p_i45328_1_) {
 
-    init{
-        if(block is IMetaBlock)
-        {
-            maxDamage = block.maxMeta
-        }
-    }
     override fun addInformation(itemStack: ItemStack, world: World?, information: List<String>, flag: ITooltipFlag) {
         super.addInformation(itemStack, world, information, flag)
         (block as ITooltipped).setTooltip(information)

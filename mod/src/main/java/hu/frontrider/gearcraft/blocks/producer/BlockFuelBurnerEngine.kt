@@ -6,6 +6,7 @@ import hu.frontrider.gearcraft.api.BlockStates.SPIN
 import hu.frontrider.gearcraft.api.traits.ITooltipped
 import hu.frontrider.gearcraft.api.traits.power.IGearPowered
 import hu.frontrider.gearcraft.blocks.DirectionalBlockBase
+import hu.frontrider.gearcraft.blocks.tile.BurnerEngineTile
 import hu.frontrider.gearcraft.blocks.tile.EngineTile
 import hu.frontrider.gearcraft.core.util.BlockHelper
 import hu.frontrider.gearcraft.core.util.inventory.InventoryChooser
@@ -16,7 +17,7 @@ import hu.frontrider.gearcraft.gears.tooltip.DoNotBreakTooltip
 import hu.frontrider.gearcraft.gears.tooltip.MultiTooltip
 import hu.frontrider.gearcraft.gears.tooltip.PowerTooltip
 import hu.frontrider.gearcraft.gears.tooltip.RedstoneControlled
-import hu.frontrider.gearcraft.gears.traits.producer.FueledEngine
+import hu.frontrider.gearcraft.gears.traits.producer.PoweredEngine
 import net.minecraft.block.Block
 import net.minecraft.block.BlockHorizontal
 import net.minecraft.block.SoundType
@@ -47,8 +48,9 @@ class BlockFuelBurnerEngine(val power: Int,
                             material: Material,
                             mapColor: MapColor,
                             val fuels:Array<ItemStack>,
-                            val tickDelay:Int,
-                            val engine:FueledEngine= FueledEngine(power,EnumFacing.UP, arrayOf())
+                            val tickDelay:Int=10000,
+                            val soundEvent:SoundEvent=SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE,
+                            val engine:PoweredEngine= PoweredEngine(power,EnumFacing.UP)
 ) : DirectionalBlockBase(resistance, tool, miningLevel, hardness, soundType, material, mapColor),
         IGearPowered by engine,
         ITooltipped by MultiTooltip(PowerTooltip(power),
@@ -84,7 +86,7 @@ class BlockFuelBurnerEngine(val power: Int,
             val d4 = rand.nextDouble() * 0.6 - 0.3
 
             if (rand.nextDouble() < 0.1) {
-                worldIn.playSound(pos.x.toDouble() + 0.5, pos.y.toDouble(), pos.z.toDouble() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false)
+                worldIn.playSound(pos.x.toDouble() + 0.5, pos.y.toDouble(), pos.z.toDouble() + 0.5, soundEvent, SoundCategory.BLOCKS, 1.0f, 1.0f, false)
             }
 
             when (enumfacing) {
@@ -131,9 +133,9 @@ class BlockFuelBurnerEngine(val power: Int,
             val extract = iItemHandler.extract(it)
             if(extract.isNotEmpty()){
                 if(tileEntity == null) {
-                    worldIn.setTileEntity(pos,EngineTile(10000))
+                    worldIn.setTileEntity(pos,BurnerEngineTile(tickDelay))
                 }else{
-                    (tileEntity as EngineTile).time = 10000
+                    (tileEntity as EngineTile).time = tickDelay
                 }
                 worldIn.setBlockState(pos, state.withProperty(BlockStates.POWERED, true))
                 worldIn.scheduleUpdate(pos,this,10)
@@ -166,7 +168,7 @@ class BlockFuelBurnerEngine(val power: Int,
 
     override fun getMetaFromState(state: IBlockState): Int {
         var i = 0
-        i = i or state.getValue(BlockHorizontal.FACING).getIndex()
+        i = i or state.getValue(BlockHorizontal.FACING).index
         if (state.getValue(BlockStates.POWERED)) {
             i = i or 8
         }
@@ -195,7 +197,7 @@ class BlockFuelBurnerEngine(val power: Int,
         if(tileEntity.time<=0)
             return 0
 
-        return tileEntity.time/1000*15
+        return tileEntity.time/10000*15
     }
 
     override fun hasComparatorInputOverride(state: IBlockState): Boolean {

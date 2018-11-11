@@ -4,7 +4,6 @@ import hu.frontrider.gearcraft.GearCraft
 import hu.frontrider.gearcraft.basePlugin
 import hu.frontrider.gearcraft.items.ColoredItem
 import hu.frontrider.gearcraft.gears.registry.ItemRegistry
-import hu.frontrider.gearcraft.craftinggear.networking.OpenGuiMessage
 import hu.frontrider.gearcraft.tablet.network.redstoneproxy.create.CreateProxyMessage
 import hu.frontrider.gearcraft.tablet.proxy.ClientSideProxyManager
 import net.minecraft.client.Minecraft

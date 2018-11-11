@@ -21,7 +21,7 @@ public interface IGearPowered {
      * @param side       the side that we try to get the traits from.
      * @return the traits level you emit, 0 if you can't emit anything.
      */
-    int getPower(World world, BlockPos blockPos, IBlockState blockState, EnumFacing side);
+    int getGearPower(World world, BlockPos blockPos, IBlockState blockState, EnumFacing side);
 
     /**
      * @param world      the current world
@@ -30,7 +30,7 @@ public interface IGearPowered {
      * @param side       the side that we try to get the traits from.
      * @return the strenght of the "signal" you're carrying.
      */
-    int getStrength(World world, BlockPos blockPos, IBlockState blockState, EnumFacing side);
+    int getGearStrength(World world, BlockPos blockPos, IBlockState blockState, EnumFacing side);
 
 
     /**

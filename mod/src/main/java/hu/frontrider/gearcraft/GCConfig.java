@@ -8,6 +8,6 @@ import static hu.frontrider.gearcraft.GearCraft.MODID;
 public class GCConfig {
 
     public static String[] GrinderExtraDustList = new String[]{
-        "dustIron","dustGold","dustCopper","dustRedstone","dustLead","dust"
+        "dustIron","dustGold","dustCopper","dustRedstone","dustLead","dustStone","dustSilver"
     };
 }

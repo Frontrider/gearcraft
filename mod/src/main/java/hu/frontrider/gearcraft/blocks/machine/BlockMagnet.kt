@@ -35,7 +35,7 @@ class BlockMagnet(val power: Int,
             val down = pos.down()
             val bottom = world.getBlockState(down)
             if (bottom.block is ITransmission) {
-                if ((bottom.block as ITransmission).getPower(world, down,world.getBlockState(down),EnumFacing.UP) >= power) {
+                if ((bottom.block as ITransmission).getGearPower(world, down,world.getBlockState(down),EnumFacing.UP) >= power) {
                     val items = world.getEntitiesWithinAABB(EntityItem::class.java, AxisAlignedBB((pos.x - 10).toDouble(), (pos.y - 10).toDouble(), (pos.z - 10).toDouble(), (pos.x + 10).toDouble(), (pos.y + 10).toDouble(), (pos.z + 10).toDouble()))
                     items.forEach { entityItem -> entityItem.setPositionAndUpdate(pos.x.toDouble()+.5, pos.y + 2.0, pos.z.toDouble()+.5) }
                 }

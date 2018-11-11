@@ -23,13 +23,13 @@ class ShaftUpdater(val power:Int):IBlockUpdater {
         var rightStrength = 0
 
         if (poweredLeft is IGearPowered) {
-            leftPower = (poweredLeft as IGearPowered).getPower(world, left, world.getBlockState(left), leftSide).cap(power)
+            leftPower = (poweredLeft as IGearPowered).getGearPower(world, left, world.getBlockState(left), leftSide).cap(power)
 
-            leftStrength = (poweredLeft as IGearPowered).getStrength(world, left, world.getBlockState(left), leftSide).cap(4)
+            leftStrength = (poweredLeft as IGearPowered).getGearStrength(world, left, world.getBlockState(left), leftSide).cap(4)
         }
         if (poweredRight is IGearPowered) {
-            rightPower = (poweredRight as IGearPowered).getPower(world, right, world.getBlockState(right), rightSide).cap(power)
-            rightStrength = (poweredRight as IGearPowered).getStrength(world, right, world.getBlockState(right), rightSide).cap(4)
+            rightPower = (poweredRight as IGearPowered).getGearPower(world, right, world.getBlockState(right), rightSide).cap(power)
+            rightStrength = (poweredRight as IGearPowered).getGearStrength(world, right, world.getBlockState(right), rightSide).cap(4)
         }
         val thizPower = thizState.getValue(BlockStates.POWER)
 

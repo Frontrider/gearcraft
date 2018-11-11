@@ -68,8 +68,7 @@ open class BaseGui : GuiScreen() {
         GlStateManager.translate(0.0f, 0.0f, 32.0f)
         this.zLevel = 200.0f
         this.itemRender.zLevel = 200.0f
-
-        this.itemRender.renderItemAndEffectIntoGUI(stack, x, y)
+        this.itemRender.renderItemIntoGUI(stack, x, y)
         this.zLevel = 0.0f
         this.itemRender.zLevel = 0.0f
     }

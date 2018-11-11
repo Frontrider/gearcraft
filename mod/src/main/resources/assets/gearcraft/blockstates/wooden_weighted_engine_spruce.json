@@ -1,0 +1,7 @@
+{
+    "variants": {
+      "powerstate=0": { "model": "gearcraft:wooden_watermill_spruce" },
+      "powerstate=1": { "model": "gearcraft:wooden_watermill_spruce" },
+      "powerstate=2": { "model": "gearcraft:wooden_watermill_spruce" }
+    }
+}

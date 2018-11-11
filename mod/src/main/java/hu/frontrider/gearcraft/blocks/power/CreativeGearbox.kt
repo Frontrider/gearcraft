@@ -14,12 +14,12 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 class CreativeGearbox : Block(Material.ROCK, MapColor.BLACK), IGearPowered, ITooltipped {
-    override fun getPower(world: World?, blockPos: BlockPos?, blockState: IBlockState?, side: EnumFacing?): Int {
+    override fun getGearPower(world: World?, blockPos: BlockPos?, blockState: IBlockState?, side: EnumFacing?): Int {
         //the closest we can get to infinity
         return Integer.MAX_VALUE
     }
 
-    override fun getStrength(world: World?, blockPos: BlockPos?, blockState: IBlockState?, side: EnumFacing?): Int {
+    override fun getGearStrength(world: World?, blockPos: BlockPos?, blockState: IBlockState?, side: EnumFacing?): Int {
         //the closest we can get to infinity
         return Integer.MAX_VALUE
     }

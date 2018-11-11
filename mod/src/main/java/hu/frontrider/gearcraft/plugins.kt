@@ -10,38 +10,25 @@ lateinit var basePlugin : PluginContainer
 
 class PluginContainer: Plugin {
 
-    var allBlocks :Array<Block>
-    var allItems :Array<Item>
-
-    init{
-        val allPlugins = arrayOf(
-                BasePlugin(),
-                WoodenShafts(),
-                StoneShafts(),
-                Watermills(),
-                Dismantlers(),
-                Scaffolds(),
-                Routers(),
-                Tools(),
-                Redstone(),
-                Saws(),
-                CombustionPlugin()
-        )
-        val blocks = ArrayList<Block>()
-        val items = ArrayList<Item>()
-        allPlugins.forEach {
-            blocks.addAll(it.blocks)
-            items.addAll(it.items)
-        }
-        allBlocks = blocks.toTypedArray()
-        allItems = items.toTypedArray()
-    }
+    val allPlugins:Array<Plugin> = arrayOf(
+            BasePlugin(),
+            WoodenShafts(),
+            StoneShafts(),
+            WeightedEngine(),
+            Dismantlers(),
+            Scaffolds(),
+            Routers(),
+            Tools(),
+            Redstone(),
+            Saws(),
+            CombustionPlugin()
+    )
 
     override fun getBlocks(): Array<Block> {
-        return allBlocks
+        return allPlugins.map { it.blocks }.flatMap { it.asIterable() }.toTypedArray()
     }
 
     override fun getItems(): Array<Item> {
-        return allItems
+        return allPlugins.map { it.items }.flatMap { it.asIterable() }.toTypedArray()
     }
 }

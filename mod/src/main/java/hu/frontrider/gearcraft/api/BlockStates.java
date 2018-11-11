@@ -15,4 +15,5 @@ public class BlockStates {
     public static final PropertyInteger POWER_BIG = PropertyInteger.create("power", 0, 15);
     public static final PropertyInteger SPIN = PropertyInteger.create("spin", 0, 15);
     public static final PropertyInteger RANGE = PropertyInteger.create("range", 0, 15);
+    public static final PropertyInteger POWERSTATE = PropertyInteger.create("powerstate", 0, 2);
 }

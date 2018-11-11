@@ -11,8 +11,8 @@ object EnergyHelper {
         val targetState = world.getBlockState(pos)
         val targetBlock = targetState.block as? ITransmission ?: return 0
 
-        if (targetBlock.getStrength(world, pos,world.getBlockState(pos),side) > 0 && targetBlock.isSideSupported(world, pos, world.getBlockState(pos),side)) {
-            return targetBlock.getPower(world, pos,world.getBlockState(pos),side)
+        if (targetBlock.getGearStrength(world, pos,world.getBlockState(pos),side) > 0 && targetBlock.isSideSupported(world, pos, world.getBlockState(pos),side)) {
+            return targetBlock.getGearPower(world, pos,world.getBlockState(pos),side)
         }
         return 0
     }

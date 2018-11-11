@@ -9,13 +9,13 @@ import net.minecraft.world.World
 
 class ShaftPower(val power:Int): ITransmission {
 
-    override fun getPower(world: World?, blockPos: BlockPos, blockState: IBlockState, side:EnumFacing): Int {
-        if(!isSideSupported(world,blockPos,blockState,side) && getStrength(world, blockPos, blockState, side)>0)
+    override fun getGearPower(world: World?, blockPos: BlockPos, blockState: IBlockState, side:EnumFacing): Int {
+        if(!isSideSupported(world,blockPos,blockState,side) && getGearStrength(world, blockPos, blockState, side)>0)
             return 0
         return power
     }
 
-    override fun getStrength(world: World?, blockPos: BlockPos?, blockState: IBlockState, side:EnumFacing): Int {
+    override fun getGearStrength(world: World?, blockPos: BlockPos?, blockState: IBlockState, side:EnumFacing): Int {
         return blockState.getValue(BlockStates.POWER)
     }
 

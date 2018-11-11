@@ -9,11 +9,11 @@ class ListWidget(widgets:Array<Widget>, override var x: Int, override var y: Int
 
     private val widgets:Array<Widget>
     init{
-        var yspace = ySpacing+y
+        var yspace = y+2
         this.widgets =widgets.map {
             it.x = x+it.x
-            it.y = it.y+yspace
-            yspace = it.y+ySpacing
+            it.y = yspace
+            yspace += ySpacing
             it.update()
             it
         }.toTypedArray()

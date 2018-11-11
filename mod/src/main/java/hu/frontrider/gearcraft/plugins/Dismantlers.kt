@@ -3,6 +3,8 @@ package hu.frontrider.gearcraft.plugins
 import hu.frontrider.gearcraft.api.Plugin
 import hu.frontrider.gearcraft.blocks.machine.BlockDismantler
 import hu.frontrider.gearcraft.core.util.factory.BlockFactory
+import hu.frontrider.gearcraft.core.util.factory.ItemFactory
+import hu.frontrider.gearcraft.items.aids.GrindingBall
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
@@ -44,9 +46,17 @@ class Dismantlers : Plugin {
                     Material.ROCK,
                     MapColor.OBSIDIAN,
                     3
-            ))  .setResourourceLocation("obsidian_dismantler")
+            )).setResourourceLocation("obsidian_dismantler")
                     .build()
 
+    )
+    private val items = arrayOf(
+            ItemFactory.start(GrindingBall(1))
+                    .setResourourceLocation("iron_grinding_ball")
+                    .build(),
+            ItemFactory.start(GrindingBall(3))
+                    .setResourourceLocation("obsidian_grinding_ball")
+                    .build()
     )
 
     override fun getBlocks(): Array<Block> {
@@ -54,7 +64,7 @@ class Dismantlers : Plugin {
     }
 
     override fun getItems(): Array<Item> {
-        return arrayOf()
+        return items
     }
 
     private fun makeWooden(name: String): Block {
@@ -76,7 +86,7 @@ class Dismantlers : Plugin {
     }
 
     private fun makeStone(name: String): Block {
-      return  BlockFactory.start(BlockDismantler(
+        return BlockFactory.start(BlockDismantler(
                 2,
                 2f,
                 name,

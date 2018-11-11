@@ -9,6 +9,7 @@ import hu.frontrider.gearcraft.plugins.recipes.dismantler.PoorOreDismantleRecipe
 import hu.frontrider.gearcraft.plugins.recipes.dismantler.SimpleDismantleRecipe
 import hu.frontrider.gearcraft.plugins.recipes.saw.LogToPlanksRecipe
 import hu.frontrider.gearcraft.plugins.recipes.saw.PlankToSticks
+import net.minecraft.block.Block
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.Item
@@ -34,6 +35,9 @@ class CraftingEventhandler {
 
         @GameRegistry.ObjectHolder("$MODID:obsidian_dust")
         lateinit var dustObsidian: Item
+
+        @GameRegistry.ObjectHolder("$MODID:stone_sand")
+        lateinit var stoneSand: Block
     }
 
     @SubscribeEvent
@@ -46,7 +50,8 @@ class CraftingEventhandler {
                         ItemStack(pulpWood))),
                 OreDismantleRecipe(),
                 PoorOreDismantleRecipe(),
-                SimpleDismantleRecipe(Blocks.OBSIDIAN, arrayOf(ItemStack(dustObsidian)))
+                SimpleDismantleRecipe(Blocks.OBSIDIAN, arrayOf(ItemStack(dustObsidian))),
+                SimpleDismantleRecipe(stoneSand, arrayOf(ItemStack(Blocks.SAND)))
         )
     }
     @SubscribeEvent

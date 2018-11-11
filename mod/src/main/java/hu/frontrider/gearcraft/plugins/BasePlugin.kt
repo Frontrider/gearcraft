@@ -13,9 +13,9 @@ import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import hu.frontrider.gearcraft.core.util.factory.ItemFactory
 import hu.frontrider.gearcraft.items.ColoredItem
 import hu.frontrider.gearcraft.items.OreDictedItem
-import hu.frontrider.gearcraft.items.tools.ItemCraftingGear
 import hu.frontrider.gearcraft.items.tools.RedstoneTablet
 import net.minecraft.block.Block
+import net.minecraft.block.BlockFalling
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.MapColor
 import net.minecraft.block.material.Material
@@ -68,9 +68,6 @@ class BasePlugin : Plugin {
                     .build(),
             ItemFactory.start(RedstoneTablet())
                     .setResourourceLocation("tablet")
-                    .build(),
-            ItemFactory.start(ItemCraftingGear())
-                    .setResourourceLocation("crafting_gear")
                     .build()
     )
 
@@ -84,6 +81,10 @@ class BasePlugin : Plugin {
     private val blocks: Array<Block> = arrayOf(
             BlockFactory.start(BlockComposite(SAND, MapColor.BROWN, hardenedGlue))
                     .setResourourceLocation("glue_composite")
+                    .build(),
+
+            BlockFactory.start(BlockFalling())
+                    .setResourourceLocation("stone_sand")
                     .build(),
             hardenedGlue,
             BlockFactory.start(BlockGearbox(
@@ -111,19 +112,17 @@ class BasePlugin : Plugin {
                     MapColor.IRON))
                     .setResourourceLocation("iron_gearbox")
                     .build(),
-            BlockFactory.start(
-
-                    BlockShaft(
-                            1,
-                            4f,
-                            "composite_shaft",
-                            "axe",
-                            2,
-                            1f,
-                            SoundType.WOOD,
-                            WOOD,
-                            MapColor.BROWN
-                    ))
+            BlockFactory.start(BlockShaft(
+                    1,
+                    4f,
+                    "composite_shaft",
+                    "axe",
+                    2,
+                    1f,
+                    SoundType.WOOD,
+                    WOOD,
+                    MapColor.BROWN
+            ))
                     .setResourourceLocation("composite_shaft")
                     .build(),
             BlockFactory.start(BlockShaft(

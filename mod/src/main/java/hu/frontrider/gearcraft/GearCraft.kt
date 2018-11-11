@@ -2,17 +2,16 @@ package hu.frontrider.gearcraft
 
 import hu.frontrider.gearcraft.api.recipes.events.DismantlerRecipeRegistryEvent
 import hu.frontrider.gearcraft.api.recipes.events.SawRecipeRegistryEvent
+import hu.frontrider.gearcraft.api.traits.IInit
 import hu.frontrider.gearcraft.blocks.machine.BlockDismantler
 import hu.frontrider.gearcraft.blocks.machine.BlockSaw
 import hu.frontrider.gearcraft.gears.events.DrillHandler
 import hu.frontrider.gearcraft.core.util.factory.BlockFactory
 import hu.frontrider.gearcraft.core.util.factory.ItemFactory
-import hu.frontrider.gearcraft.craftinggear.events.KeyEventHandler
 import hu.frontrider.gearcraft.plugins.entities.Entities
 import hu.frontrider.gearcraft.plugins.recipes.CraftingEventhandler
+import hu.frontrider.gearcraft.plugins.recipes.GrindingManager
 import hu.frontrider.gearcraft.proxy.CommonProxy
-import hu.frontrider.gearcraft.craftinggear.networking.OpenGuiMessage
-import hu.frontrider.gearcraft.craftinggear.networking.OpenGuiMessageHandler
 import hu.frontrider.gearcraft.tablet.network.redstoneproxy.create.CreateProxyMessage
 import hu.frontrider.gearcraft.tablet.network.redstoneproxy.create.CreateServerSideMessageHandler
 import hu.frontrider.gearcraft.tablet.network.redstoneproxy.modify.RedstoneProxyHandler
@@ -32,11 +31,18 @@ import net.minecraftforge.fml.common.registry.GameRegistry
 import net.minecraftforge.fml.relauncher.Side
 import org.apache.logging.log4j.Logger
 import java.io.File
+import net.minecraft.nbt.NBTBase
+import net.minecraft.util.EnumFacing
+import net.minecraftforge.common.capabilities.Capability
+import net.minecraftforge.common.capabilities.Capability.IStorage
+import net.minecraftforge.common.capabilities.CapabilityManager
+import javax.annotation.Nullable
+
 
 @Mod(modid = GearCraft.MODID,
         name = GearCraft.NAME,
         version = GearCraft.VERSION,
-        dependencies = "required-after:forgelin;")
+        dependencies = "required-after:forgelin;required-after:project42;after:baubles")
 class GearCraft {
 
     @EventHandler
@@ -56,9 +62,8 @@ class GearCraft {
 
         NETWORK_WRAPPER.registerMessage(CreateServerSideMessageHandler::class.java, CreateProxyMessage::class.java, 0, Side.SERVER)
         NETWORK_WRAPPER.registerMessage(RedstoneProxyHandler::class.java, RedstoneProxyMessage::class.java, 2, Side.SERVER)
-        NETWORK_WRAPPER.registerMessage(OpenGuiMessageHandler::class.java, OpenGuiMessage::class.java, 1, Side.SERVER)
 
-        basePlugin =PluginContainer()
+        basePlugin = PluginContainer()
 
         Entities().init()
 
@@ -73,9 +78,9 @@ class GearCraft {
         MinecraftForge.EVENT_BUS.register(CraftingEventhandler())
         MinecraftForge.EVENT_BUS.register(DrillHandler())
         MinecraftForge.EVENT_BUS.register(Entities())
-        MinecraftForge.EVENT_BUS.register(KeyEventHandler())
 
-        GameRegistry.addSmelting(preservativeRaw,ItemStack(preservativeFine),.1f)
+        GameRegistry.addSmelting(preservativeRaw, ItemStack(preservativeFine), .1f)
+        basePlugin.blocks.filter { it is IInit }.forEach { (it as IInit).init() }
     }
 
     @EventHandler
@@ -83,6 +88,8 @@ class GearCraft {
         //fireing the event to set up the recipes
         MinecraftForge.EVENT_BUS.post(DismantlerRecipeRegistryEvent(BlockDismantler.dismantleRecipes))
         MinecraftForge.EVENT_BUS.post(SawRecipeRegistryEvent(BlockSaw.sawRecipes))
+
+        GrindingManager.init()
     }
 
     companion object {
@@ -106,7 +113,7 @@ class GearCraft {
             }
         }
         @Mod.Instance
-        lateinit var instance:GearCraft
+        lateinit var instance: GearCraft
 
         @SidedProxy(clientSide = "hu.frontrider.gearcraft.proxy.ClientProxy", serverSide = "hu.frontrider.gearcraft.proxy.CommonProxy")
         lateinit var proxy: CommonProxy

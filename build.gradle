@@ -7,14 +7,6 @@ subprojects{
     repositories {
         mavenCentral()
         maven {
-            name = "CoFH Maven"
-            url = "http://maven.covers1624.net"
-        }
-        maven {
-            name = "ChickenBones Maven"
-            url = "http://chickenbones.net/maven/"
-        }
-        maven {
             name = "JEI Maven"
             url = "http://dvs1.progwml6.com/files/maven"
         }

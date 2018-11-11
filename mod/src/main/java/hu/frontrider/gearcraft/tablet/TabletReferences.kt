@@ -28,6 +28,20 @@ object TabletReferences {
     @GameRegistry.ObjectHolder("${GearCraft.MODID}:wooden_gearbox_dark_oak")
     lateinit var gearbox: Block
 
+    @GameRegistry.ObjectHolder("${GearCraft.MODID}:wooden_watermill_jungle")
+    lateinit var watermill: Block
+
+    @GameRegistry.ObjectHolder("${GearCraft.MODID}:obsidian_dismantler")
+    lateinit var dismantler: Block
+
+
+    @GameRegistry.ObjectHolder("${GearCraft.MODID}:simple_burner_engine")
+    lateinit var burner_engine: Block
+
+
+    @GameRegistry.ObjectHolder("${GearCraft.MODID}:birch_saw")
+    lateinit var saw: Block
+
     @GameRegistry.ObjectHolder("${GearCraft.MODID}:glueball")
     lateinit var glue: Item
 }

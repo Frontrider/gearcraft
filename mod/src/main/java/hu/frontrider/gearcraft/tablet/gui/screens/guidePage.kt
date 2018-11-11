@@ -25,8 +25,8 @@ fun getGuide(baseGui: BaseGui): Array<Widget> {
                         ListWidget(arrayOf(
                                 GuidePageButton(2, 0, ItemStack(TabletReferences.gear), "energy", "energy", baseGui, 43),
                                 GuidePageButton(2, 0, ItemStack(TabletReferences.gearbox), "power_transfer", "transfer", baseGui, 43),
-                                GuidePageButton(2, 0, ItemStack(TabletReferences.gearbox), "watermills", "watermills", baseGui, 43),
-                                GuidePageButton(2, 0, ItemStack(TabletReferences.gearbox), "burner_engine", "burner_engine", baseGui, 43)
+                                GuidePageButton(2, 0, ItemStack(TabletReferences.watermill), "watermills", "watermills", baseGui, 43),
+                                GuidePageButton(2, 0, ItemStack(TabletReferences.burner_engine), "burner_engine", "burner_engine", baseGui, 43)
                         )
                                 , i + listWidgetOffsetX, j + 16, 18, BaseGui.xSize - 68, BaseGui.ySize - 16)
                 )
@@ -35,16 +35,25 @@ fun getGuide(baseGui: BaseGui): Array<Widget> {
                 baseGui.widgets = getGuide(baseGui) + arrayOf(
                         ListWidget(arrayOf(
                                 GuidePageButton(2, 0, ItemStack(TabletReferences.glue), "glue", "glue", baseGui, 43)
-                        ), i + listWidgetOffsetX, j + 16, 2, BaseGui.xSize - 68, BaseGui.ySize - 16)
+                        ), i + listWidgetOffsetX, j + 16, 18, BaseGui.xSize - 68, BaseGui.ySize - 16)
                 )
             }, 32),
             TextButton(i + 5, j + 52, "gearcraft.guide.group.tools", ClickAction {
                 baseGui.widgets = getGuide(baseGui) + arrayOf(
                         ListWidget(arrayOf(
                                 GuidePageButton(2, 0, ItemStack(TabletReferences.drill), "drill", "drills", baseGui, 43),
-                                GuidePageButton(2, 16, ItemStack(TabletReferences.tablet), "tablet", "tablet", baseGui, 43)
+                                GuidePageButton(2, 0, ItemStack(TabletReferences.tablet), "tablet", "tablet", baseGui, 43)
 
-                        ), i + listWidgetOffsetX, j + 16, 2, BaseGui.xSize - 68, BaseGui.ySize - 16)
+                        ), i + listWidgetOffsetX, j + 16, 18, BaseGui.xSize - 68, BaseGui.ySize - 16)
+                )
+            }, 32),
+            TextButton(i + 5, j + 70, "gearcraft.guide.group.machines", ClickAction {
+                baseGui.widgets = getGuide(baseGui) + arrayOf(
+                        ListWidget(arrayOf(
+                                GuidePageButton(2, 0, ItemStack(TabletReferences.dismantler), "dismantler", "dismantler", baseGui, 43),
+                                GuidePageButton(2, 0, ItemStack(TabletReferences.saw), "saw", "saw", baseGui, 43)
+
+                        ), i + listWidgetOffsetX, j + 16, 18, BaseGui.xSize - 68, BaseGui.ySize - 16)
                 )
             }, 32))
 }
